@@ -38,7 +38,7 @@
                 <div class="ibox-tools">
                   <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal" data-target="#edit"> Edit</button>
 
-                  <a class="close-link alert">
+                  <a class="close-link alert" (click)="showPopup()">
                     <i class="fa fa-times-circle fa-3x danger-color"></i>
                   </a>
                 </div>
@@ -363,8 +363,10 @@
       </div>
     </div>
   </div>
+  <swal #deleteSwal (confirm)="deleteCard()"></swal>
+  <swal #deleteConfirmedSwal title="Deleted!" text="Your card has been deleted." width="80%" type="success"></swal>
 
-  <script>
+  <!-- <script>
     $(document).ready(function () {
 
       var lineData = {
@@ -411,5 +413,5 @@
         swal("Deleted!", "Your card has been deleted.", "success");
       });
     });
-  </script>
+  </script> -->
 </body>

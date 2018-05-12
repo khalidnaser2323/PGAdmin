@@ -10350,4 +10350,10 @@ div.product-chooser{
 			left: 0;
 			top: 0;
 			visibility:hidden;
-		}
+        }
+
+.swal2-popup{
+/* width: inherit !important; */
+font-size: 1.7rem !important;
+
+}

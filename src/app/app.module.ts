@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -18,6 +19,7 @@ import { LoginComponent } from './pages/login/login.component';
   ],
   imports: [
     BrowserModule,
+    SweetAlert2Module.forRoot(),
     AppRoutingModule
   ],
   providers: [],
