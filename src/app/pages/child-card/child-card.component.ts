@@ -9,6 +9,10 @@ export class ChildCardComponent implements OnInit {
 
   constructor() { }
 
+  OnSubmit()
+  {
+    console.log("submitted");
+  }
   ngOnInit() {
   }
 
