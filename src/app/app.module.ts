@@ -22,7 +22,8 @@ import { LoginComponent } from './pages/login/login.component';
     ChildCardComponent,
     CardDataComponent,
     TemplateDataComponent,
-    ViewCardsComponent
+    ViewCardsComponent,
+    LoginComponent
   ],
   
   providers: [
