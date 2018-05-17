@@ -40,8 +40,7 @@
         "../src/js/plugins/flot/jquery.flot.resize.js",
         "../src/js/plugins/chartJs/Chart.min.js",
         "../src/js/plugins/peity/jquery.peity.min.js",
-        "../src/js/demo/peity-demo.js",
-        "../src/js/plugins/dropzone/dropzone.js"
+        "../src/js/demo/peity-demo.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

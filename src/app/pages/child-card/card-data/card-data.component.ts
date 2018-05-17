@@ -1,39 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import {CardService}from '../../../Services/card.service';
-import {NgForm} from '@angular/forms';
-import {CardModel}from '../../../Models/CardModel'
+import { CardService } from '../../../services/card.service';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-card-data',
   templateUrl: './card-data.component.html',
-  styleUrls: ['./card-data.component.css'],
-  providers:[CardService]
+  styleUrls: ['./card-data.component.css']
 })
 export class CardDataComponent implements OnInit {
-  Imadge=null;
-  NewCard:CardModel[];
-  constructor(private CardServices:CardService ) { }
+  Image = null;
+  constructor(private CardServices: CardService) { }
 
   ngOnInit() {
-   
+
   }
-   onSelectedImadge(event)
-  {
-    this.Imadge=event.target.files[0];
+  onSelectedImage(event) {
+    this.Image = event.target.files[0];
   }
-  AddCard(form:NgForm)
-  {
-    const value=form.value;
-    console.log(value);
-    this.NewCard=value;
-    this.CardServices.addCard(<CardModel>value);
-   console.log("new card value"+this.NewCard)
-    this.CardServices.NewCard.subscribe
-    (
-      (addedCard:CardModel[])=>
-      {
-        this.NewCard=addedCard;  
-      }
-    ); 
+  AddCard(form: NgForm) {
+    console.log("new card value");
+    console.log(form.value);
+    this.CardServices.addCard(<CardModel>form.value);
   }
 
 }

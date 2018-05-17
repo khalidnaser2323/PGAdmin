@@ -1,10 +1,4 @@
-export class CardModel {
-    constructor(
-        public title: string,
-        public description: string,
-        
-       
-    ) {
-
-    }
+interface CardModel {
+    title: string,
+    description: string,
 }

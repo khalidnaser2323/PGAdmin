@@ -15,6 +15,7 @@ export class HomePageComponent implements OnInit {
   deletePopUpOptions: SweetAlertOptions;
   pillars: Array<Pillar>;
   deletedPillarId: string = null;
+  selectedPillar: Pillar = null;
   constructor() {
     this.pillars = [
       {
@@ -98,7 +99,21 @@ export class HomePageComponent implements OnInit {
 
   }
   onSaveClicked(event) {
+    console.log("Submitted card form");
     console.log(event);
-  }
+    if (this.selectedPillar == null) {
+      // add new pillar
+      this.pillars.push(event);
+    }
+    else {
+      //edit an existing pillar
+      this.pillars[this.pillars.findIndex(pillar => pillar.id == event.id)] = event;
 
+    }
+  }
+  setSelectedPillar(pillar: Pillar) {
+    console.log("selected pillar");
+    console.log(pillar);
+    this.selectedPillar = pillar;
+  }
 }

@@ -1,21 +1,17 @@
-import {CardModel} from '../Models/CardModel';
-import {EventEmitter} from '@angular/core';
-export class CardService
+import { Injectable } from '@angular/core';
 
-{
-    NewCard= new EventEmitter<CardModel[]>();
-    Card:CardModel[];
-    addCard(card:CardModel)
-    {
-        console.log("the values here"+card);
-            this.Card.push(card);
-            
-            this.NewCard.emit(this.Card.slice());
-            
-    }
-    viewCard()
-    {
-            return this.Card.slice();
-    }
-    
+@Injectable()
+export class CardService {
+  cards: CardModel[] = [];
+  constructor() { }
+
+  getCards(): CardModel[] {
+    return this.cards;
+  }
+  addCard(newCard: CardModel) {
+    this.cards.push(newCard);
+    console.log("Array after add");
+    console.log(this.cards);
+  }
+
 }

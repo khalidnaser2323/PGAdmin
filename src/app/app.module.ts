@@ -14,7 +14,7 @@ import { TemplateDataComponent } from './pages/child-card/template-data/template
 import { ViewCardsComponent } from './pages/child-card/view-cards/view-cards.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AddEditPillarPopupComponent } from './components/add-edit-pillar-popup/add-edit-pillar-popup.component';
-// +import { SweetAlertService } from 'angular-sweetalert-service';
+import { CardService } from './services/card.service';
 
 
 @NgModule({
@@ -25,16 +25,12 @@ import { AddEditPillarPopupComponent } from './components/add-edit-pillar-popup/
     CardDataComponent,
     TemplateDataComponent,
     ViewCardsComponent,
-<<<<<<< HEAD
-    LoginComponent
-=======
     LoginComponent,
     AddEditPillarPopupComponent
->>>>>>> fc45f7ff4495a2711165d08d53dcdb30fad816eb
   ],
 
   providers: [
-    // SweetAlertService
+    CardService
   ],
   imports: [
     BrowserModule,

@@ -28,7 +28,8 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="pull-right margin-20-bottom">
-                <button class="btn btn-success btn-rounded" type="button" data-toggle="modal" data-target="#edit"> Add new card </button>
+                <button class="btn btn-success btn-rounded" type="button" data-toggle="modal" data-target="#edit" (click)="setSelectedPillar(null)">
+                  Add new card </button>
               </div>
             </div>
           </div>
@@ -36,7 +37,8 @@
             <div class="col-lg-4" *ngFor="let pillar of pillars">
               <div class="ibox-title">
                 <div class="ibox-tools">
-                  <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal" data-target="#edit"> Edit</button>
+                  <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal" (click)="setSelectedPillar(pillar)"
+                    data-target="#edit"> Edit</button>
 
                   <a class="close-link alert" (click)="deletePillar(pillar.id)">
                     <i class="fa fa-times-circle fa-3x danger-color"></i>
@@ -73,7 +75,7 @@
     </div>
   </div>
 
-  <app-add-edit-pillar-popup (onSaveClicked)="onSaveClicked($event)"></app-add-edit-pillar-popup>
+  <app-add-edit-pillar-popup (onSaveClicked)="onSaveClicked($event)" [pillar]="selectedPillar"></app-add-edit-pillar-popup>
   <swal #deleteSwal (confirm)="confirmDelete()"></swal>
   <swal #deleteConfirmedSwal title="Deleted!" text="Your card has been deleted." type="success"></swal>
 
