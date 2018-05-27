@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChange } from '@angular/core';
+import { Constants } from '../../Constants';
 declare var jquery: any;
 declare var $: any;
 @Component({
@@ -49,18 +50,13 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
   }
   setNewPillar() {
     this.formPillar = this.formPillar = {
-      id: this.guidGenerator(),
+      id: Constants.guidGenerator(),
       name: "",
       discription: "",
       pillarImg: "img/img-default.jpg"
     };
   }
-  guidGenerator() {
-    var S4 = function () {
-      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    };
-    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-  }
 
-  
+
+
 }

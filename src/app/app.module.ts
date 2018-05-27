@@ -15,6 +15,8 @@ import { ViewCardsComponent } from './pages/child-card/view-cards/view-cards.com
 import { LoginComponent } from './pages/login/login.component';
 import { AddEditPillarPopupComponent } from './components/add-edit-pillar-popup/add-edit-pillar-popup.component';
 import { CardService } from './services/card.service';
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { CardService } from './services/card.service';
     SweetAlert2Module.forRoot(),
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    DropzoneModule
   ],
   bootstrap: [AppComponent]
 })
