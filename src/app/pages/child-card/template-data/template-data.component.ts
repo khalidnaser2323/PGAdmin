@@ -22,8 +22,8 @@ export class TemplateDataComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    console.log("On change called");
-    console.log(changes);
+    // console.log("On change called");
+    // console.log(changes);
     if (changes.selectedTmpId) {
       if (changes.selectedTmpId.currentValue) {
         this.selectedTempId = changes.selectedTmpId.currentValue;

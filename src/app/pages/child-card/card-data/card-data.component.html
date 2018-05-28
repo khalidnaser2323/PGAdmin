@@ -1,5 +1,5 @@
 <form (ngSubmit)="AddCard(f)" #f="ngForm">
-    <div class="modal" id="edit" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal body" id="edit" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content animated fadeIn">
                 <div class="modal-header">
@@ -31,7 +31,7 @@
                             <i class="fa fa-plus"></i>&nbsp; Add Button </button>
                     </div>
                     <div class="row">
-                        <div class="col-md-4" *ngFor="let button of buttonsArray; index as i">
+                        <div class="col-md-4" *ngFor="let button of cardObject.buttons; index as i">
                             <label> Button name</label>
                             <div class="input-group">
                                 <input type="text" class="form-control textbox-rounded" [(ngModel)]="button.buttonTitle" [ngModelOptions]="{standalone: true}">
@@ -53,7 +53,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-white btn-rounded" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-white btn-rounded" (click)="closeModal()">Close</button>
                     <button type="submit" class="btn btn-success btn-rounded">Save changes</button>
                 </div>
             </div>
@@ -61,4 +61,4 @@
     </div>
 </form>
 <!-- Template modal -->
-<app-template-data (onSelectedTemplate)="onSelectedTemplate($event)" [selectedTmpId]="buttonsArray[selectedButtonIndex]? buttonsArray[selectedButtonIndex].buttonTempId:'1'"></app-template-data>
+<app-template-data (onSelectedTemplate)="onSelectedTemplate($event)" [selectedTmpId]="cardObject.buttons && cardObject.buttons[selectedButtonIndex] ? cardObject.buttons[selectedButtonIndex].buttonTempId:'1'"></app-template-data>

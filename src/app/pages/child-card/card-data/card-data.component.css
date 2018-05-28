@@ -1,0 +1,5 @@
+.body{
+    min-height: 500px !important;
+    overflow: auto !important;
+    max-height: 750px !important;
+}

@@ -1,38 +1,36 @@
 <div class="col-sm-6">
-  <div class="ibox-title">
-      <div class="ibox-tools">
-          <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal" data-target="#edit"> Edit</button>
-
-          <a class="close-link alert">
-              <i class="fa fa-times-circle fa-3x danger-color"></i>
-          </a>
-      </div>
-  </div>
-  <div class="card-box">
-      <div class="col-sm-4">
-          <div class="text-center">
-              <img alt="image" class="child-card img-responsive" src="img\img-default.jpg">
-          </div>
-      </div>
-      <div class="col-sm-8">
-          <h3><strong> Title 1 </strong></h3>
-          <p>
-              Et suscipit menandri est, ut mea iriure imperdiet, at his docendi.
-          </p>
-          <div class="user-button">
-              <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                      <button type="button" class="btn btn-success btn-sm btn-block btn-rounded">Button 1</button>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                      <button type="button" class="btn btn-default btn-sm btn-block btn-rounded">Button 2</button>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                      <button type="button" class="btn btn-success btn-sm btn-block btn-rounded">Button 3</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="clearfix"></div>
-  </div>
+    <div class="ibox-title">
+        <div class="ibox-tools">
+            <button class="btn btn-default btn-rounded padding-35-h" type="button" (click)="onCardEditClicked()">
+                Edit</button>
+            <a class="close-link alert">
+                <i class="fa fa-times-circle fa-3x danger-color" (click)="onDelete()"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-box">
+        <div class="col-sm-4">
+            <div class="text-center">
+                <img alt="image" class="child-card img-responsive" src="{{card.imageUrl}}">
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <h3>
+                <strong> {{card.title}} </strong>
+            </h3>
+            <p>
+                {{card.description}}
+            </p>
+            <div class="user-button">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" *ngFor="let button of card.buttons">
+                        <button type="button" class="btn btn-success btn-sm btn-block btn-rounded" style="margin-top: 5px" (click)="onButtonClicked(button)">{{button.buttonTitle}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
 </div>
+
+<!-- data-toggle="modal" data-target="#edit" -->

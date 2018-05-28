@@ -4,10 +4,13 @@
             <div class="row border-bottom white-bg">
                 <nav class="navbar navbar-static-top" role="navigation">
                     <div class="navbar-header">
-                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed"
+                            type="button">
                             <i class="fa fa-reorder"></i>
                         </button>
-                        <a href="index.html" class="navbar-brand"><i>P&G</i></a>
+                        <a href="index.html" class="navbar-brand">
+                            <i>P&G</i>
+                        </a>
                     </div>
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-top-links navbar-right">
@@ -22,19 +25,35 @@
             </div>
             <div class="row wrapper border-bottom  page-heading">
                 <div class="col-sm-4">
-                    <a href="index.html"> <h2> Health Safety Environment </h2> </a>
+                    <a href="index.html">
+                        <h2> Health Safety Environment </h2>
+                    </a>
                 </div>
 
                 <div class="col-sm-offset-5 col-sm-3">
                     <div class="pull-right">
-                        <button class="btn btn-success btn-rounded margin-15-top" type="button" data-toggle="modal" data-target="#edit"> Add new card </button>
+                        <button class="btn btn-success btn-rounded margin-15-top" type="button" (click)="createNewCard()"> Add new card </button>
                     </div>
                 </div>
             </div>
             <div class="wrapper wrapper-content">
+                <!-- If page is empty -->
+                <div class="container" *ngIf="cards==undefinded || cards ==null || cards.length == 0">
+                    <div class="wrapper wrapper-content">
+                        <div class="middle-box text-center animated fadeInRightBig">
+                            <h3 class="font-bold">This page is empty!</h3>
+                            <div class="error-desc">
+                                You can create here any cards based on card parent.
+                                <br>
+                                <a href="" class="btn btn-success m-t btn-rounded" data-toggle="modal" data-target="#edit">
+                                    Create card</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
-                     <!-- new cards -->
-                    <app-view-cards></app-view-cards>
+                    <!-- new cards -->
+                    <app-view-cards *ngFor="let card of cards" [card]="card" (onEditCardClicked)="onEditCard($event)" (onDeleteCardClicked)="onDeleteCard($event)"></app-view-cards>
                 </div>
             </div>
             <div class="footer">
@@ -46,6 +65,5 @@
     </div>
 
     <!-- Add and Edit modal -->
-    <app-card-data></app-card-data>
+    <app-card-data [selectedCard]="selectedCard"></app-card-data>
 </body>
-

@@ -13,10 +13,10 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
   formPillar: Pillar;
 
   constructor() {
-    this.setNewPillar();
   }
 
   ngOnInit() {
+
   }
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     console.log("On change called");
