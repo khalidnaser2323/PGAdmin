@@ -54,6 +54,7 @@ import { Temp12Component } from './pages/temp12/temp12.component';
   ],
 
   providers: [
+    
     CardService
   ],
   imports: [
