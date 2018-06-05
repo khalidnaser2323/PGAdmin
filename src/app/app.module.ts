@@ -27,7 +27,10 @@ import { Temp9Component } from './pages/temp9/temp9.component';
 import { Temp10Component } from './pages/temp10/temp10.component';
 import { Temp11Component } from './pages/temp11/temp11.component';
 import { Temp12Component } from './pages/temp12/temp12.component';
-
+import { StageComponentComponent } from './pages/temp1/stage-component/stage-component.component';
+import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.component';
+import { MatDialogModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -50,9 +53,13 @@ import { Temp12Component } from './pages/temp12/temp12.component';
     Temp9Component,
     Temp10Component,
     Temp11Component,
-    Temp12Component
+    Temp12Component,
+    StageComponentComponent,
+    StagesPopUpComponent
   ],
-
+  entryComponents: [
+    StagesPopUpComponent
+  ],
   providers: [
     CardService
   ],
@@ -63,7 +70,9 @@ import { Temp12Component } from './pages/temp12/temp12.component';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    DropzoneModule
+    DropzoneModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })

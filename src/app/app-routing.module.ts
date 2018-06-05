@@ -13,6 +13,7 @@ import { Temp9Component } from './pages/temp9/temp9.component';
 import { Temp10Component } from './pages/temp10/temp10.component';
 import { Temp11Component } from './pages/temp11/temp11.component';
 import { Temp12Component } from './pages/temp12/temp12.component';
+import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.component';
 
 
 
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'temp11', component: Temp11Component },
   { path: 'temp12', component: Temp12Component }
 ]
+// { path: 'stagesChart', component: StagesPopUpComponent,data:{stages:} }
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

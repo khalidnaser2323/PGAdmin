@@ -1,6 +1,8 @@
 interface Stage {
-    id: string,
-    price: string,
-    percentage: number,
-    details: string
+    id:string,
+    tempDescribtion: string,
+    StagePrice: string,
+    percentValue: number,
+    color: string,
+    stageNumber: string
 }
