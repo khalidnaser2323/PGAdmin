@@ -38,7 +38,6 @@
         "../src/js/plugins/flot/jquery.flot.js",
         "../src/js/plugins/flot/jquery.flot.tooltip.min.js",
         "../src/js/plugins/flot/jquery.flot.resize.js",
-        "../src/js/plugins/chartJs/Chart.min.js",
         "../src/js/plugins/peity/jquery.peity.min.js",
         "../src/js/demo/peity-demo.js"
       ],
