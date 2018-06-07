@@ -31,6 +31,7 @@ import { StageComponentComponent } from './pages/temp1/stage-component/stage-com
 import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.component';
 import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TablePopUpComponent } from './pages/temp2/table-pop-up/table-pop-up.component';
 
 
 @NgModule({
@@ -55,10 +56,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Temp11Component,
     Temp12Component,
     StageComponentComponent,
-    StagesPopUpComponent
+    StagesPopUpComponent,
+    TablePopUpComponent
   ],
   entryComponents: [
-    StagesPopUpComponent
+    StagesPopUpComponent,
+    TablePopUpComponent
   ],
   providers: [
     CardService
@@ -68,7 +71,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     SweetAlert2Module.forRoot(),
     FormsModule,
-    AppRoutingModule,
     HttpModule,
     DropzoneModule,
     MatDialogModule,

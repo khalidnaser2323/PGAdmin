@@ -1,0 +1,47 @@
+<div class="wrapper wrapper-content btn-white">
+  <div class="row">
+    <div class="col-md-9 col-sm-12 col-xs-12">
+      <table class="table table-responsive">
+        <thead class="template-table-style">
+          <tr>
+            <th class="font-weight-300">OrderDate</th>
+            <th class="font-weight-300">Region</th>
+            <th class="font-weight-300">Rep</th>
+            <th class="font-weight-300">Item</th>
+            <th class="font-weight-300">Units</th>
+            <th class="font-weight-300">UnitCost</th>
+            <th class="font-weight-300">TotalCost</th>
+          </tr>
+        </thead>
+        <tbody style="font-size:18px;">
+
+          <tr *ngFor="let row of licence.tableData ">
+            <td class="font-weight-300">{{row.OrderDate}}</td>
+            <td>{{row.Region}}</td>
+            <td>{{row.Rep}}</td>
+            <td>{{row.Item}}</td>
+            <td>{{row.Units}}</td>
+            <td>{{row.UnitCost}}</td>
+            <td>{{row.TotalCost}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+    <div class="col-md-3 col-sm-12 col-xs-12">
+      <div class="template-table-style margin-20-bottom">
+        <p class="text-center green-panel-template-title"> Overview</p>
+      </div>
+      <p class="font-size-18">{{licence.overView}}</p>
+      <div class="img-responsive full-width">
+        <canvas #myCanvas>{{chart}}</canvas>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row bottom-hint">
+    <div class="col-lg-12">
+      <p class="font-size-18"> *Models supporting Player S are also available for Player Lite, but the available functions are limited when the license
+        sets to Player Lite. **OHF 85” is excluded from MagicInfo Player S4 (OHF 85” is a scaler model) </p>
+    </div>
+  </div> -->
+</div>
