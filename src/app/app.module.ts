@@ -32,6 +32,7 @@ import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.
 import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TablePopUpComponent } from './pages/temp2/table-pop-up/table-pop-up.component';
+import { TeamPopUpComponent } from './pages/temp3/team-pop-up/team-pop-up.component';
 
 
 @NgModule({
@@ -57,11 +58,13 @@ import { TablePopUpComponent } from './pages/temp2/table-pop-up/table-pop-up.com
     Temp12Component,
     StageComponentComponent,
     StagesPopUpComponent,
-    TablePopUpComponent
+    TablePopUpComponent,
+    TeamPopUpComponent
   ],
   entryComponents: [
     StagesPopUpComponent,
-    TablePopUpComponent
+    TablePopUpComponent,
+    TeamPopUpComponent
   ],
   providers: [
     CardService

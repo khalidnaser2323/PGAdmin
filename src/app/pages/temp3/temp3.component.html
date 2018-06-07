@@ -1,66 +1,76 @@
 <body class="top-navigation">
-  <div id="wrapper">
-      <div id="page-wrapper" class="gray-bg">
-          <div class="row border-bottom white-bg">
-              <nav class="navbar navbar-static-top" role="navigation">
-                  <div class="navbar-header">
-                      <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                          <i class="fa fa-reorder"></i>
-                      </button>
-                      <a href="index.html" class="navbar-brand"><i>P&G</i></a>
-                  </div>
-                  <div class="navbar-collapse collapse" id="navbar">
-                      <ul class="nav navbar-top-links navbar-right">
-                          <li>
-                              <a href="login.html">
-                                  <i class="fa fa-sign-out"></i> Log out
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </nav>
-          </div>
-          <div class="wrapper wrapper-content">
-              <div class="">
-                  <div class="row">
-                      <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
-                          <div class="card-box padding-h-20">
-                              <div class="form-group">
-                                  <label> Member name </label>
-                                  <input type="text" placeholder="member name" class="form-control textbox-rounded">
-                              </div>
-                              <div class="form-group">
-                                  <label> Member photo </label>
-                                  <form action="#" class="dropzone" id="dropzoneForm">
-                                      <div class="fallback">
-                                          <input name="file" type="file" />
-                                      </div>
-                                  </form>
-                              </div>
-                              <div class="form-group">
-                                  <label> Job  </label>
-                                  <input type="text" placeholder="Job" class="form-control textbox-rounded"/>
-                              </div>
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom white-bg">
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <div class="navbar-header">
+                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed"
+                            type="button">
+                            <i class="fa fa-reorder"></i>
+                        </button>
+                        <a href="index.html" class="navbar-brand">
+                            <i>P&G</i>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbar">
+                        <ul class="nav navbar-top-links navbar-right">
+                            <li>
+                                <a href="login.html">
+                                    <i class="fa fa-sign-out"></i> Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="wrapper wrapper-content">
+                <div class="">
+                    <div class="row ">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-offset-5 col-sm-4">
+                            <div class="pull-right">
+                                <button class="btn btn-default btn-rounded margin-15-bottom" type="button" (click)="addMember()"> Add member</button>
+                                <button class="btn btn-default btn-rounded margin-15-bottom margin-h-10" type="button" (click)="openDialog()"> Show in client</button>
+                                <button class="btn btn-success btn-rounded margin-15-bottom margin-h-10" type="button" (click)="saveAll()"> Save all </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6" *ngFor="let member of teamMembers; index as i">
+                            <div class="card-box padding-h-20">
+                                <div class="form-group">
+                                    <label> Member name </label>
+                                    <input type="text" placeholder="member name" [(ngModel)]="member.Name" class="form-control textbox-rounded">
+                                </div>
+                                <div class="form-group">
+                                    <label> Member photo </label>
+                                    <div class="dropzone form-group" id="dropzoneForm" [dropzone]="config" (addedFile)="onAddedFile(file)" (error)="onUploadError($event)"
+                                        (success)="onUploadSuccess($event)"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label> Job </label>
+                                    <input type="text" placeholder="Job" [(ngModel)]="member.JobDiscribtion" class="form-control textbox-rounded" />
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 form-group">
+                                        <button class="btn btn-primary btn-rounded full-width" type="button" (click)="saveMember(member)"> Save member </button>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 form-group">
+                                        <button class="btn btn-danger btn-rounded full-width" type="button" (click)="deleteMember(i)"> Delete member </button>
+                                    </div>
+                                </div>
 
-                              <div class="row">
-                                  <div class="col-lg-6 col-md-6 form-group">
-                                      <button class="btn btn-primary btn-rounded full-width" type="button"> Save  </button>
-                                  </div>
-                                  <div class="col-lg-6 col-md-6 form-group">
-                                      <button class="btn btn-danger btn-rounded full-width" type="button">  Cancel  </button>
-                                  </div>
-                              </div>
-                             
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="footer">
-              <div>
-                  <strong>P&G</strong> Copyright &copy; 2018
-              </div>
-          </div>
-      </div>
-  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div>
+                    <strong>P&G</strong> Copyright &copy; 2018
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
