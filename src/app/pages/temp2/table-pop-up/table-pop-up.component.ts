@@ -24,14 +24,12 @@ export class TablePopUpComponent implements OnInit {
     console.log(this.data);
     this.ctx = this.canvasRef.nativeElement.getContext('2d');
     let chartLabels: Array<string> = [];
-    for (let row of this.licence.tableData) {
-      chartLabels.push(row.OrderDate);
-    }
     let chartData: Array<string> = [];
     for (let row of this.licence.tableData) {
+      chartLabels.push(row.OrderDate);
       chartData.push(row.TotalCost);
     }
-    debugger;
+
     this.chart = new Chart(this.ctx, {
       type: 'line',
       data: {
