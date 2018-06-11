@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild,ElementRef, Input,Inject } from '@angular/core';
 import { Chart } from 'chart.js';
 import {Popup5Component} from '../popup5/popup5.component'
-import {dataService} from '../../../Services/data.Service';
+
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({

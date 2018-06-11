@@ -32,7 +32,6 @@ import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.
 import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Temp5PopUpcomponentComponent } from './pages/temp5/temp5-pop-upcomponent/temp5-pop-upcomponent.component';
-import { dataService } from './Services/data.Service';
 import { Popup5Component } from './pages/temp5/popup5/popup5.component';
 import { Temp6popupComponent } from './pages/temp6/temp6popup/temp6popup.component';
 import { ConpopupComponent } from './pages/temp6/conpopup/conpopup.component';
@@ -80,10 +79,11 @@ import { TeamPopUpComponent } from './pages/temp3/team-pop-up/team-pop-up.compon
     TeamPopUpComponent
   ],
   
+
   providers: [
     
     CardService,
-    dataService
+   
   ],
   imports: [
     BrowserModule,
