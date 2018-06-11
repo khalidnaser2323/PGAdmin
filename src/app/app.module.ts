@@ -31,6 +31,11 @@ import { StageComponentComponent } from './pages/temp1/stage-component/stage-com
 import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.component';
 import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Temp5PopUpcomponentComponent } from './pages/temp5/temp5-pop-upcomponent/temp5-pop-upcomponent.component';
+import { dataService } from './Services/data.Service';
+import { Popup5Component } from './pages/temp5/popup5/popup5.component';
+import { Temp6popupComponent } from './pages/temp6/temp6popup/temp6popup.component';
+import { ConpopupComponent } from './pages/temp6/conpopup/conpopup.component';
 
 
 @NgModule({
@@ -55,14 +60,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Temp11Component,
     Temp12Component,
     StageComponentComponent,
-    StagesPopUpComponent
+    StagesPopUpComponent,
+    Temp5PopUpcomponentComponent,
+    Popup5Component,
+    Temp6popupComponent,
+    ConpopupComponent
   ],
   entryComponents: [
-    StagesPopUpComponent
+    Temp6popupComponent,
+    Popup5Component,
+    Temp5PopUpcomponentComponent,
+    ConpopupComponent
   ],
   providers: [
     
-    CardService
+    CardService,
+    dataService
   ],
   imports: [
     BrowserModule,
