@@ -16,6 +16,7 @@ export class Temp1Component implements OnInit {
   }
 
   ngOnInit() {
+    this.addNewStage();
   }
 
   saveStage(stage) {

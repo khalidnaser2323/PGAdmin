@@ -29,8 +29,9 @@
                     </div>
                     <div class="col-sm-offset-5 col-sm-4">
                         <div class="pull-right">
-                            <button class="btn btn-success btn-rounded margin-15-bottom margin-h-10" type="button"> Save all </button>
-                            <button class="btn btn-default btn-rounded margin-15-bottom" type="button"> Draw chart</button>
+                            <button class="btn btn-default btn-rounded margin-15-bottom" type="button" (click)="addRow()"> Add row</button>
+                            <button class="btn btn-default btn-rounded margin-15-bottom" type="button" (click)="openDialog()"> Draw chart</button>
+                            <button class="btn btn-success btn-rounded margin-15-bottom margin-h-10" type="button" (click)="saveAll()"> Save all </button>
                         </div>
                     </div>
                 </div>
@@ -39,45 +40,46 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-md-6" *ngFor="let row of licenseData.tableData; index as i">
                             <div class="ibox-title">
                                 <div class="ibox-tools">
-                                    <h3 class="text-center"> Table data</h3>
+                                    <h3 class="text-center"> Table row</h3>
                                 </div>
                             </div>
                             <div class="card-box padding-h-20">
                                 <div class="form-group">
                                     <label> Order date </label>
-                                    <input type="date" placeholder="Order date " class="form-control textbox-rounded">
+                                    <input type="date" placeholder="Order date " [(ngModel)]="row.OrderDate" class="form-control textbox-rounded">
                                 </div>
                                 <div class="form-group">
                                     <label> Region Name </label>
-                                    <input type="text" placeholder="Region" class="form-control textbox-rounded">
+                                    <input type="text" placeholder="Region" [(ngModel)]="row.Region" class="form-control textbox-rounded">
                                 </div>
                                 <div class="form-group">
                                     <label> Rep </label>
-                                    <input type="text" placeholder="Rep" class="form-control textbox-rounded">
+                                    <input type="text" placeholder="Rep" [(ngModel)]="row.Rep" class="form-control textbox-rounded">
                                 </div>
                                 <div class="form-group">
                                     <label> Item Name</label>
-                                    <input type="text" placeholder="Item" class="form-control textbox-rounded">
+                                    <input type="text" placeholder="Item" [(ngModel)]="row.Item" class="form-control textbox-rounded">
                                 </div>
                                 <div class="form-group">
                                     <label> Units </label>
-                                    <input type="number" placeholder="Units" class="form-control textbox-rounded">
+                                    <input type="number" placeholder="Units" [(ngModel)]="row.Units" class="form-control textbox-rounded">
                                 </div>
                                 <div class="form-group">
                                     <label> UnitCost </label>
-                                    <input type="number" placeholder="UnitCost" class="form-control textbox-rounded">
+                                    <input type="number" placeholder="UnitCost" [(ngModel)]="row.UnitCost" class="form-control textbox-rounded">
                                 </div>
                                 <div class="form-group">
-                                    <label> UnitCost </label>
-                                    <input type="number" placeholder="UnitCost" class="form-control textbox-rounded">
+                                    <label> TotalCost </label>
+                                    <input type="number" placeholder="TotalCost" [(ngModel)]="row.TotalCost" class="form-control textbox-rounded">
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 form-group">
-                                        <button class="btn btn-success btn-rounded" type="button"> Save and Add </button>
+                                        <button class="btn btn-success btn-rounded" type="button" (click)="saveRow(row)"> Save row </button>
+                                        <button class="btn btn-success btn-rounded" type="button" (click)="deleteRow(i)"> Delete row </button>
                                     </div>
 
                                 </div>
@@ -93,15 +95,11 @@
                             <div class="card-box padding-h-20">
                                 <div class="form-group">
                                     <label> Details / Description </label>
-                                    <textarea rows="2" placeholder="Details" class="form-control textbox-rounded"></textarea>
+                                    <textarea rows="2" placeholder="Details" [(ngModel)]="licenseData.overView" class="form-control textbox-rounded"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label> Chart image </label>
-                                    <form action="#" class="dropzone" id="dropzoneForm">
-                                        <div class="fallback">
-                                            <input name="file" type="file" multiple />
-                                        </div>
-                                    </form>
+                                    <div class="dropzone form-group" id="dropzoneForm" [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
                                 </div>
 
                                 <div class="row">

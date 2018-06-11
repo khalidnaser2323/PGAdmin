@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -7,7 +7,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./stages-pop-up.component.css']
 })
 export class StagesPopUpComponent implements OnInit {
-  // @Input('stages') stages: Array<Stage>;
   stages: Array<Stage>;
   constructor(public dialogRef: MatDialogRef<StagesPopUpComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {

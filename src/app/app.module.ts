@@ -36,6 +36,8 @@ import { dataService } from './Services/data.Service';
 import { Popup5Component } from './pages/temp5/popup5/popup5.component';
 import { Temp6popupComponent } from './pages/temp6/temp6popup/temp6popup.component';
 import { ConpopupComponent } from './pages/temp6/conpopup/conpopup.component';
+import { TablePopUpComponent } from './pages/temp2/table-pop-up/table-pop-up.component';
+import { TeamPopUpComponent } from './pages/temp3/team-pop-up/team-pop-up.component';
 
 
 @NgModule({
@@ -70,8 +72,14 @@ import { ConpopupComponent } from './pages/temp6/conpopup/conpopup.component';
     Temp6popupComponent,
     Popup5Component,
     Temp5PopUpcomponentComponent,
-    ConpopupComponent
+    ConpopupComponent,
+    TablePopUpComponent,
+    TeamPopUpComponent,
+    StagesPopUpComponent,
+    TablePopUpComponent,
+    TeamPopUpComponent
   ],
+  
   providers: [
     
     CardService,
@@ -82,7 +90,6 @@ import { ConpopupComponent } from './pages/temp6/conpopup/conpopup.component';
     AppRoutingModule,
     SweetAlert2Module.forRoot(),
     FormsModule,
-    AppRoutingModule,
     HttpModule,
     DropzoneModule,
     MatDialogModule,
