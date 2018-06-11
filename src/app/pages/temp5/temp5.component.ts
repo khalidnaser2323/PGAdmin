@@ -54,7 +54,7 @@ export class Temp5Component implements OnInit {
     let dialogRef = this.dialog.open(Popup5Component, {
       height: '400px',
       width: '600px',
-      data: {chartValues: this.ChartValues }
+      data: {ChartValues: this.ChartValues }
     });
   }
 }

@@ -13,7 +13,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class Temp5PopUpcomponentComponent implements OnInit {
   ctx:any;
   chart=[];
-  @Input() ChartValues:template5;
+  @Input() ChartValues:template5 ;
   length:number;
   x:number;
   values:template5;
