@@ -37,7 +37,7 @@ import { Temp6popupComponent } from './pages/temp6/temp6popup/temp6popup.compone
 import { ConpopupComponent } from './pages/temp6/conpopup/conpopup.component';
 import { TablePopUpComponent } from './pages/temp2/table-pop-up/table-pop-up.component';
 import { TeamPopUpComponent } from './pages/temp3/team-pop-up/team-pop-up.component';
-
+import { ChartPopupComponent } from './pages/temp9/chart-popup/chart-popup.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,10 @@ import { TeamPopUpComponent } from './pages/temp3/team-pop-up/team-pop-up.compon
     Temp5PopUpcomponentComponent,
     Popup5Component,
     Temp6popupComponent,
-    ConpopupComponent
+    ConpopupComponent,
+    ChartPopupComponent,
+    TablePopUpComponent,
+    TeamPopUpComponent
   ],
   entryComponents: [
     Temp6popupComponent,
@@ -75,8 +78,7 @@ import { TeamPopUpComponent } from './pages/temp3/team-pop-up/team-pop-up.compon
     TablePopUpComponent,
     TeamPopUpComponent,
     StagesPopUpComponent,
-    TablePopUpComponent,
-    TeamPopUpComponent
+    ChartPopupComponent
   ],
   
 
