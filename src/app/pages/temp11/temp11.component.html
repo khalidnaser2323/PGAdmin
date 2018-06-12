@@ -27,105 +27,143 @@
 
       </div>
       <div class="wrapper wrapper-content btn-white">
+        <div class="row ">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-offset-5 col-sm-4">
+            <div class="pull-right">
+              <button class="btn btn-success btn-rounded margin-15-bottom margin-h-10" type="button" (click)="saveAll()"> Save all</button>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-9">
-            <div id="num01">
+            <div id="num01" *ngIf="activePanel =='1'">
               <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="panel panel-primary temp11">
                   <div class="panel-heading panel-temp text-center">
-                    <input type="text" class="form-control" name="title" value="Targets" />
+                    <input type="text" class="form-control" [(ngModel)]="tempModel.colOneHeader" placeholder="Column 1 header" />
                   </div>
                   <div class="clearfix"></div>
                   <div class="panel-body temp11">
-                    <textarea class="form-control" rows="10">
-                                          CIL on time 90%
-                                          CIL Completion 90%
-                                          ZUT 0.00
-                                      </textarea>
+                    <textarea class="form-control" [(ngModel)]="tempModel.colOneText" placeholder="Column 1 text" rows="10"></textarea>
                   </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="panel panel-primary temp11">
                   <div class="panel-heading panel-temp text-center">
-                    <input type="text" class="form-control" name="title" value="DMS R&R" />
+                    <input type="text" class="form-control" [(ngModel)]="tempModel.colTwoHeader" placeholder="Column 2 header" />
                   </div>
                   <div class="clearfix"></div>
                   <div class="panel-body temp11">
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colTwoText" placeholder="Column 2 text"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="panel panel-primary temp11">
+                  <div class="panel-heading panel-temp text-center">
+                    <input type="text" class="form-control" [(ngModel)]="tempModel.colThreeHeader" placeholder="Column 3 header" />
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="panel-body temp11">
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colThreeText" placeholder="Column 3 text"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="num02" *ngIf="activePanel =='2'">
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="panel panel-primary temp11">
+                  <div class="panel-body temp11 active">
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colFourText" placeholder="Column 4 text"></textarea>
 
-                    <textarea class="form-control" rows="10">
-                                          2 members from operation / 1 offline meeting the below criteria for their owned features
-                                          CIL Completion 100%
-                                          ZUT 0.00
-                                          CIL Completion on time 100%
-                                      </textarea>
                   </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="panel panel-primary temp11">
-                  <div class="panel-heading panel-temp text-center">
-                    <input type="text" class="form-control" name="title" value="Targets" />
+                  <div class="panel-body temp11 active">
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colFiveText" placeholder="Column 5 text"></textarea>
+
                   </div>
-                  <div class="clearfix"></div>
-                  <div class="panel-body temp11">
-                    <textarea class="form-control" rows="10">
-                                          CIL on time 90%
-                                          CIL Completion 90%
-                                          ZUT 0.00
-                                      </textarea>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="panel panel-primary temp11">
+                  <div class="panel-body temp11 active">
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colSixText" placeholder="Column 6 text"></textarea>
                   </div>
                 </div>
               </div>
             </div>
-            <div id="num02" style="display:none;">
+            <div id="num03" *ngIf="activePanel =='3'">
               <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="panel panel-primary temp11">
                   <div class="panel-body temp11 active">
-                    <textarea class="form-control" rows="10">
-                                          CIL on time 90%
-                                          CIL Completion 90%
-                                          ZUT 0.00
-                                      </textarea>
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colSevenText" placeholder="Column 7 text"></textarea>
+
                   </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="panel panel-primary temp11">
                   <div class="panel-body temp11 active">
-                    <textarea class="form-control" rows="10">
-                                          CIL on time 90%
-                                          CIL Completion 90%
-                                          ZUT 0.00
-                                      </textarea>
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colEightText" placeholder="Column 8 text"></textarea>
+
                   </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="panel panel-primary temp11">
                   <div class="panel-body temp11 active">
-                    <textarea class="form-control" rows="10">
-                                          CIL on time 90%
-                                          CIL Completion 90%
-                                          ZUT 0.00
-                                      </textarea>
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colNineText" placeholder="Column 9 text"></textarea>
+
                   </div>
                 </div>
               </div>
             </div>
+            <div id="num04" *ngIf="activePanel =='4'">
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="panel panel-primary temp11">
+                  <div class="panel-body temp11 active">
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colTenText" placeholder="Column 10 text"></textarea>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="panel panel-primary temp11">
+                  <div class="panel-body temp11 active">
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colElevenText" placeholder="Column 11 text"></textarea>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="panel panel-primary temp11">
+                  <div class="panel-body temp11 active">
+                    <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colTwelveText" placeholder="Column 12 text"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
             <div class="row padding-v-20">
               <div style="text-align:center">
-                <a class="btn btn-circle btn-default">1</a>
-                <a id="num" class="btn btn-circle btn-default">2</a>
-                <a class="btn btn-circle btn-default">3</a>
-                <a class="btn btn-circle btn-default">4</a>
+                <a (click)="showPanel('1')" [ngClass]="{'active' : activePanel=='1'}" class="btn btn-circle btn-default">1</a>
+                <a (click)="showPanel('2')" [ngClass]="{'active' : activePanel=='2'}" class="btn btn-circle btn-default">2</a>
+                <a (click)="showPanel('3')" [ngClass]="{'active' : activePanel=='3'}" class="btn btn-circle btn-default">3</a>
+                <a (click)="showPanel('4')" [ngClass]="{'active' : activePanel=='4'}" class="btn btn-circle btn-default">4</a>
               </div>
             </div>
           </div>
 
 
 
-          <div class="col-md-3 col-sm-3 col-xs-12">
+          <!-- <div class="col-md-3 col-sm-3 col-xs-12">
             <div class="form-group">
               <label> Image </label>
               <form action="#" class="dropzone" id="dropzoneForm">
@@ -139,7 +177,7 @@
                 <button class="btn btn-primary btn-rounded full-width" type="button"> Save </button>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
 
@@ -151,12 +189,4 @@
       </div>
     </div>
   </div>
-
-  <script>
-    $("#num").click(function () {
-      $("#num02").show();
-      $("#num01").hide();
-    });
-  </script>
-
 </body>
