@@ -40,6 +40,7 @@ import { TeamPopUpComponent } from './pages/temp3/team-pop-up/team-pop-up.compon
 import { ChartPopupComponent } from './pages/temp9/chart-popup/chart-popup.component';
 import { Temp12connComponent } from './pages/temp12/temp12conn/temp12conn.component';
 import { Temp12popupComponent } from './pages/temp12/temp12popup/temp12popup.component';
+import { ServiceHandlerProvider } from './services/service-handler/service-handler';
 
 @NgModule({
   declarations: [
@@ -85,12 +86,13 @@ import { Temp12popupComponent } from './pages/temp12/temp12popup/temp12popup.com
     ChartPopupComponent,
     Temp12connComponent
   ],
-  
+
 
   providers: [
-    
+
     CardService,
-   
+    ServiceHandlerProvider
+
   ],
   imports: [
     BrowserModule,
