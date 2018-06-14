@@ -8,27 +8,27 @@
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
-        <h4 class="modal-title"> Add / Edit card </h4>
+        <h4 class="modal-title"> Add / Edit pillar </h4>
       </div>
       <form #cardForm="ngForm" (ngSubmit)="save(cardForm)">
         <div class="modal-body">
           <div class="form-group">
-            <label>Card Name </label>
-            <input type="text" required name="name" placeholder="Card name" class="form-control textbox-rounded" [(ngModel)]="formPillar.name"
-              #name="ngModel">
+            <label>Pillar Name </label>
+            <input type="text" required name="title" placeholder="Pillar name" class="form-control textbox-rounded" [(ngModel)]="formPillar.title"
+              #title="ngModel">
           </div>
           <div class="form-group">
             <label>Description</label>
-            <textarea rows="1" required name="discription" placeholder="Description" class="form-control textbox-rounded" [(ngModel)]="formPillar.discription"
-              #discription="ngModel"></textarea>
+            <textarea rows="1" required name="subtitle" placeholder="Description" class="form-control textbox-rounded" [(ngModel)]="formPillar.subtitle"
+              #subtitle="ngModel"></textarea>
           </div>
 
-          <div class="dropzone" id="dropzoneForm">
+          <!-- <div class="dropzone" id="dropzoneForm">
             <div class="fallback">
               <input name="file" type="file" />
             </div>
-          </div>
-
+          </div> -->
+          <div class="dropzone form-group" id="dropzoneForm" [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-white btn-rounded" data-dismiss="modal">Close</button>
@@ -38,3 +38,4 @@
     </div>
   </div>
 </div>
+<swal #errorDialog></swal>

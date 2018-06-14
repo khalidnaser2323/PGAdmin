@@ -34,7 +34,7 @@ export class ServiceHandlerProvider {
         "Content-Type": "application/json"
       }
       if (token) {
-        headers.token = token;
+        headers.Authorization = "Bearer " + token;
       }
     }
     let requestOptions = {

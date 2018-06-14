@@ -17,68 +17,68 @@ export class HomePageComponent implements OnInit {
   deletedPillarId: string = null;
   selectedPillar: Pillar = null;
   constructor() {
-    this.pillars = [
-      {
-        id: "1",
-        pillarImg: "img/img-default.jpg",
-        name: "Leadership Pillar",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      },
-      {
-        id: "2",
-        pillarImg: "img/img-default.jpg",
-        name: "Human Resources",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      }, {
-        id: "3",
-        pillarImg: "img/img-default.jpg",
-        name: "Loss Elimination",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      }, {
-        id: "4",
-        pillarImg: "img/img-default.jpg",
-        name: "Autonomous Maintenance",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      }, {
-        id: "5",
-        pillarImg: "img/img-default.jpg",
-        name: "Learning",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      }, {
-        id: "6",
-        pillarImg: "img/img-default.jpg",
-        name: "Preventive Maintenance",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      }, {
-        id: "7",
-        pillarImg: "img/img-default.jpg",
-        name: "Initiative Management",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      }, {
-        id: "8",
-        pillarImg: "img/img-default.jpg",
-        name: "Quality",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      }, {
-        id: "9",
-        pillarImg: "img/img-default.jpg",
-        name: "Health Safety Environment",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      }, {
-        id: "10",
-        pillarImg: "img/img-default.jpg",
-        name: "Supply network",
-        discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-      }
+    // this.pillars = [
+    //   {
+    //     id: "1",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Leadership Pillar",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   },
+    //   {
+    //     id: "2",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Human Resources",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   }, {
+    //     id: "3",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Loss Elimination",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   }, {
+    //     id: "4",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Autonomous Maintenance",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   }, {
+    //     id: "5",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Learning",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   }, {
+    //     id: "6",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Preventive Maintenance",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   }, {
+    //     id: "7",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Initiative Management",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   }, {
+    //     id: "8",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Quality",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   }, {
+    //     id: "9",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Health Safety Environment",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   }, {
+    //     id: "10",
+    //     pillarImg: "img/img-default.jpg",
+    //     name: "Supply network",
+    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
+    //   }
 
-    ]
+    // ]
   }
 
   ngOnInit() {
   }
   confirmDelete() {
     if (this.deletedPillarId != null) {
-      this.pillars = this.pillars.filter(pillar => { return pillar.id != this.deletedPillarId });
+      this.pillars = this.pillars.filter(pillar => { return pillar._id != this.deletedPillarId });
     }
     this.deleteConfirmedSwal.show();
 
@@ -107,7 +107,7 @@ export class HomePageComponent implements OnInit {
     }
     else {
       //edit an existing pillar
-      this.pillars[this.pillars.findIndex(pillar => pillar.id == event.id)] = event;
+      this.pillars[this.pillars.findIndex(pillar => pillar._id == event._id)] = event;
 
     }
   }

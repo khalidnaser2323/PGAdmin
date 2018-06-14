@@ -1,8 +1,6 @@
 interface Pillar {
-
-    id: string,
-    pillarImg: string,
-    name: string,
-    discription: String,
-
+    _id: string,
+    imageID: string,
+    title: string,
+    subtitle: String
 }

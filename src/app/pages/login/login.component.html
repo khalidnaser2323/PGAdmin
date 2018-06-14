@@ -13,22 +13,25 @@
       <p>Administrator login
         <br /> Please enter the below information to manage your account.
       </p>
-      <form class="m-t" role="form" action="index.html">
+      <form class="m-t" #loginForm="ngForm" name="loginForm" (ngSubmit)="login(loginForm)">
         <div class="form-group">
-          <input type="email" class="form-control textbox-rounded" placeholder="Username" required="">
+          <input type="text" name="username" id="username" #username="ngModel" class="form-control textbox-rounded" placeholder="Username"
+            required [(ngModel)]="loginFormObject.username">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control textbox-rounded" placeholder="Password" required="">
+          <input type="password" id="password" #password="ngModel" [(ngModel)]="loginFormObject.password" name="password" required
+            class="form-control textbox-rounded" placeholder="Password">
         </div>
-        <a  routerLink="/home" class="btn btn-primary block full-width m-b btn-rounded">Login</a>
-
-        <a>
+        <button class="btn btn-primary block full-width m-b btn-rounded" type="submit">Login</button>
+        <!-- <a>
           <small>Forgot password?</small>
-        </a>
+        </a> -->
       </form>
       <p class="m-t">
         <small>Copyright P&G &copy; 2018</small>
       </p>
     </div>
   </div>
+  <swal #errorDialog></swal>
+
 </body>
