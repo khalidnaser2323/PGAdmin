@@ -49,12 +49,12 @@
                 <a>
                   <div class="col-sm-5">
                     <div class="text-center">
-                      <img alt="image" class="home-card img-responsive" src="{{pillar.imageID}}">
+                      <img alt="image" class="home-card img-responsive" src="http://206.189.96.67:3000/api/v1/image/{{pillar.imageID}}">
                     </div>
                   </div>
                   <div class="col-sm-7">
                     <h3>
-                      <strong> {{pillar.name}} </strong>
+                      <strong> {{pillar.title}} </strong>
                     </h3>
                     <p>
                       {{pillar.subtitle}}
@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <app-add-edit-pillar-popup (onSaveClicked)="onSaveClicked($event)" [pillar]="selectedPillar"></app-add-edit-pillar-popup>
+  <app-add-edit-pillar-popup (onPillarSaved)="onPillarSaved($event)" [pillar]="selectedPillar"></app-add-edit-pillar-popup>
   <swal #deleteSwal (confirm)="confirmDelete()"></swal>
   <swal #deleteConfirmedSwal title="Deleted!" text="Your card has been deleted." type="success"></swal>
 

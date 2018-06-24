@@ -16,9 +16,10 @@ declare var $: any;
 })
 export class AddEditPillarPopupComponent implements OnInit, OnChanges {
   @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
-  @Output() onSaveClicked: EventEmitter<Pillar> = new EventEmitter;
+  @Output() onPillarSaved: EventEmitter<boolean> = new EventEmitter;
   @Input('pillar') selectedPillar: Pillar;
   formPillar: Pillar;
+  seletectedImageString: string;
 
   config: DropzoneConfigInterface = {
     url: "/",
@@ -74,35 +75,44 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
       }
       this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token, reqeustOptions.requestBody).subscribe(response => {
         console.log(response);
-        let dropzone = this.directiveRef.dropzone();
-        dropzone.options.url = Constants.BASE_URL + "section/" + response.id;
-        dropzone.options.method = "PUT";
-        dropzone.options.headers = {
-          "Authorization": "Bearer " + this.myData.token
+        if (this.seletectedImageString) {
+          const request = {
+            "data": this.seletectedImageString
+          }
+          const url = Constants.BASE_URL + "section/" + (response.id == undefined ? this.formPillar._id : response.id) + "/image";
+          this.serviceHandler.runService(url, "PUT", this.myData.token, request).subscribe(res => {
+            console.log("Upload image string response");
+            console.log(res);
+            this.setNewPillar();
+            this.onPillarSaved.emit(true);
+            // K.A: use jquery to hide the modal from component.
+            $('#edit').modal('hide');
+          }, err => {
+            console.log("Upload image string error");
+            console.error(err);
+            window.alert("Error in saving pillar");
+          })
         }
-        dropzone.processQueue();
+        else {
+          this.setNewPillar();
+          this.onPillarSaved.emit(true);
+          // K.A: use jquery to hide the modal from component.
+          $('#edit').modal('hide');
+        }
+
       }, error => {
         console.log(error);
-        this.showErrorDialog();
+        window.alert("Error in saving pillar");
       });
-      //K.A: use jquery to hide the modal from component.
-      // $('#edit').modal('hide');
+
     }
     else {
       console.log("form is not valid");
       console.log(form);
+      window.alert("Please fill pillar details!");
     }
   }
-  onUploadError(event) {
-    console.error(event);
-    this.showErrorDialog();
-  }
-  onUploadSuccess(event) {
-    console.log(event);
-    this.onSaveClicked.emit(this.formPillar);
-    this.setNewPillar();
-    $('#edit').modal('hide');
-  }
+
   setNewPillar() {
     this.formPillar = this.formPillar = {
       _id: "",
@@ -110,17 +120,24 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
       subtitle: "",
       imageID: "img/img-default.jpg"
     };
+    this.seletectedImageString = undefined;
   }
-  showErrorDialog() {
-    this.dialogOptions = {
-      title: "Error",
-      text: "Fialed to Create pillar",
-      type: "error"
+  handleFileInput(files: FileList) {
+    // this.fileToUpload = files.item(0);
+    console.log(files);
+    this.readThis(files);
+  }
+  readThis(inputValue: any): void {
+    var file: File = inputValue[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      // you can perform an action with readed data here
+      console.log(myReader.result);
+      this.seletectedImageString = myReader.result;
     }
-    this.errorDialog.options = this.dialogOptions;
-    this.errorDialog.show();
+
+    myReader.readAsDataURL(file);
 
   }
-
-
 }

@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { SweetAlertOptions } from 'sweetalert2';
+import { Constants } from '../../Constants';
+import { ServiceHandlerProvider } from '../../services/service-handler/service-handler';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 
 @Component({
@@ -16,62 +19,14 @@ export class HomePageComponent implements OnInit {
   pillars: Array<Pillar>;
   deletedPillarId: string = null;
   selectedPillar: Pillar = null;
-  constructor() {
-    // this.pillars = [
-    //   {
-    //     id: "1",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Leadership Pillar",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   },
-    //   {
-    //     id: "2",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Human Resources",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   }, {
-    //     id: "3",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Loss Elimination",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   }, {
-    //     id: "4",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Autonomous Maintenance",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   }, {
-    //     id: "5",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Learning",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   }, {
-    //     id: "6",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Preventive Maintenance",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   }, {
-    //     id: "7",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Initiative Management",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   }, {
-    //     id: "8",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Quality",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   }, {
-    //     id: "9",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Health Safety Environment",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   }, {
-    //     id: "10",
-    //     pillarImg: "img/img-default.jpg",
-    //     name: "Supply network",
-    //     discription: "Et suscipit menandri est, ut mea iriure imperdiet, at his docendi."
-    //   }
+  myData: LoginResponse;
 
-    // ]
+  constructor(
+    public serviceHandler: ServiceHandlerProvider,
+    @Inject(SESSION_STORAGE) private storage: StorageService
+  ) {
+    this.myData = this.storage.get(Constants.USER_DATA);
+    this.getPillars();
   }
 
   ngOnInit() {
@@ -98,22 +53,26 @@ export class HomePageComponent implements OnInit {
     this.deleteSwal.show();
 
   }
-  onSaveClicked(event) {
+  onPillarSaved(event) {
     console.log("Submitted card form");
     console.log(event);
-    if (this.selectedPillar == null) {
-      // add new pillar
-      this.pillars.push(event);
-    }
-    else {
-      //edit an existing pillar
-      this.pillars[this.pillars.findIndex(pillar => pillar._id == event._id)] = event;
+    this.getPillars();
 
-    }
   }
   setSelectedPillar(pillar: Pillar) {
     console.log("selected pillar");
     console.log(pillar);
     this.selectedPillar = pillar;
+  }
+  getPillars() {
+    this.serviceHandler.runService(Constants.BASE_URL + "section/list", "GET", this.myData.token).subscribe((res) => {
+      console.log("Get pillars response");
+      console.log(res);
+      this.pillars = res;
+    }, err => {
+      console.log("Upload image string error");
+      console.error(err);
+      window.alert("Error in getting pillars");
+    })
   }
 }

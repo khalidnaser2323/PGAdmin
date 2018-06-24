@@ -28,7 +28,13 @@
               <input name="file" type="file" />
             </div>
           </div> -->
-          <div class="dropzone form-group" id="dropzoneForm" [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
+          <!-- <div class="dropzone form-group" id="dropzoneForm" (addedfile)="onAddedFile($event)" [dropzone]="config" (error)="onUploadError($event)"
+            (success)="onUploadSuccess($event)"></div> -->
+          <form class="form-group">
+            <div class="fallback">
+              <input id="file" name="file" (change)="handleFileInput($event.target.files)" type="file" />
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-white btn-rounded" data-dismiss="modal">Close</button>
