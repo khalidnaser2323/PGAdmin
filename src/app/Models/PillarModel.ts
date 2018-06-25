@@ -2,5 +2,6 @@ interface Pillar {
     _id: string,
     imageID: string,
     title: string,
-    subtitle: String
+    subtitle: String,
+    public: boolean
 }

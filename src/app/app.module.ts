@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
@@ -106,7 +107,8 @@ import { ServiceHandlerProvider } from './services/service-handler/service-handl
     MatDialogModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StorageServiceModule
+    StorageServiceModule,
+    NgxSpinnerModule
   ],
   bootstrap: [AppComponent]
 })

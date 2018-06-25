@@ -29,6 +29,7 @@
     "core-js": "^2.4.1",
     "json": "^9.0.6",
     "ngx-dropzone-wrapper": "^6.1.0",
+    "ngx-spinner": "^2.0.0",
     "ngx-webstorage-service": "^3.1.0",
     "rxjs": "^5.5.6",
     "sweetalert2": "^7.20.1",

@@ -75,4 +75,18 @@ export class HomePageComponent implements OnInit {
       window.alert("Error in getting pillars");
     })
   }
+  publishPillar(selectedPillar: Pillar) {
+    const action = selectedPillar.public ? "/set-private" : "/set-public";
+    this.serviceHandler.runService(Constants.BASE_URL + "section/" + selectedPillar._id + action, "POST", this.myData.token).subscribe((res) => {
+      console.log("Modify pillar status response");
+      console.log(res);
+      if (res.done) {
+        this.getPillars();
+      }
+    }, err => {
+      console.log("Modify pillar status error");
+      console.error(err);
+      window.alert("Failed to update status!");
+    });
+  }
 }

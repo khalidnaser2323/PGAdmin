@@ -39,10 +39,12 @@
                 <div class="ibox-tools">
                   <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal" (click)="setSelectedPillar(pillar)"
                     data-target="#edit"> Edit</button>
+                  <button class="btn btn-success btn-rounded padding-35-h" style="float: right;" type="button" (click)="publishPillar(pillar)">
+                    {{pillar.public ? 'Set private' : 'Set public'}} </button>
 
-                  <a class="close-link alert" (click)="deletePillar(pillar.id)">
+                  <!-- <a class="close-link alert" (click)="deletePillar(pillar.id)">
                     <i class="fa fa-times-circle fa-3x danger-color"></i>
-                  </a>
+                  </a> -->
                 </div>
               </div>
               <div class="card-box">

@@ -6,6 +6,8 @@ import { ServiceHandlerProvider } from '../../services/service-handler/service-h
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { SweetAlertOptions } from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 declare var jquery: any;
 declare var $: any;
@@ -33,6 +35,7 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
   myData: LoginResponse;
   constructor(
     public serviceHandler: ServiceHandlerProvider,
+    public spinner: NgxSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
   ) {
     this.myData = this.storage.get(Constants.USER_DATA);
@@ -61,6 +64,7 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
   }
   save(form) {
     if (form.valid) {
+      this.spinner.show();
       // this.onSaveClicked.emit(this.formPillar);
       // this.setNewPillar();
       console.log("Submitted form");
@@ -75,12 +79,15 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
       }
       this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token, reqeustOptions.requestBody).subscribe(response => {
         console.log(response);
+        this.spinner.hide();
         if (this.seletectedImageString) {
           const request = {
             "data": this.seletectedImageString
           }
           const url = Constants.BASE_URL + "section/" + (response.id == undefined ? this.formPillar._id : response.id) + "/image";
+          this.spinner.show();
           this.serviceHandler.runService(url, "PUT", this.myData.token, request).subscribe(res => {
+            this.spinner.hide();
             console.log("Upload image string response");
             console.log(res);
             this.setNewPillar();
@@ -88,6 +95,7 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
             // K.A: use jquery to hide the modal from component.
             $('#edit').modal('hide');
           }, err => {
+            this.spinner.hide();
             console.log("Upload image string error");
             console.error(err);
             window.alert("Error in saving pillar");
@@ -101,6 +109,7 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
         }
 
       }, error => {
+        this.spinner.hide();
         console.log(error);
         window.alert("Error in saving pillar");
       });
@@ -118,7 +127,8 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
       _id: "",
       title: "",
       subtitle: "",
-      imageID: "img/img-default.jpg"
+      imageID: "img/img-default.jpg",
+      public: false
     };
     this.seletectedImageString = undefined;
   }
