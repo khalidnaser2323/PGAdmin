@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-4" *ngFor="let pillar of pillars">
+            <div class="col-lg-4" *ngFor="let pillar of pillars" (click)="navigateToPillarDetails(pillar)">
               <div class="ibox-title">
                 <div class="ibox-tools">
                   <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal" (click)="setSelectedPillar(pillar)"
@@ -51,7 +51,7 @@
                 <a>
                   <div class="col-sm-5">
                     <div class="text-center">
-                      <img alt="image" class="home-card img-responsive" src="http://206.189.96.67:3000/api/v1/image/{{pillar.imageID}}">
+                      <img alt="image" class="home-card img-responsive" src="{{imagePath}}{{pillar.imageID}}">
                     </div>
                   </div>
                   <div class="col-sm-7">

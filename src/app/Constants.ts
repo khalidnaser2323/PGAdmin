@@ -1,6 +1,8 @@
 export class Constants {
     public static BASE_URL: string = "http://206.189.96.67:3000/api/v1/";
     public static USER_DATA: string = "UserData";
+    public static SELECTED_PILLAR: string = "SelectedPillar";
+    public static IMAGE_PATH: string = "http://206.189.96.67:3000/api/v1/image/";
     public static APP_TEMPLATES: Array<TemplateModel> = [
         {
             tempId: "1",

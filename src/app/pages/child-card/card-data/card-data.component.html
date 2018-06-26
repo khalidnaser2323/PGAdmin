@@ -19,46 +19,52 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea rows="1" placeholder="Description" class="form-control textbox-rounded" name="description" [(ngModel)]="cardObject.description"
-                                #description="ngModel"></textarea>
+                            <textarea rows="1" placeholder="subtitle" class="form-control textbox-rounded" name="subtitle" [(ngModel)]="cardObject.subtitle"
+                                #subtitle="ngModel"></textarea>
                         </div>
                     </div>
-                    <div class="dropzone form-group" id="dropzoneForm" [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)">
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-default btn-rounded" (click)="addNewButton()">
-                            <i class="fa fa-plus"></i>&nbsp; Add Button </button>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4" *ngFor="let button of cardObject.buttons; index as i">
-                            <label> Button name</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control textbox-rounded" [(ngModel)]="button.buttonTitle" [ngModelOptions]="{standalone: true}">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-danger btn-rounded" (click)="deleteButton(button)">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <button type="button" class="btn btn-w-m btn-link" data-toggle="modal" data-target="#template" (click)="setSelectedButtonIndex(i)">
-                                Select template </button>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="product-chooser-item">
-                                    <img src="{{getTempURL(button)}}" class="img-responsive">
-                                </div>
+                    <form class="form-group">
+                        <div class="fallback">
+                            <input id="file" name="file" (change)="handleFileInput($event.target.files)" type="file" />
+                        </div>
+                    </form>
+                    <!-- <div class="dropzone form-group" id="dropzoneForm" [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"> -->
+                <!-- </div> -->
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-default btn-rounded" (click)="addNewButton()">
+                        <i class="fa fa-plus"></i>&nbsp; Add Button </button>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let button of cardObject.buttons; index as i">
+                        <label> Button name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control textbox-rounded" [(ngModel)]="button.buttonTitle" [ngModelOptions]="{standalone: true}">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger btn-rounded" (click)="deleteButton(button)">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <button type="button" class="btn btn-w-m btn-link" data-toggle="modal" data-target="#template" (click)="setSelectedButtonIndex(i)">
+                            Select template </button>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="product-chooser-item">
+                                <img src="{{getTempURL(button)}}" class="img-responsive">
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-white btn-rounded" (click)="closeModal()">Close</button>
-                    <button type="submit" class="btn btn-success btn-rounded">Save changes</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white btn-rounded" (click)="closeModal()">Close</button>
+                <button type="submit" class="btn btn-success btn-rounded">Save changes</button>
             </div>
         </div>
+    </div>
     </div>
 </form>
 <!-- Template modal -->
 <app-template-data (onSelectedTemplate)="onSelectedTemplate($event)" [selectedTmpId]="cardObject.buttons && cardObject.buttons[selectedButtonIndex] ? cardObject.buttons[selectedButtonIndex].buttonTempId:'1'"></app-template-data>
+<ngx-spinner></ngx-spinner>

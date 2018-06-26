@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { CardService } from '../../../services/card.service';
 import { NgForm } from '@angular/forms';
-import { DROPZONE_CONFIG, DropzoneComponent, DropzoneDirective } from 'ngx-dropzone-wrapper';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { Constants } from '../../../Constants';
 declare var jquery: any;
 declare var $: any;
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-card-data',
@@ -13,20 +13,17 @@ declare var $: any;
   styleUrls: ['./card-data.component.css']
 })
 export class CardDataComponent implements OnInit, OnChanges {
-  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
   @Input('selectedCard') selectedCard: CardModel;
+  @Input('pillarId') pillarId: string;
+  @Output() onSavedSuccessfully: EventEmitter<string> = new EventEmitter;
   cardObject: any;
   selectedButtonIndex: number;
+  seletectedImageString: string;
   constructor(
-    private CardServices: CardService
+    private CardServices: CardService,
+    public spinner: NgxSpinnerService,
   ) {
   }
-  config: DropzoneConfigInterface = {
-    url: "/",
-    acceptedFiles: 'image/*',
-    autoProcessQueue: false,
-    maxFiles: 1
-  };
   ngOnInit() {
   }
   ngOnChanges(changes: SimpleChanges) {
@@ -41,23 +38,25 @@ export class CardDataComponent implements OnInit, OnChanges {
       }
     }
   }
-  AddCard(form: NgForm) {
-    if (form.valid && this.cardObject.buttons.length > 0) {
+  async AddCard(form: NgForm) {
+    if (form.valid) {
+      this.spinner.show();
       console.log("Saved card details");
       console.log(this.cardObject);
-      this.CardServices.addCard(this.cardObject);
-      let dropzone = this.directiveRef.dropzone();
-      //K.A: put api url after getting new card id
-      dropzone.options.url = "/newURL";
-      dropzone.processQueue();
-      $('#edit').modal('hide');
+      try {
+        const done = await this.CardServices.addCard(this.cardObject, this.seletectedImageString, this.pillarId);
+        this.spinner.hide();
+        if (done) {
+          this.onSavedSuccessfully.emit("done");
+          this.closeModal();
+        }
+      }
+      catch (err) {
+        this.spinner.hide();
+        window.alert("Failed to save card");
+      }
+
     }
-  }
-  onUploadError(event) {
-    console.error(event);
-  }
-  onUploadSuccess(event) {
-    console.log(event);
   }
   addNewButton() {
     console.log("Add button clicked");
@@ -86,7 +85,25 @@ export class CardDataComponent implements OnInit, OnChanges {
   onSelectedTemplate(selectedTempId: string) {
     this.cardObject.buttons[this.selectedButtonIndex].buttonTempId = selectedTempId;
   }
-  closeModal(){
+  closeModal() {
     $('#edit').modal('hide');
+  }
+  handleFileInput(files: FileList) {
+    // this.fileToUpload = files.item(0);
+    console.log(files);
+    this.readThis(files);
+  }
+  readThis(inputValue: any): void {
+    var file: File = inputValue[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      // you can perform an action with readed data here
+      console.log(myReader.result);
+      this.seletectedImageString = myReader.result;
+    }
+
+    myReader.readAsDataURL(file);
+
   }
 }

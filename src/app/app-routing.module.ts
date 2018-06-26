@@ -19,7 +19,7 @@ import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'Cards', component: ChildCardComponent },
+  { path: 'cards/:pillarId', component: ChildCardComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'temp1', component: Temp1Component },

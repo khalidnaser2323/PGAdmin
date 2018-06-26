@@ -4,6 +4,7 @@ import { SweetAlertOptions } from 'sweetalert2';
 import { Constants } from '../../Constants';
 import { ServiceHandlerProvider } from '../../services/service-handler/service-handler';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,10 +21,11 @@ export class HomePageComponent implements OnInit {
   deletedPillarId: string = null;
   selectedPillar: Pillar = null;
   myData: LoginResponse;
-
+  imagePath: string = Constants.IMAGE_PATH;
   constructor(
     public serviceHandler: ServiceHandlerProvider,
-    @Inject(SESSION_STORAGE) private storage: StorageService
+    @Inject(SESSION_STORAGE) private storage: StorageService,
+    public router: Router
   ) {
     this.myData = this.storage.get(Constants.USER_DATA);
     this.getPillars();
@@ -70,7 +72,7 @@ export class HomePageComponent implements OnInit {
       console.log(res);
       this.pillars = res;
     }, err => {
-      console.log("Upload image string error");
+      console.log("Get pillars error");
       console.error(err);
       window.alert("Error in getting pillars");
     })
@@ -88,5 +90,9 @@ export class HomePageComponent implements OnInit {
       console.error(err);
       window.alert("Failed to update status!");
     });
+  }
+  navigateToPillarDetails(selectedPillar: Pillar) {
+    // this.storage.set(Constants.SELECTED_PILLAR, selectedPillar);
+    this.router.navigate(['cards', selectedPillar._id]);
   }
 }

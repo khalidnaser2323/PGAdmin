@@ -1,8 +1,8 @@
 
 interface CardModel {
-    cardId: string,
+    _id: string,
     title: string,
-    description: string,
-    imageUrl: string,
-    buttons: Array<{ buttonTitle: string, buttonTempId: string, buttonId: string }>
+    subtitle: string,
+    imageID: string,
+    templates: Array<any>
 }

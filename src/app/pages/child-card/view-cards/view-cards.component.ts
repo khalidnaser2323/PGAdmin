@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Constants } from '../../../Constants';
 
 @Component({
   selector: 'app-view-cards',
@@ -9,6 +10,8 @@ export class ViewCardsComponent implements OnInit {
   @Input('card') card: CardModel;
   @Output('onDeleteCardClicked') onDeleteCardClicked: EventEmitter<CardModel> = new EventEmitter();
   @Output('onEditCardClicked') onEditCardClicked: EventEmitter<CardModel> = new EventEmitter();
+  imagePath: string = Constants.IMAGE_PATH;
+
   constructor() { }
 
   ngOnInit() {
