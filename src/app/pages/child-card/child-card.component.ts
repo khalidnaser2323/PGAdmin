@@ -8,13 +8,13 @@ import { Constants } from '../../Constants';
 import { CardService } from '../../services/card.service';
 
 
+
 @Component({
   selector: 'app-child-card',
   templateUrl: './child-card.component.html',
   styleUrls: ['./child-card.component.css']
 })
 export class ChildCardComponent implements OnInit {
-
   cards: Array<CardModel>;
   selectedCard: CardModel;
   selectedPillar: any = {};
@@ -27,100 +27,7 @@ export class ChildCardComponent implements OnInit {
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private CardsService: CardService
   ) {
-    // this.cards = [
-    //   {
-    //     cardId: "id1",
-    //     title: "Title1",
-    //     description: "Discription1",
-    //     imageUrl: "img/img-default.jpg",
-    //     buttons: [
-    //       {
-    //         buttonId: "1",
-    //         buttonTempId: "1",
-    //         buttonTitle: "Button1"
-    //       },
-    //       {
-    //         buttonId: "2",
-    //         buttonTempId: "2",
-    //         buttonTitle: "Button2"
-    //       },
-    //       {
-    //         buttonId: "3",
-    //         buttonTempId: "3",
-    //         buttonTitle: "Button3"
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     cardId: "id2",
-    //     title: "Title2",
-    //     description: "Discription2",
-    //     imageUrl: "img/img-default.jpg",
-    //     buttons: [
-    //       {
-    //         buttonId: "1",
-    //         buttonTempId: "4",
-    //         buttonTitle: "Button1"
-    //       },
-    //       {
-    //         buttonId: "2",
-    //         buttonTempId: "5",
-    //         buttonTitle: "Button2"
-    //       },
-    //       {
-    //         buttonId: "3",
-    //         buttonTempId: "6",
-    //         buttonTitle: "Button3"
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     cardId: "id3",
-    //     title: "Title3",
-    //     description: "Discription3",
-    //     imageUrl: "img/img-default.jpg",
-    //     buttons: [
-    //       {
-    //         buttonId: "1",
-    //         buttonTempId: "7",
-    //         buttonTitle: "Button1"
-    //       },
-    //       {
-    //         buttonId: "2",
-    //         buttonTempId: "8",
-    //         buttonTitle: "Button2"
-    //       },
-    //       {
-    //         buttonId: "3",
-    //         buttonTempId: "9",
-    //         buttonTitle: "Button3"
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     cardId: "id4",
-    //     title: "Title4",
-    //     description: "Discription4",
-    //     imageUrl: "img/img-default.jpg",
-    //     buttons: [
-    //       {
-    //         buttonId: "1",
-    //         buttonTempId: "10",
-    //         buttonTitle: "Button1"
-    //       },
-    //       {
-    //         buttonId: "2",
-    //         buttonTempId: "11",
-    //         buttonTitle: "Button2"
-    //       },
-    //       {
-    //         buttonId: "3",
-    //         buttonTempId: "12",
-    //         buttonTitle: "Button3"
-    //       }
-    //     ]
-    //   }
-    // ]
+ 
     this.cards = [];
     this.myData = this.storage.get(Constants.USER_DATA);
     this.route.params.subscribe(params => {
@@ -148,9 +55,16 @@ export class ChildCardComponent implements OnInit {
   onDeleteCard(selectedCard: CardModel) {
     console.log("Selected card to delete");
     console.log(selectedCard);
-    this.cards = this.cards.filter(card => {
-      return card._id != selectedCard._id;
-    });
+    try {
+      const done = this.CardsService.deleteCard(selectedCard._id, this.selectedPillar._id);
+      if (done) {
+        this.getCards(this.selectedPillar._id);
+      }
+
+    }
+    catch (error) {
+      window.alert("Failed to delete card");
+    }
   }
   createNewCard() {
     this.selectedCard = null;
@@ -174,5 +88,10 @@ export class ChildCardComponent implements OnInit {
   onSavedSuccessfully(event) {
     console.log("update in cards");
     this.getCards(this.pillarId);
+  }
+  onCardEdited(done: boolean) {
+    if (done) {
+      this.getCards(this.selectedPillar._id);
+    }
   }
 }

@@ -42,7 +42,7 @@ export class CardService {
           const request = {
             "data": imageString
           }
-          const url = Constants.BASE_URL + "section/" + (response.id == undefined ? newCard._id : response.id) + "/image";
+          const url = Constants.BASE_URL + "section/" + pillarId + "/" + (response.id == undefined ? newCard._id : response.id) + "/image";
 
           this.serviceHandler.runService(url, "PUT", this.myData.token, request).subscribe(res => {
 
@@ -60,16 +60,94 @@ export class CardService {
           })
         }
         else {
-          if (response.done) {
-            resolve(true);
-          }
-          else {
-            reject(new Error("Failed to create card"))
-          }
-
+          resolve(true);
         }
       }, error => {
         reject(error);
+      });
+    });
+  }
+  async deleteCard(cardId: string, pillarId: string) {
+    return new Promise<boolean>((resolve, reject) => {
+      const reqeustOptions: any = {
+        url: Constants.BASE_URL + "section/" + pillarId + "/pull-card/" + cardId,
+        method: "POST",
+      }
+      this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token).subscribe(response => {
+        console.log(response);
+        if (response.done) {
+          resolve(true);
+        }
+        else {
+          reject(new Error("Failed to remove card!"));
+        }
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+  async pushNewTemplate(name: string, buttonId: string, templateType: string, pillarId: string, cardId: string) {
+    return new Promise<boolean>((resolve, reject) => {
+      const reqeustOptions: any = {
+        url: Constants.BASE_URL + "section/" + pillarId + "/" + cardId + "/push-template/" + buttonId,
+        method: "POST",
+        requestBody: {
+          title: name,
+          payload: {
+            templateType: templateType
+          }
+        }
+      }
+      this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token, reqeustOptions.requestBody).subscribe(response => {
+        console.log(response);
+        if (response.done) {
+          resolve(true);
+        }
+        else {
+          reject(new Error("Failed to remove card!"));
+        }
+      }, error => {
+        reject(error);
+      });
+    });
+
+  }
+  async pullTemplate(pillarId: string, cardId: string, tempId: string) {
+    return new Promise<boolean>((resolve, reject) => {
+      const reqeustOptions: any = {
+        url: Constants.BASE_URL + "section/" + pillarId + "/" + cardId + "/pull-template/" + tempId,
+        method: "POST"
+      }
+      this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token).subscribe(response => {
+        console.log(response);
+        if (response.done) {
+          resolve(true);
+        }
+        else {
+          reject(new Error("Failed to remove card!"));
+        }
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+  async publishCard(pillarId: string, cardId: string, isPublic: boolean) {
+    return new Promise<boolean>((resolve, reject) => {
+      const action = isPublic ? "/set-private" : "/set-public";
+      const url = Constants.BASE_URL + "section/" + pillarId + "/" + cardId + action;
+      this.serviceHandler.runService(url, "POST", this.myData.token).subscribe((res) => {
+        console.log("Modify card status response");
+        console.log(res);
+        if (res.done) {
+          resolve(true);
+        }
+        else {
+          reject("Failure");
+        }
+      }, err => {
+        console.log("Modify pillar status error");
+        console.error(err);
+        reject(err);
       });
     });
   }

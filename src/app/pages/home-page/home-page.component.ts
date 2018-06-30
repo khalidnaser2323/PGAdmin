@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 export class HomePageComponent implements OnInit {
   @ViewChild('deleteSwal') private deleteSwal: SwalComponent;
   @ViewChild('deleteConfirmedSwal') private deleteConfirmedSwal: SwalComponent;
-  @ViewChild('editSwal') private editPillarSwal: SwalComponent;
   deletePopUpOptions: SweetAlertOptions;
   pillars: Array<Pillar>;
   deletedPillarId: string = null;

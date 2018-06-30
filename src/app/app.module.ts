@@ -44,6 +44,8 @@ import { ChartPopupComponent } from './pages/temp9/chart-popup/chart-popup.compo
 import { Temp12connComponent } from './pages/temp12/temp12conn/temp12conn.component';
 import { Temp12popupComponent } from './pages/temp12/temp12popup/temp12popup.component';
 import { ServiceHandlerProvider } from './services/service-handler/service-handler';
+import { KeysPipe } from './keys.pipe';
+import { AddButtonComponent } from './pages/child-card/add-button/add-button.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { ServiceHandlerProvider } from './services/service-handler/service-handl
     TablePopUpComponent,
     TeamPopUpComponent,
     Temp12connComponent,
-    Temp12popupComponent
+    Temp12popupComponent,
+    KeysPipe,
+    AddButtonComponent
   ],
   entryComponents: [
     Temp6popupComponent,
@@ -87,14 +91,17 @@ import { ServiceHandlerProvider } from './services/service-handler/service-handl
     TeamPopUpComponent,
     StagesPopUpComponent,
     ChartPopupComponent,
-    Temp12connComponent
+    Temp12connComponent,
+    AddButtonComponent,
+    TemplateDataComponent
   ],
 
 
   providers: [
 
     CardService,
-    ServiceHandlerProvider   
+    ServiceHandlerProvider,
+       
 
   ],
   imports: [

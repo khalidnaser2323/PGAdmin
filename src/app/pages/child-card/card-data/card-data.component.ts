@@ -58,34 +58,34 @@ export class CardDataComponent implements OnInit, OnChanges {
 
     }
   }
-  addNewButton() {
-    console.log("Add button clicked");
-    if (this.cardObject.buttons == undefined) {
-      this.cardObject.buttons = [];
-    }
-    if (this.cardObject.buttons.length < 3) {
-      this.cardObject.buttons.push({ buttonTitle: "button name", buttonTempId: "1", buttonId: Constants.guidGenerator() });
-    }
-  }
-  deleteButton(deletedButton: any) {
-    console.log("Button to be cancelled");
-    console.log(deletedButton);
-    this.cardObject.buttons = this.cardObject.buttons.filter(button => {
-      return button.buttonId != deletedButton.buttonId
-    });
-  }
-  getTempURL(button: any) {
-    const selectedTmp = Constants.APP_TEMPLATES.find(tmp => tmp.tempId == button.buttonTempId);
-    return selectedTmp.imageURL;
-  }
+  // addNewButton() {
+  //   console.log("Add button clicked");
+  //   if (Object.keys(this.cardObject.buttons).length < 3) {
+  //     const newObjectKey = Object.keys(this.cardObject.buttons).length + 1;
+  //     this.cardObject.buttons[newObjectKey] = "button name";
+  //   }
+  // }
+  // deleteButton(deletedButton: any) {
+  //   console.log("Button to be cancelled");
+  //   console.log(deletedButton);
+  //   this.cardObject.buttons = this.cardObject.buttons.filter(button => {
+  //     return button.buttonId != deletedButton.buttonId
+  //   });
+  // }
+  // getTempURL(button: any) {
+  //   const selectedTmp = Constants.APP_TEMPLATES.find(tmp => tmp.tempId == button.key);
+  //   return selectedTmp.imageURL;
+  // }
 
-  setSelectedButtonIndex(index: number) {
-    this.selectedButtonIndex = index;
-  }
-  onSelectedTemplate(selectedTempId: string) {
-    this.cardObject.buttons[this.selectedButtonIndex].buttonTempId = selectedTempId;
-  }
+  // setSelectedButtonIndex(index: number) {
+  //   this.selectedButtonIndex = index;
+  // }
+  // onSelectedTemplate(selectedTempId: string) {
+  //   this.cardObject.buttons[this.selectedButtonIndex].buttonTempId = selectedTempId;
+  // }
   closeModal() {
+    this.cardObject = {};
+    this.seletectedImageString = undefined;
     $('#edit').modal('hide');
   }
   handleFileInput(files: FileList) {

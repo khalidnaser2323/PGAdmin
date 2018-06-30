@@ -53,7 +53,8 @@
                 </div>
                 <div class="row">
                     <!-- new cards -->
-                    <app-view-cards *ngFor="let card of cards" [card]="card" (onEditCardClicked)="onEditCard($event)" (onDeleteCardClicked)="onDeleteCard($event)"></app-view-cards>
+                    <app-view-cards *ngFor="let card of cards" [pillarId]="pillarId" [card]="card" (onEditCardClicked)="onEditCard($event)" (onCardEdited)="onCardEdited($event)"
+                        (onDeleteCardClicked)="onDeleteCard($event)"></app-view-cards>
                 </div>
             </div>
             <div class="footer">
@@ -66,4 +67,5 @@
 
     <!-- Add and Edit modal -->
     <app-card-data [selectedCard]="selectedCard" [pillarId]="pillarId" (onSavedSuccessfully)="onSavedSuccessfully($event)"></app-card-data>
+
 </body>

@@ -3,6 +3,7 @@ import { Constants } from '../../../Constants';
 declare var jquery: any;
 declare var $: any;
 
+
 @Component({
   selector: 'app-template-data',
   templateUrl: './template-data.component.html',
@@ -24,6 +25,7 @@ export class TemplateDataComponent implements OnInit, OnChanges {
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     // console.log("On change called");
     // console.log(changes);
+
     if (changes.selectedTmpId) {
       if (changes.selectedTmpId.currentValue) {
         this.selectedTempId = changes.selectedTmpId.currentValue;

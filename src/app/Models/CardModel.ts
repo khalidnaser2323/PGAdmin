@@ -4,5 +4,6 @@ interface CardModel {
     title: string,
     subtitle: string,
     imageID: string,
-    templates: Array<any>
+    buttons: any,
+    public: boolean
 }

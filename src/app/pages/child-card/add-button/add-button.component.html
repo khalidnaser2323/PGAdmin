@@ -1,0 +1,25 @@
+<div class="wrapper wrapper-content btn-white">
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div role="form">
+        <div class="form-group">
+          <label>Button Name </label>
+          <input type="text" placeholder="Button name" required class="form-control textbox-rounded" name="name" [(ngModel)]="buttonName"
+            #name="ngModel">
+        </div>
+      </div>
+      <button type="button" id="btn-tmp" class="btn btn-w-m btn-link" (click)="openTemplateDialog()">
+        Select template </button>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="product-chooser-item">
+          <img src="{{selectedTmpURL}}" class="img-responsive">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white btn-rounded" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-success btn-rounded" (click)="save()" >Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-template-data (onSelectedTemplate)="onSelectedTemplate($event)" [selectedTmpId]="selectedTempId"></app-template-data>
