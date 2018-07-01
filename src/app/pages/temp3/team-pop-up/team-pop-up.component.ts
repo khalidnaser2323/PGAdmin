@@ -13,6 +13,7 @@ export class TeamPopUpComponent implements OnInit {
     public dialogRef: MatDialogRef<TeamPopUpComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    console.log(this.data.teamMembers);
     this.teamMembers = this.data.teamMembers;
   }
 

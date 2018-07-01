@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild,ElementRef, Input} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Chart } from 'chart.js';
 @Component({
   selector: 'app-temp6popup',
@@ -7,12 +7,12 @@ import { Chart } from 'chart.js';
 })
 export class Temp6popupComponent implements OnInit {
 
-  ctx:any;
-  chart=[];
-  @Input()chartValues:template6;
+  ctx: any;
+  chart = [];
+  @Input() chartValues: template6;
   @ViewChild('myCanvas') canvasRef: ElementRef;
-  constructor() { 
-    console.log('chart'+ this.chartValues)
+  constructor() {
+    console.log('chart' + this.chartValues)
   }
 
   ngOnInit() {
@@ -22,30 +22,30 @@ export class Temp6popupComponent implements OnInit {
     this.ctx.lineJoin = 'miter';
     this.chart = new Chart(this.ctx, {
       type: 'line',
-      
-    data: {
-      labels:yaxix ,
+
+      data: {
+        labels: xaxis,
         datasets: [{
-            label:this.chartValues.label,
-            lineTension:'0',
-            data:yaxix,
-            backgroundColor: 'rgb(51, 204, 255)', 
-            borderColor:'rgb(204, 204, 204)', 
-            borderWidth: 5
-         }],
-    },
-    options: {
+          label: this.chartValues.label,
+          lineTension: '0',
+          data: yaxix,
+          backgroundColor: 'rgb(51, 204, 255)',
+          borderColor: 'rgb(204, 204, 204)',
+          borderWidth: 5
+        }],
+      },
+      options: {
         scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
         }
-    }
-});
-  
+      }
+    });
+
   }
-  
- 
+
+
 }

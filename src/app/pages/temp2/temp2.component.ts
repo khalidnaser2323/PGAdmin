@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Constants } from '../../Constants';
 import { TablePopUpComponent } from './table-pop-up/table-pop-up.component';
-import { DROPZONE_CONFIG, DropzoneComponent, DropzoneDirective } from 'ngx-dropzone-wrapper';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { ActivatedRoute } from '@angular/router';
+import { CardService } from '../../services/card.service';
+import { SwalComponent } from '@toverux/ngx-sweetalert2';
 
 @Component({
   selector: 'app-temp2',
@@ -11,19 +12,30 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
   styleUrls: ['./temp2.component.css']
 })
 export class Temp2Component implements OnInit {
-  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
   licenseData: LicenseModel;
-  config: DropzoneConfigInterface = {
-    url: "/",
-    acceptedFiles: 'image/*',
-    autoProcessQueue: false,
-    maxFiles: 1
-  };
-  constructor(public dialog: MatDialog) {
+  @ViewChild('successDialog') private successDialog: SwalComponent;
+  pillarId: string;
+  cardId: string;
+  templateId: string;
+  payload: any;
+  constructor(
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private cardService: CardService
+  ) {
     this.licenseData = {
       overView: "",
       tableData: []
-    }
+    };
+    this.route.params.subscribe(params => {
+      console.log(params);
+      this.pillarId = params.pillar;
+      this.cardId = params.card;
+      this.templateId = params.tmp;
+      this.getCardDetails(this.pillarId, this.cardId);
+    });
+
+
 
   }
 
@@ -49,19 +61,19 @@ export class Temp2Component implements OnInit {
       TotalCost: ""
     });
   }
-  saveAll() {
+  async saveAll() {
     console.log("Save all");
     console.log(this.licenseData);
-    let dropzone = this.directiveRef.dropzone();
-    //K.A: put api url after getting new card id
-    dropzone.options.url = "/newURL";
-    dropzone.processQueue();
-  }
-  onUploadError(event) {
-    console.error(event);
-  }
-  onUploadSuccess(event) {
-    console.log(event);
+    this.payload.data = this.licenseData;
+    try {
+      const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
+      if (done) {
+        this.successDialog.show();
+      }
+    } catch (error) {
+      console.log(error);
+      window.alert("OOPs! something went wrong");
+    }
   }
   openDialog(): void {
     let dialogRef = this.dialog.open(TablePopUpComponent, {
@@ -72,5 +84,24 @@ export class Temp2Component implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog is closed');
     });
+  }
+  async getCardDetails(pillarId: string, cardId: string) {
+    try {
+      const cardDetails = await this.cardService.getCardDetails(pillarId, cardId);
+      if (cardDetails && cardDetails.templates && cardDetails.templates[this.templateId] && cardDetails.templates[this.templateId].payload) {
+        console.log("Template saved payload");
+        console.log(cardDetails.templates[this.templateId].payload);
+        this.payload = cardDetails.templates[this.templateId].payload;
+        if (this.payload.data) {
+          this.licenseData = this.payload.data;
+        }
+      }
+      else {
+        window.alert("Error in loading data!");
+      }
+    } catch (error) {
+      window.alert("Error in loading data!");
+    }
+
   }
 }

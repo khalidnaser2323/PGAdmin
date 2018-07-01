@@ -1,6 +1,7 @@
-interface template6
-{ 
-  label:string,
-  xaxisValues:string,
-  yaxisValues:string,
+interface template6 {
+  tempName: string,
+  tempDescribtion: string,
+  label: string,
+  xaxisValues: string,
+  yaxisValues: string
 }

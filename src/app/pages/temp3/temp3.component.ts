@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DROPZONE_CONFIG, DropzoneComponent, DropzoneDirective } from 'ngx-dropzone-wrapper';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Constants } from '../../Constants';
 import { TeamPopUpComponent } from './team-pop-up/team-pop-up.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute } from '@angular/router';
+import { CardService } from '../../services/card.service';
+import { SwalComponent } from '@toverux/ngx-sweetalert2';
 
 @Component({
   selector: 'app-temp3',
@@ -11,16 +13,26 @@ import { TeamPopUpComponent } from './team-pop-up/team-pop-up.component';
   styleUrls: ['./temp3.component.css']
 })
 export class Temp3Component implements OnInit {
-  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
-  config: DropzoneConfigInterface = {
-    url: "/",
-    acceptedFiles: 'image/*',
-    autoProcessQueue: false,
-    maxFiles: 1
-  };
+  @ViewChild('successDialog') private successDialog: SwalComponent;
   teamMembers: Array<TeamMember> = [];
-  constructor(public dialog: MatDialog) {
+  pillarId: string;
+  cardId: string;
+  templateId: string;
+  payload: any;
 
+  constructor(
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private cardService: CardService,
+    public spinner: NgxSpinnerService,
+  ) {
+    this.route.params.subscribe(params => {
+      console.log(params);
+      this.pillarId = params.pillar;
+      this.cardId = params.card;
+      this.templateId = params.tmp;
+      this.getCardDetails(this.pillarId, this.cardId);
+    });
   }
 
   ngOnInit() {
@@ -33,20 +45,31 @@ export class Temp3Component implements OnInit {
       JobDiscribtion: ""
     });
   }
-  saveAll() {
+  async saveAll() {
     console.log("All members");
     console.log(this.teamMembers);
-    let dropzone = this.directiveRef.dropzone();
-    //K.A: put api url after getting new card id
-    dropzone.options.url = "/newURL";
-    dropzone.processQueue();
+    // this.payload.data = this.teamMembers;
+    this.spinner.show();
+    try {
+      debugger;
+      for (let i in  this.teamMembers) {
+        const memberImageId = await this.cardService.uploadImage(this.teamMembers[i].TeamMemberImg);
+        this.teamMembers[i].TeamMemberImg = memberImageId;
+      }
+      debugger;
+      this.payload.data = this.teamMembers;
+      const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
+      this.spinner.hide();
+      if (done) {
+        this.successDialog.show();
+      }
+    } catch (error) {
+      this.spinner.hide();
+      console.log(error);
+      window.alert("OOPs! something went wrong");
+    }
   }
-  onUploadError(event) {
-    console.error(event);
-  }
-  onUploadSuccess(event) {
-    console.log(event);
-  }
+
   openDialog(): void {
     let dialogRef = this.dialog.open(TeamPopUpComponent, {
       width: "90%",
@@ -64,11 +87,43 @@ export class Temp3Component implements OnInit {
     console.log("Saved team member");
     console.log(this.teamMembers);
   }
-  onAddedFile(file: any) {
-    console.log("added file");
-    console.log(file);
+
+  handleFileInput(files: FileList, memberIndex: number) {
+    // this.fileToUpload = files.item(0);
+    console.log(files);
+    this.readThis(files, memberIndex);
+  }
+  readThis(inputValue: any, memberIndex: number): void {
+    var file: File = inputValue[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      // you can perform an action with readed data here
+      console.log(myReader.result);
+      this.teamMembers[memberIndex].TeamMemberImg = myReader.result;
+    }
+
+    myReader.readAsDataURL(file);
 
   }
+  async getCardDetails(pillarId: string, cardId: string) {
+    try {
+      const cardDetails = await this.cardService.getCardDetails(pillarId, cardId);
+      if (cardDetails && cardDetails.templates && cardDetails.templates[this.templateId] && cardDetails.templates[this.templateId].payload) {
+        console.log("Template saved payload");
+        console.log(cardDetails.templates[this.templateId].payload);
+        this.payload = cardDetails.templates[this.templateId].payload;
+        if (this.payload.data) {
+          this.teamMembers = this.payload.data;
+        }
+      }
+      else {
+        window.alert("Error in loading data!");
+      }
+    } catch (error) {
+      window.alert("Error in loading data!");
+    }
 
+  }
 
 }

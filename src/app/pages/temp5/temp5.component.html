@@ -38,90 +38,74 @@
               <div class="card-box padding-h-20">
                 <div class="form-group">
                   <label> Title </label>
-                  <input type="text" placeholder=" title" class="form-control textbox-rounded"
-                  [(ngModel)]="titleValues.tempName"
-                  >
+                  <input type="text" placeholder=" title" class="form-control textbox-rounded" [(ngModel)]="ChartValues.tempName">
                 </div>
                 <div class="form-group">
                   <label> Details / Description </label>
-                  <textarea rows="2" placeholder="Details" class="form-control textbox-rounded"
-                  [(ngModel)]="titleValues.tempDescribtion"
-                  ></textarea>
+                  <textarea rows="2" placeholder="Details" class="form-control textbox-rounded" [(ngModel)]="ChartValues.tempDescribtion"></textarea>
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-lg-6 col-md-6 form-group">
                     <button class="btn btn-primary btn-rounded full-width" (click)="onsaveTitle()" type="button"> Save </button>
                   </div>
                   <div class="col-lg-6 col-md-6 form-group">
                     <button class="btn btn-danger btn-rounded full-width" type="button"> Cancel </button>
                   </div>
-                </div>
+                </div> -->
 
               </div>
             </div>
-           
+
             <div class="col-lg-6 col-md-6">
-                <form >
-              <div class="ibox-title">
-                <div class="ibox-tools">
-                  <h3 class="text-center"> Chart data</h3>
+              <form>
+                <div class="ibox-title">
+                  <div class="ibox-tools">
+                    <h3 class="text-center"> Chart data</h3>
+                  </div>
                 </div>
-              </div>
-              <div class="card-box padding-h-20">
-                <div class="form-group">
-                  <label>First Variable name </label>
-                  <input type="text" placeholder="variable name" 
-                  class="form-control textbox-rounded"
-                  
-                  name="firstVar" [(ngModel)]="ChartValues.label1">
-                </div>
-                <div class="form-group">
-                  <label>Secound Variable name </label>
-                  <input type="text" placeholder="variable name" 
-                  class="form-control textbox-rounded"
-                
-                  name="SecoundVar" [(ngModel)]="ChartValues.label2">
-                </div>
-                <!-- <div class="form-group">
+                <div class="card-box padding-h-20">
+                  <div class="form-group">
+                    <label>First Variable name </label>
+                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="firstVar" [(ngModel)]="ChartValues.label1">
+                  </div>
+                  <div class="form-group">
+                    <label>Secound Variable name </label>
+                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="SecoundVar" [(ngModel)]="ChartValues.label2">
+                  </div>
+                  <!-- <div class="form-group">
                   <button type="button" class="btn btn-default btn-rounded" title="Add new variable">
                     <i class="fa fa-plus"></i> &nbsp;&nbsp; Add new variable </button>
                 </div> -->
-                <div class="form-group">
-                  <label> X-axis values </label>
-                  <textarea rows="2" placeholder="2006,2007,2008,..."
-                   class="form-control textbox-rounded"  
-                   name="xValues" [(ngModel)]="ChartValues.xaxisValues"></textarea>
-                </div>
-                <div class="form-group">
-                  <label> Variable 1 values </label>
-                  <textarea rows="2" placeholder="30,20,25,..."
-                   class="form-control textbox-rounded"  
-                    name="y1Values" [(ngModel)]="ChartValues.y1Values"></textarea>
-                </div>
-                <div class="form-group">
-                  <label> Variable 2 values </label>
-                  <textarea rows="2" placeholder="30,20,25,..."
-                   class="form-control textbox-rounded" 
-                   name="y2Values" [(ngModel)]="ChartValues.y2Values"></textarea>
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-6 col-md-6 form-group">
-                    <button class="btn btn-default btn-rounded full-width"  type="submit" (click)="openDialog()"> Draw </button>
+                  <div class="form-group">
+                    <label> X-axis values </label>
+                    <textarea rows="2" placeholder="2006,2007,2008,..." class="form-control textbox-rounded" name="xValues" [(ngModel)]="ChartValues.xaxisValues"></textarea>
                   </div>
-                  <div class="col-lg-6 col-md-6 form-group">
-                    <button class="btn btn-success btn-rounded full-width" type="submit" (click)="onSaveChartData()"> Save and Add </button>
+                  <div class="form-group">
+                    <label> Variable 1 values </label>
+                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y1Values" [(ngModel)]="ChartValues.y1Values"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label> Variable 2 values </label>
+                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y2Values" [(ngModel)]="ChartValues.y2Values"></textarea>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 form-group">
+                      <button class="btn btn-default btn-rounded full-width" type="submit" (click)="openDialog()"> Draw </button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 form-group">
+                      <button class="btn btn-success btn-rounded full-width" type="submit" (click)="onSaveChartData()"> Save all </button>
+                    </div>
+
                   </div>
 
                 </div>
-
-              </div>
-            </form>
+              </form>
             </div>
-          
+
           </div>
-         
+
         </div>
       </div>
       <div class="footer ">
@@ -131,4 +115,5 @@
       </div>
     </div>
   </div>
+  <swal #successDialog title="Saved!" text="Saved data successfully" type="success"></swal>
 </body>

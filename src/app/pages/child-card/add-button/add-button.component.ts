@@ -16,7 +16,7 @@ export class AddButtonComponent implements OnInit {
   selectedTmpURL: string;
   selectedTempId: string = "1";
   buttonName: string;
-  buttonId: string;
+  // buttonId: string;
   constructor(
     public dialogRef: MatDialogRef<AddButtonComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -50,11 +50,10 @@ export class AddButtonComponent implements OnInit {
   openTemplateDialog() {
     $("#template").modal({ backdrop: false });
   }
-  save() {
-    debugger;
+  async save() {
     if (this.buttonName != undefined && this.buttonName != "") {
       try {
-        const done = this.CardServices.pushNewTemplate(this.buttonName, this.data.buttonId, this.selectedTempId, this.data.pillarId, this.data.cardId)
+        const done = await this.CardServices.pushNewTemplate(this.buttonName, this.data.buttonId, this.selectedTempId, this.data.pillarId, this.data.cardId)
         if (done) {
           this.dialogRef.close(true);
         }

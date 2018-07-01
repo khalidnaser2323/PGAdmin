@@ -52,11 +52,11 @@ export class ChildCardComponent implements OnInit {
     this.selectedCard = selectedCard;
     $('#edit').modal('show');
   }
-  onDeleteCard(selectedCard: CardModel) {
+ async onDeleteCard(selectedCard: CardModel) {
     console.log("Selected card to delete");
     console.log(selectedCard);
     try {
-      const done = this.CardsService.deleteCard(selectedCard._id, this.selectedPillar._id);
+      const done = await this.CardsService.deleteCard(selectedCard._id, this.selectedPillar._id);
       if (done) {
         this.getCards(this.selectedPillar._id);
       }

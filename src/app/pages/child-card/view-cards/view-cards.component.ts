@@ -5,6 +5,8 @@ import { AddButtonComponent } from '../add-button/add-button.component';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { SweetAlertOptions } from 'sweetalert2';
 import { CardService } from '../../../services/card.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-cards',
@@ -20,10 +22,13 @@ export class ViewCardsComponent implements OnInit {
   imagePath: string = Constants.IMAGE_PATH;
   @ViewChild('promptSwal') private promptSwal: SwalComponent;
   promptPoPUpOptions: SweetAlertOptions;
-  keyOfDeletedButton: string;
+  clickedButtonId: string;
   constructor(
     public dialog: MatDialog,
-    public cardService: CardService
+    public cardService: CardService,
+    public spinner: NgxSpinnerService,
+    public router: Router
+
   ) { }
 
   ngOnInit() {
@@ -38,7 +43,7 @@ export class ViewCardsComponent implements OnInit {
   onButtonClicked(button: any) {
     console.log("Clicked button");
     console.log(button);
-    this.keyOfDeletedButton = button.key;
+    this.clickedButtonId = button.key;
     this.promptPoPUpOptions = {
       title: button.value,
       text: "Choose action required",
@@ -61,7 +66,7 @@ export class ViewCardsComponent implements OnInit {
         data: {
           pillarId: this.pillarId,
           cardId: this.card._id,
-          buttonId: Object.keys(this.card.buttons).length + 1
+          buttonId: Constants.guidGenerator()
         }
       });
 
@@ -74,17 +79,32 @@ export class ViewCardsComponent implements OnInit {
       });
     }
   }
-  fillData(event: any) {
+  async fillData(event: any) {
     console.log("Clicked fill data");
     console.log(event);
+    // this.spinner.show();
+    try {
+      const cardDetails = await this.cardService.getCardDetails(this.pillarId, this.card._id);
+      // this.spinner.hide();
+      if (cardDetails && cardDetails.templates && cardDetails.templates[this.clickedButtonId] && cardDetails.templates[this.clickedButtonId].payload && cardDetails.templates[this.clickedButtonId].payload.templateType) {
+        const path = Constants.APP_TEMPLATES.find(tmp => { return tmp.tempId == cardDetails.templates[this.clickedButtonId].payload.templateType }).path;
+        this.router.navigate([path, { pillar: this.pillarId, card: this.card._id, tmp: this.clickedButtonId }]);
+      }
+      else {
+        window.alert("Something went wrong!");
+      }
+    } catch (error) {
+      window.alert("Something went wrong!");
+    }
+
   }
-  deleteButton(event: any) {
+  async deleteButton(event: any) {
     console.log("Clicked delete button");
     console.log(event);
-    console.log(this.keyOfDeletedButton);
+    console.log(this.clickedButtonId);
     if (event === "cancel") {
       try {
-        const done = this.cardService.pullTemplate(this.pillarId, this.card._id, this.keyOfDeletedButton);
+        const done = await this.cardService.pullTemplate(this.pillarId, this.card._id, this.clickedButtonId);
         if (done) {
           this.onCardEdited.emit(true);
         }

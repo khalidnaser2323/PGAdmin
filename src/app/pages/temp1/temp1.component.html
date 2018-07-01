@@ -49,7 +49,7 @@
             <div class="col-lg-3 col-md-6" *ngFor="let stage of stages; index as i">
               <div class="card-box padding-h-20">
                 <div class="form-group">
-                  <h2 style="text-align: center">Stage {{i+1}} </h2>
+                  <h2 style="text-align: center">{{stage.stageNumber}} </h2>
                   <label> Value </label>
                   <input type="text" placeholder="12000" [(ngModel)]="stage.StagePrice" class="form-control textbox-rounded">
                 </div>
@@ -86,4 +86,6 @@
     </div>
   </div>
   <!-- <app-stages-pop-up [stages]="stages"></app-stages-pop-up> -->
+  <swal #successDialog title="Saved!" text="Saved data successfully" type="success"></swal>
+
 </body>

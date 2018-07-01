@@ -1,5 +1,5 @@
 interface Template9 {
-    percentageData: string[];
+    percentageData: number[];
     color: string[];
     labels: string[];
     title: string;
