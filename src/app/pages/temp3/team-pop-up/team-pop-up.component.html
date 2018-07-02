@@ -2,7 +2,7 @@
   <div class="row flex-row form-group">
     <div class="col-md-2 col-sm-3 col-xs-12" style="margin-bottom: 10px" *ngFor="let teamMember of teamMembers">
       <div class="text-center">
-        <img alt="image" class="img-circle m-t-xs img-responsive inline" src={{teamMember.TeamMemberImg}}>
+        <img alt="image" class="img-circle m-t-xs img-responsive inline" src={{getImageUrl(teamMember)}}>
         <div class="m-t-xs font-bold font-bold">{{teamMember.Name}}</div>
         <div class="m-t-xs font-bold">{{teamMember.JobDiscribtion}}</div>
       </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Constants } from '../../../Constants';
 
 @Component({
   selector: 'app-team-pop-up',
@@ -9,6 +10,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class TeamPopUpComponent implements OnInit {
 
   teamMembers: Array<TeamMember>;
+  imagePath: string = Constants.IMAGE_PATH;
   constructor(
     public dialogRef: MatDialogRef<TeamPopUpComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -23,5 +25,14 @@ export class TeamPopUpComponent implements OnInit {
   }
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  getImageUrl(teamMember: TeamMember): string {
+    if (teamMember.TeamMemberImg.startsWith("data:")) {
+      return teamMember.TeamMemberImg;
+    }
+    else {
+      return this.imagePath + teamMember.TeamMemberImg;
+    }
+
   }
 }

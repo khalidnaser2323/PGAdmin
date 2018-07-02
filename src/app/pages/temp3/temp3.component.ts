@@ -52,9 +52,14 @@ export class Temp3Component implements OnInit {
     this.spinner.show();
     try {
       debugger;
-      for (let i in  this.teamMembers) {
-        const memberImageId = await this.cardService.uploadImage(this.teamMembers[i].TeamMemberImg);
-        this.teamMembers[i].TeamMemberImg = memberImageId;
+      for (let i in this.teamMembers) {
+        if (this.teamMembers[i].TeamMemberImg.startsWith("data:")) {
+          const memberImageId = await this.cardService.uploadImage(this.teamMembers[i].TeamMemberImg);
+          this.teamMembers[i].TeamMemberImg = memberImageId;
+        }
+        else {
+          continue;
+        }
       }
       debugger;
       this.payload.data = this.teamMembers;

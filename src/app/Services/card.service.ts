@@ -213,7 +213,9 @@ export class CardService {
           data: imageString
         }
       }
+      debugger;
       this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token, reqeustOptions.requestBody).subscribe(res => {
+       debugger;
         console.log("Upload image response");
         console.log(res);
         if (res.id) {
@@ -222,6 +224,7 @@ export class CardService {
           reject("Failure!");
         }
       }, err => {
+        debugger;
         reject(err)
       });
     });
