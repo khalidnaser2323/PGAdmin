@@ -46,6 +46,8 @@ import { Temp12popupComponent } from './pages/temp12/temp12popup/temp12popup.com
 import { ServiceHandlerProvider } from './services/service-handler/service-handler';
 import { KeysPipe } from './keys.pipe';
 import { AddButtonComponent } from './pages/child-card/add-button/add-button.component';
+import { Temp10ChartComponent } from './pages/temp10/temp10-chart/temp10-chart.component';
+import { Temp10PopUpComponent } from './pages/temp10/temp10-pop-up/temp10-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { AddButtonComponent } from './pages/child-card/add-button/add-button.com
     Temp12connComponent,
     Temp12popupComponent,
     KeysPipe,
-    AddButtonComponent
+    AddButtonComponent,
+    Temp10ChartComponent,
+    Temp10PopUpComponent
   ],
   entryComponents: [
     Temp6popupComponent,
@@ -93,7 +97,9 @@ import { AddButtonComponent } from './pages/child-card/add-button/add-button.com
     ChartPopupComponent,
     Temp12connComponent,
     AddButtonComponent,
-    TemplateDataComponent
+    TemplateDataComponent,
+    Temp10ChartComponent,
+    Temp10PopUpComponent
   ],
 
 
@@ -101,7 +107,7 @@ import { AddButtonComponent } from './pages/child-card/add-button/add-button.com
 
     CardService,
     ServiceHandlerProvider,
-       
+
 
   ],
   imports: [

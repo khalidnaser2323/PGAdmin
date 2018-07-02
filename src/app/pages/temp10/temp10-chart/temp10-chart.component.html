@@ -1,0 +1,19 @@
+<div class="col-md-4 col-sm-4 col-xs-12 text-center">
+  <div class="img-responsive inline">
+    <canvas #canvas width="400" height="460">{{chart}}</canvas>
+    <div [ngStyle]="{'background-color':stage.color}" style="
+    padding: 75px;
+    font-size: 40px;
+    font-family: sans-serif;
+    color: #fff;
+    position: absolute;
+    border-radius: 50%;
+    top: 25%;
+    left: 25%;
+    height: 200px;
+    width: 200px;
+"> {{stage.percentage}} </div>
+  </div>
+  <h3> {{stage.title}} </h3>
+  <h4> {{stage.details}} </h4>
+</div>

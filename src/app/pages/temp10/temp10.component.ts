@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { CardService } from '../../services/card.service';
+import { SwalComponent } from '@toverux/ngx-sweetalert2';
+import { Temp10PopUpComponent } from './temp10-pop-up/temp10-pop-up.component';
+
 
 @Component({
   selector: 'app-temp10',
@@ -6,10 +12,89 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./temp10.component.css']
 })
 export class Temp10Component implements OnInit {
-
-  constructor() { }
+  @ViewChild('successDialog') private successDialog: SwalComponent;
+  pillarId: string;
+  cardId: string;
+  templateId: string;
+  payload: any;
+  temp: Temp10;
+  constructor(
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private cardService: CardService
+  ) {
+    this.temp = {
+      overViewTitle: "",
+      stages: [
+        {
+          color: "red",
+          title: "",
+          details: "",
+          percentage: 0
+        },
+        {
+          color: "blue",
+          title: "",
+          details: "",
+          percentage: 0
+        },
+        {
+          color: "pink",
+          title: "",
+          details: "",
+          percentage: 0
+        }
+      ]
+    };
+    this.route.params.subscribe(params => {
+      console.log(params);
+      this.pillarId = params.pillar;
+      this.cardId = params.card;
+      this.templateId = params.tmp;
+      this.getCardDetails(this.pillarId, this.cardId);
+    });
+  }
 
   ngOnInit() {
+  }
+  async save() {
+    console.log("Saved template");
+    console.log(this.temp);
+    this.payload.data = this.temp;
+    try {
+      const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
+      if (done) {
+        this.successDialog.show();
+      }
+    } catch (error) {
+      console.log(error);
+      window.alert("OOPs! something went wrong");
+    }
+  }
+  openDialog(): void {
+    let dialogRef = this.dialog.open(Temp10PopUpComponent, {
+      width: '90%',
+      data: { ChartValues: this.temp }
+    });
+  }
+  async getCardDetails(pillarId: string, cardId: string) {
+    try {
+      const cardDetails = await this.cardService.getCardDetails(pillarId, cardId);
+      if (cardDetails && cardDetails.templates && cardDetails.templates[this.templateId] && cardDetails.templates[this.templateId].payload) {
+        console.log("Template saved payload");
+        console.log(cardDetails.templates[this.templateId].payload);
+        this.payload = cardDetails.templates[this.templateId].payload;
+        if (this.payload.data) {
+          this.temp = this.payload.data;
+        }
+      }
+      else {
+        window.alert("Error in loading data!");
+      }
+    } catch (error) {
+      window.alert("Error in loading data!");
+    }
+
   }
 
 }
