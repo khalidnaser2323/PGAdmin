@@ -1,4 +1,4 @@
-import { Component, OnInit ,Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
@@ -8,15 +8,19 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./temp12conn.component.css']
 })
 export class Temp12connComponent implements OnInit {
-  ChartValues:template6={
-    label:'',
-    xaxisValues:'',
-    yaxisValues:'',
+  ChartValues: template6 = {
+    label: '',
+    xaxisValues: '',
+    yaxisValues: '',
+    tempDescribtion: "",
+    tempName: "",
+    tableData: [
+    ]
   }
   constructor(public dialogRef: MatDialogRef<Temp12connComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.ChartValues = this.data.ChartValues;
-     }
+    this.ChartValues = this.data.ChartValues;
+  }
   ngOnInit() {
   }
 

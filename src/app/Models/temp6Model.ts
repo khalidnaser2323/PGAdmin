@@ -3,5 +3,6 @@ interface template6 {
   tempDescribtion: string,
   label: string,
   xaxisValues: string,
-  yaxisValues: string
+  yaxisValues: string,
+  tableData?: any
 }
