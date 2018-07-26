@@ -1,0 +1,62 @@
+
+.login-bg {
+    background-image: url("img/bg.jpg");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: static;
+    left: auto;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+}
+
+.login-btn {
+    padding: 30px;
+}
+.middle-box {
+    max-width: 1000px !important;
+    z-index: 100;
+    margin: 7vh auto !important;
+}
+.form-control, .single-line {
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    padding: 20px 15px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+.Text_Field {
+    border-width: 0px;
+    /* left: 0px; */
+    /* top: 0px; */
+    /* width: 327px; */
+    height: 80px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 1);
+    /* border: none !important; */
+    border-radius: 20px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    height: 50px !important;
+}
+.input_font {
+    font-family: 'Roboto-Regular', 'Roboto';
+    font-weight: 300;
+    font-style: normal;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+    border-color: transparent;
+    outline-style: none;
+}
+.form-control, .single-line {
+    padding: 26px;
+}

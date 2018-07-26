@@ -1,0 +1,131 @@
+.login_Button {
+    /* border-width: 0px; */
+    /* background: inherit; */
+    background-color: rgba(204, 204, 204, 1);
+    border: none;
+    border-radius: 10px;
+    -moz-box-shadow: none;
+    /* -webkit-box-shadow: none; */
+    /* box-shadow: none; */
+    font-family: 'Roboto-Light', 'Roboto Light', 'Roboto';
+    font-weight: 200;
+    /* font-style: normal; */
+    font-size: 19px;
+    color: #FFFFFF;
+    padding: 9px;
+    height: 46px;
+    margin-bottom: 25px;
+}
+
+.sub_login-title-style {
+
+	font-weight: 200;
+}
+
+.login_Button {
+	border-width: 0px;
+	background: inherit;
+	background-color: rgba(204, 204, 204, 1);
+	border: none;
+	border-radius: 10px;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	font-family: 'Roboto-Light', 'Roboto Light', 'Roboto';
+	font-weight: 200;
+	font-style: normal;
+	font-size: 25px;
+	color: #FFFFFF;
+	padding: 20px;
+	height: 70px;
+}
+
+.login_Button:hover {
+
+	background-color: rgba(204, 204, 204, 1);
+	color: #FFFFFF;
+}
+
+form.m-t {
+	width: 50% !important;
+}
+
+/*--------------------------------Responsive--------------------------------------*/
+
+@media only screen and (max-width: 480px) {
+   
+
+    .logo_login{
+        width: 15% !important;
+    }
+
+	
+
+	.loginscreen.middle-box {
+
+		padding: 29px 50px 29px 26px;
+	}
+
+
+	.sub_login-title-style {
+		font-size: 19px;
+	}
+	.loginscreen.middle-box {
+
+		width: 95% !important;
+	}
+    
+}
+
+@media only screen and (max-width: 320px) {
+	.Text_Field {
+
+		width: 240px;
+	}
+
+	form.m-t {
+
+		width: 240px !important;
+	}
+
+}
+
+/*-----------------------------------------------------------------------------------*/
+
+
+.sub_login-title-style_card {
+	font-size: 14px;
+	font-family: 'Roboto-Light', 'Roboto Light', 'Roboto';
+}
+
+.loginscreen.middle-box {
+    width: 48%;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 14px 10px;
+    border-radius: 30px;
+}
+.logo_login {
+    border-width: 0px;
+    left: 0px;
+    top: 0px;
+    width: 250px;
+    margin-top: 30px;
+    height: 153px;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.login-title-style {
+    color: #6c6c6c;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: 'Roboto-Regular', 'Roboto';
+    line-height: normal;
+}

@@ -48,6 +48,7 @@ import { KeysPipe } from './keys.pipe';
 import { AddButtonComponent } from './pages/child-card/add-button/add-button.component';
 import { Temp10ChartComponent } from './pages/temp10/temp10-chart/temp10-chart.component';
 import { Temp10PopUpComponent } from './pages/temp10/temp10-pop-up/temp10-pop-up.component';
+import { LoginActivateService } from './services/login-activate.service';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { Temp10PopUpComponent } from './pages/temp10/temp10-pop-up/temp10-pop-up
 
     CardService,
     ServiceHandlerProvider,
+    LoginActivateService
 
 
   ],

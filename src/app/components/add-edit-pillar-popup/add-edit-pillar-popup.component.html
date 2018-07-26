@@ -32,7 +32,7 @@
             (success)="onUploadSuccess($event)"></div> -->
           <form class="form-group">
             <div class="fallback">
-              <input id="file" name="file" (change)="handleFileInput($event.target.files)" type="file" />
+              <input id="file" name="file" (change)="handleFileInput($event.target.files)" type="file" accept="image/*"  />
             </div>
           </form>
         </div>

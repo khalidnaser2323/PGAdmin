@@ -1,35 +1,34 @@
-<body class="gray-bg">
+<body class="login-bg" lang="en">
 
   <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
-      <div>
+      <div class="text-center">
 
-        <h1 class="logo-name">
-          <i> P&G </i>
-        </h1>
+        <img class="logo_login 		" src="img/logo.png">
 
       </div>
-      <h3>Welcome to P&G</h3>
-      <p>Administrator login
-        <br /> Please enter the below information to manage your account.
+      <p class="login-title-style" style=" margin-top: 50px;">
+        <span class="login_title">Administrator login</span>
+        <br />
+        <span class="sub_login-title-style">Please enter the below information to manage your account.</span>
       </p>
-      <form class="m-t" #loginForm="ngForm" name="loginForm" (ngSubmit)="login(loginForm)">
+      <form class="m-t" #loginForm="ngForm" name="loginForm" (ngSubmit)="login(loginForm)" style="width:500px; display: inline-block;">
         <div class="form-group">
-          <input type="text" name="username" id="username" #username="ngModel" class="form-control textbox-rounded" placeholder="Username"
+          <input type="text" name="username" id="username" #username="ngModel" class="form-control Text_Field input_font" style="height:80px" placeholder="Username"
             required [(ngModel)]="loginFormObject.username">
         </div>
         <div class="form-group">
           <input type="password" id="password" #password="ngModel" [(ngModel)]="loginFormObject.password" name="password" required
-            class="form-control textbox-rounded" placeholder="Password">
+            class="form-control textbox-rounded Text_Field input_font" placeholder="Password" style="height:80px;    margin-top: 20px;    margin-bottom: 20px;">
         </div>
-        <button class="btn btn-primary block full-width m-b btn-rounded" type="submit">Login</button>
+        <button class="btn btn-primary full-width  login_Button" type="submit">Login</button>
         <!-- <a>
           <small>Forgot password?</small>
         </a> -->
       </form>
-      <p class="m-t">
+      <!-- <p class="m-t">
         <small>Copyright P&G &copy; 2018</small>
-      </p>
+      </p> -->
     </div>
   </div>
   <swal #errorDialog></swal>

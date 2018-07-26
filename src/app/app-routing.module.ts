@@ -14,24 +14,26 @@ import { Temp10Component } from './pages/temp10/temp10.component';
 import { Temp11Component } from './pages/temp11/temp11.component';
 import { Temp12Component } from './pages/temp12/temp12.component';
 import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.component';
+import { LoginActivateService } from './services/login-activate.service';
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'cards/:pillarId', component: ChildCardComponent },
-  { path: 'home', component: HomePageComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'cards/:pillarId', component: ChildCardComponent, canActivate: [LoginActivateService] },
+  { path: 'home', component: HomePageComponent, canActivate: [LoginActivateService] },
   { path: 'login', component: LoginComponent },
-  { path: 'temp1', component: Temp1Component },
-  { path: 'temp2', component: Temp2Component },
-  { path: 'temp3', component: Temp3Component },
-  { path: 'temp4', component: Temp4Component },
-  { path: 'temp5', component: Temp5Component },
-  { path: 'temp6', component: Temp6Component },
-  { path: 'temp9', component: Temp9Component },
-  { path: 'temp10', component: Temp10Component },
-  { path: 'temp11', component: Temp11Component },
-  { path: 'temp12', component: Temp12Component }
+  { path: 'temp1', component: Temp1Component, canActivate: [LoginActivateService] },
+  { path: 'temp2', component: Temp2Component, canActivate: [LoginActivateService] },
+  { path: 'temp3', component: Temp3Component, canActivate: [LoginActivateService] },
+  { path: 'temp4', component: Temp4Component, canActivate: [LoginActivateService] },
+  { path: 'temp5', component: Temp5Component, canActivate: [LoginActivateService] },
+  { path: 'temp6', component: Temp6Component, canActivate: [LoginActivateService] },
+  { path: 'temp9', component: Temp9Component, canActivate: [LoginActivateService] },
+  { path: 'temp10', component: Temp10Component, canActivate: [LoginActivateService] },
+  { path: 'temp11', component: Temp11Component, canActivate: [LoginActivateService] },
+  { path: 'temp12', component: Temp12Component, canActivate: [LoginActivateService] },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ]
 // { path: 'stagesChart', component: StagesPopUpComponent,data:{stages:} }
 

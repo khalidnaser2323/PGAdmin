@@ -8,14 +8,14 @@
                             type="button">
                             <i class="fa fa-reorder"></i>
                         </button>
-                        <a href="index.html" class="navbar-brand">
+                        <a routerLink="/" class="navbar-brand">
                             <i>P&G</i>
                         </a>
                     </div>
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-top-links navbar-right">
                             <li>
-                                <a href="login.html">
+                                <a routerLink="/login">
                                     <i class="fa fa-sign-out"></i> Log out
                                 </a>
                             </li>
@@ -102,7 +102,7 @@
                                     <div class="dropzone form-group" id="dropzoneForm" [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
                                 </div> -->
 
-                             
+
                             </div>
                         </div>
                     </div>

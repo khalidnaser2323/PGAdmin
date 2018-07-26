@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private router: Router
   ) {
-
+    this.storage.set(Constants.USER_DATA, undefined);
   }
 
   ngOnInit() {
