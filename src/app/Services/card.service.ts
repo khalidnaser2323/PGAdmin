@@ -1,9 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
-import { ServiceHandlerProvider } from '../services/service-handler/service-handler';
+import { ServiceHandlerProvider } from './service-handler/service-handler';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Observable } from 'rxjs/Observable';
 import { Constants } from '../Constants';
-import { reject } from 'q';
 
 @Injectable()
 export class CardService {
@@ -25,7 +24,7 @@ export class CardService {
     }
   }
   async addCard(newCard: CardModel, imageString: string, pillarId: string): Promise<boolean> {
-    debugger;
+
     return new Promise<boolean>((resolve, reject) => {
 
       const reqeustOptions: any = {
@@ -204,6 +203,28 @@ export class CardService {
       });
     });
   }
+  updateTemplateTitle(pillarId: string, cardId: string, templateId: string, title: string) {
+    return new Promise<boolean>((resolve, reject) => {
+      const reqeustOptions: any = {
+        url: Constants.BASE_URL + "section/" + pillarId + "/" + cardId + "/" + templateId,
+        method: "PUT",
+        requestBody: {
+          title: title
+        }
+      }
+      this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token, reqeustOptions.requestBody).subscribe(res => {
+        console.log("Update template title response");
+        console.log(res);
+        if (res.done) {
+          resolve(res.done);
+        } else {
+          reject("Failure!");
+        }
+      }, err => {
+        reject(err)
+      });
+    });
+  }
   uploadImage(imageString: string) {
     return new Promise<string>((resolve, reject) => {
       const reqeustOptions: any = {
@@ -213,9 +234,9 @@ export class CardService {
           data: imageString
         }
       }
-      debugger;
+
       this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token, reqeustOptions.requestBody).subscribe(res => {
-       debugger;
+
         console.log("Upload image response");
         console.log(res);
         if (res.id) {
@@ -224,7 +245,7 @@ export class CardService {
           reject("Failure!");
         }
       }, err => {
-        debugger;
+
         reject(err)
       });
     });

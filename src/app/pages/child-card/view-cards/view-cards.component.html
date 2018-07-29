@@ -40,7 +40,13 @@
         <div class="clearfix"></div>
     </div>
 </div>
-<swal #promptSwal (confirm)="fillData($event)" (cancel)="deleteButton($event)"></swal>
+<swal #promptSwal (confirm)="fillData($event)" (cancel)="deleteButton($event)">
+    <div *swalPartial style="text-align: center;align-items: center">
+        <input type="text" placeholder="Button title" required class="form-control textbox-rounded" name="title" [(ngModel)]="buttonTitle"
+            #title="ngModel">
+        <button (click)="editButtonTitle()" type="button" class="swal2-confirm swal2-styled" aria-label="" style="margin-top: 5px;border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">Edit name</button>
+    </div>
+</swal>
 
 <ngx-spinner></ngx-spinner>
 <!-- data-toggle="modal" data-target="#edit" -->

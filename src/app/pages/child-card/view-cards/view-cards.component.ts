@@ -23,6 +23,7 @@ export class ViewCardsComponent implements OnInit {
   @ViewChild('promptSwal') private promptSwal: SwalComponent;
   promptPoPUpOptions: SweetAlertOptions;
   clickedButtonId: string;
+  buttonTitle: string;
   constructor(
     public dialog: MatDialog,
     public cardService: CardService,
@@ -44,6 +45,7 @@ export class ViewCardsComponent implements OnInit {
     console.log("Clicked button");
     console.log(button);
     this.clickedButtonId = button.key;
+    this.buttonTitle = button.value;
     this.promptPoPUpOptions = {
       title: button.value,
       text: "Choose action required",
@@ -58,6 +60,8 @@ export class ViewCardsComponent implements OnInit {
     };
     this.promptSwal.options = this.promptPoPUpOptions;
     this.promptSwal.show();
+
+
   }
   addNewButton() {
     if (Object.keys(this.card.buttons).length < 3) {
@@ -78,6 +82,23 @@ export class ViewCardsComponent implements OnInit {
         }
       });
     }
+  }
+  async  editButtonTitle() {
+    console.log("button title value");
+    console.log(this.buttonTitle);
+    try {
+      const done = await this.cardService.updateTemplateTitle(this.pillarId, this.card._id, this.clickedButtonId, this.buttonTitle);
+      if (done) {
+        // window.alert("Button title updated successfully!");
+        this.onCardEdited.emit(true);
+      }
+      else{
+        window.alert("Something went wrong!");
+      }
+    } catch (error) {
+      window.alert("Something went wrong!");
+    }
+
   }
   async fillData(event: any) {
     console.log("Clicked fill data");

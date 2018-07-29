@@ -24,7 +24,7 @@
         </nav>
       </div>
       <div class="row page-heading">
-
+          <button class="btn btn-success btn-rounded" style="margin-top: 10px" type="button" (click)="onBackCliced()"> Back to Card </button>
       </div>
       <div class="wrapper">
         <div class="row">
@@ -191,6 +191,6 @@
       </div>
     </div>
   </div>
-  <swal #successDialog title="Saved!" text="Saved data successfully" type="success"></swal>
+  <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)"></swal>
 
 </body>

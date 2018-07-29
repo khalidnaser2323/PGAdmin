@@ -23,7 +23,8 @@
                     </div>
                 </nav>
             </div>
-            <div class="row page-heading">
+            <div class="row page-heading" style="margin-top: 10px">
+                    <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
 
             </div>
             <div class="wrapper wrapper-content btn-white">
@@ -99,6 +100,6 @@
             </div>
         </div>
     </div>
-    <swal #successDialog title="Saved!" text="Saved data successfully" type="success"></swal>
+    <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)" ></swal>
 
 </body>

@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '../../../node_modules/@angular/router';
-import { Observable } from '../../../node_modules/rxjs/Observable';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Constants } from '../Constants';
 

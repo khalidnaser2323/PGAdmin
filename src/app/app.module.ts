@@ -9,7 +9,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ChildCardComponent } from './pages/child-card/child-card.component';
 import { CardDataComponent } from './pages/child-card/card-data/card-data.component';
@@ -44,7 +44,7 @@ import { ChartPopupComponent } from './pages/temp9/chart-popup/chart-popup.compo
 import { Temp12connComponent } from './pages/temp12/temp12conn/temp12conn.component';
 import { Temp12popupComponent } from './pages/temp12/temp12popup/temp12popup.component';
 import { ServiceHandlerProvider } from './services/service-handler/service-handler';
-import { KeysPipe } from './keys.pipe';
+import { KeysPipe } from './pipes/keys.pipe';
 import { AddButtonComponent } from './pages/child-card/add-button/add-button.component';
 import { Temp10ChartComponent } from './pages/temp10/temp10-chart/temp10-chart.component';
 import { Temp10PopUpComponent } from './pages/temp10/temp10-pop-up/temp10-pop-up.component';

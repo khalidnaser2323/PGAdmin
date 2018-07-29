@@ -4,6 +4,7 @@ import { ChartPopupComponent } from './chart-popup/chart-popup.component';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-temp9',
@@ -27,7 +28,9 @@ export class Temp9Component implements OnInit {
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private cardService: CardService
+    private cardService: CardService,
+    private _location: Location
+
   ) {
     this.stages = [];
     this.addNewStage();
@@ -119,5 +122,12 @@ export class Temp9Component implements OnInit {
     for (let i = 0 ; i < tmp.labels.length; i++) {
       this.stages.push({ title: tmp.labels[i], percentage: tmp.percentageData[i] })
     }
+  }
+  onConfirm(event: any) {
+    console.log("Confirmed");
+    this._location.back();
+  }
+  onBackCliced(){
+    this._location.back();
   }
 }

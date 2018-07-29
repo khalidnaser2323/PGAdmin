@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-temp3',
@@ -25,6 +26,7 @@ export class Temp3Component implements OnInit {
     private route: ActivatedRoute,
     private cardService: CardService,
     public spinner: NgxSpinnerService,
+    private _location: Location
   ) {
     this.route.params.subscribe(params => {
       console.log(params);
@@ -130,5 +132,11 @@ export class Temp3Component implements OnInit {
     }
 
   }
-
+  onConfirm(event: any) {
+    console.log("Confirmed");
+    this._location.back();
+  }
+  onBackCliced(){
+    this._location.back();
+  }
 }

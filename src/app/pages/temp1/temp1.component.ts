@@ -5,6 +5,7 @@ import { StagesPopUpComponent } from './stages-pop-up/stages-pop-up.component';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -22,7 +23,9 @@ export class Temp1Component implements OnInit {
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private cardService: CardService
+    private cardService: CardService,
+    private _location: Location
+
   ) {
     this.stages = [];
     this.route.params.subscribe(params => {
@@ -68,11 +71,19 @@ export class Temp1Component implements OnInit {
       const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
       if (done) {
         this.successDialog.show();
+
       }
     } catch (error) {
       console.log(error);
       window.alert("OOPs! something went wrong");
     }
+  }
+  onConfirm(event: any) {
+    console.log("Confirmed");
+    this._location.back();
+  }
+  onBackCliced(){
+    this._location.back();
   }
   openDialog(): void {
     let dialogRef = this.dialog.open(StagesPopUpComponent, {

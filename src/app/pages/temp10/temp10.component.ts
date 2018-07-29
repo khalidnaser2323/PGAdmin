@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { Temp10PopUpComponent } from './temp10-pop-up/temp10-pop-up.component';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -21,7 +22,9 @@ export class Temp10Component implements OnInit {
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private cardService: CardService
+    private cardService: CardService,
+    private _location: Location
+
   ) {
     this.temp = {
       overViewTitle: "",
@@ -95,6 +98,13 @@ export class Temp10Component implements OnInit {
       window.alert("Error in loading data!");
     }
 
+  }
+  onConfirm(event: any) {
+    console.log("Confirmed");
+    this._location.back();
+  }
+  onBackCliced(){
+    this._location.back();
   }
 
 }

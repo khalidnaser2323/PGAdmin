@@ -5,6 +5,7 @@ import { TablePopUpComponent } from './table-pop-up/table-pop-up.component';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-temp2',
@@ -21,7 +22,8 @@ export class Temp2Component implements OnInit {
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private cardService: CardService
+    private cardService: CardService,
+    private _location: Location
   ) {
     this.licenseData = {
       overView: "",
@@ -103,5 +105,12 @@ export class Temp2Component implements OnInit {
       window.alert("Error in loading data!");
     }
 
+  }
+  onConfirm(event: any) {
+    console.log("Confirmed");
+    this._location.back();
+  }
+  onBackCliced(){
+    this._location.back();
   }
 }

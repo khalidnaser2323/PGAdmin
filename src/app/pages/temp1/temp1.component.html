@@ -27,6 +27,7 @@
         <div class="">
           <div class="row ">
             <div class="col-sm-3">
+              <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
             </div>
             <div class="col-sm-offset-5 col-sm-4">
               <div class="pull-right">
@@ -86,6 +87,6 @@
     </div>
   </div>
   <!-- <app-stages-pop-up [stages]="stages"></app-stages-pop-up> -->
-  <swal #successDialog title="Saved!" text="Saved data successfully" type="success"></swal>
+  <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)"></swal>
 
 </body>

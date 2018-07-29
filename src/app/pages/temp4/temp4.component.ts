@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-temp4',
@@ -17,7 +18,9 @@ export class Temp4Component implements OnInit {
   payload: any;
   constructor(
     private route: ActivatedRoute,
-    private cardService: CardService
+    private cardService: CardService,
+    private _location: Location
+
   ) {
     this.temp = {
       tableData: [
@@ -71,5 +74,12 @@ export class Temp4Component implements OnInit {
       window.alert("Error in loading data!");
     }
 
+  }
+  onConfirm(event: any) {
+    console.log("Confirmed");
+    this._location.back();
+  }
+  onBackCliced(){
+    this._location.back();
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-temp11',
@@ -18,7 +19,9 @@ export class Temp11Component implements OnInit {
   payload: any;
   constructor(
     private route: ActivatedRoute,
-    private cardService: CardService
+    private cardService: CardService,
+    private _location: Location
+
   ) {
     this.tempModel = {
       colOneHeader: "",
@@ -85,4 +88,12 @@ export class Temp11Component implements OnInit {
     }
 
   }
+  onConfirm(event: any) {
+    console.log("Confirmed");
+    this._location.back();
+  }
+  onBackCliced(){
+    this._location.back();
+  }
+
 }
