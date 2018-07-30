@@ -94,4 +94,19 @@ export class HomePageComponent implements OnInit {
     // this.storage.set(Constants.SELECTED_PILLAR, selectedPillar);
     this.router.navigate(['cards', selectedPillar._id]);
   }
+  onDelete(selectedPillar: Pillar) {
+    console.log("Selected to delete pillar ");
+    console.log(selectedPillar);
+    this.serviceHandler.runService(Constants.BASE_URL + "section/" + selectedPillar._id, "DELETE", this.myData.token).subscribe((res) => {
+      console.log("Delete pillar response");
+      console.log(res);
+      if (res.done) {
+        this.getPillars();
+      }
+    }, err => {
+      console.log("Delete pillar error");
+      console.error(err);
+      window.alert("Failed to delete pillar!");
+    });
+  }
 }

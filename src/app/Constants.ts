@@ -1,8 +1,9 @@
+import { environment } from '../environments/environment'
 export class Constants {
-    public static BASE_URL: string = "http://178.128.248.25/api/v1/";
+    public static BASE_URL: string = environment.IP + "api/v1/";
     public static USER_DATA: string = "UserData";
     public static SELECTED_PILLAR: string = "SelectedPillar";
-    public static IMAGE_PATH: string = "http://178.128.248.25/api/v1/image/";
+    public static IMAGE_PATH: string = environment.IP + "api/v1/image/";
 
     public static APP_TEMPLATES: Array<TemplateModel> = [
         {
