@@ -32,8 +32,7 @@ const routes: Routes = [
   { path: 'temp9', component: Temp9Component, canActivate: [LoginActivateService] },
   { path: 'temp10', component: Temp10Component, canActivate: [LoginActivateService] },
   { path: 'temp11', component: Temp11Component, canActivate: [LoginActivateService] },
-  { path: 'temp12', component: Temp12Component, canActivate: [LoginActivateService] },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'temp12', component: Temp12Component, canActivate: [LoginActivateService] }
 ]
 // { path: 'stagesChart', component: StagesPopUpComponent,data:{stages:} }
 
