@@ -25,9 +25,9 @@ export class Temp4Component implements OnInit {
     this.temp = {
       tableData: [
         { rowID: '0', tableHeader: 'Table Header' },
-        { rowId: '1', value1: 'value1', value2: 'value2', value3: "Value3" },
+        { rowId: '1', value1: 'value1', value2: 'value2', value3: "Value3", value4: "Value4" },
         { rowId: '2', value1: 'value1', value2: 'value2', value3: 'value3', value4: "value4" },
-        { rowId: '3', value1: 'value1' },
+        { rowId: '3', value1: 'value1', value2: 'value2', value3: "Value3", value4: "Value4" },
         { rowId: '4', value1: 'value1', value2: 'value2', value3: 'value3', value4: "value4" }
       ]
     };
@@ -79,7 +79,7 @@ export class Temp4Component implements OnInit {
     console.log("Confirmed");
     this._location.back();
   }
-  onBackCliced(){
+  onBackCliced() {
     this._location.back();
   }
 }

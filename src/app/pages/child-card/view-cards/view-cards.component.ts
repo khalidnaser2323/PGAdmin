@@ -64,7 +64,7 @@ export class ViewCardsComponent implements OnInit {
 
   }
   addNewButton() {
-    if (Object.keys(this.card.buttons).length < 3) {
+    // if (Object.keys(this.card.buttons).length < 3) {
       let dialogRef = this.dialog.open(AddButtonComponent, {
         width: "90%",
         data: {
@@ -81,7 +81,7 @@ export class ViewCardsComponent implements OnInit {
           this.onCardEdited.emit(true);
         }
       });
-    }
+    // }
   }
   async  editButtonTitle() {
     console.log("button title value");

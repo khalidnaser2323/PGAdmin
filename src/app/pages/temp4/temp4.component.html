@@ -24,7 +24,7 @@
                 </nav>
             </div>
             <div class="row page-heading" style="margin-top: 10px">
-                    <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
+                <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
 
             </div>
             <div class="wrapper wrapper-content btn-white">
@@ -32,17 +32,17 @@
                     <div class="col-md-2 col-sm-2 col-xs-2 green-colm padding-none">
                         <textarea class="form-control green-bg white-color" rows="7" [(ngModel)]="temp.tableData[0].tableHeader"></textarea>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-xs-2 white-square">
-                        <p> </p>
-                    </div>
                     <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
                         <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[1].value1"></textarea>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
-                        <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[1].value2"> </textarea>
+                        <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[1].value2"></textarea>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
-                        <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[1].value3"></textarea>
+                        <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[1].value3"> </textarea>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
+                        <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[1].value4"></textarea>
                     </div>
                     <!-- 2nd row -->
                     <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
@@ -61,14 +61,14 @@
                     <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
                         <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[3].value1"></textarea>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-xs-2 white-square">
-                        <p> </p>
+                    <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
+                        <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[3].value2"></textarea>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-xs-2 white-square">
-                        <p> </p>
+                    <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
+                        <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[3].value3"></textarea>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-xs-2 white-square">
-                        <p> </p>
+                    <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
+                        <textarea class="form-control" rows="7" [(ngModel)]="temp.tableData[3].value4"></textarea>
                     </div>
                     <!-- 4rth row -->
                     <div class="col-md-2 col-sm-2 col-xs-2 white-square padding-none">
@@ -100,6 +100,6 @@
             </div>
         </div>
     </div>
-    <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)" ></swal>
+    <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)"></swal>
 
 </body>
