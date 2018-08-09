@@ -32,14 +32,6 @@ export class Constants {
             imageURL: "img/temp6.png",
             path: "temp6"
         }, {
-            tempId: "7",
-            imageURL: "img/temp7.png",
-            path: "temp7"
-        }, {
-            tempId: "8",
-            imageURL: "img/temp8.png",
-            path: "temp8"
-        }, {
             tempId: "9",
             imageURL: "img/temp9.png",
             path: "temp9"
@@ -65,3 +57,15 @@ export class Constants {
         return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
     };
 }
+
+// return this code to tempaltes after finishing 7,8 templates.
+
+// {
+//     tempId: "7",
+//     imageURL: "img/temp7.png",
+//     path: "temp7"
+// }, {
+//     tempId: "8",
+//     imageURL: "img/temp8.png",
+//     path: "temp8"
+// },
