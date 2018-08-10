@@ -27,7 +27,7 @@
                 <div class="">
                     <div class="row ">
                         <div class="col-sm-3">
-                                <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
+                            <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
                         </div>
                         <div class="col-sm-offset-5 col-sm-4">
                             <div class="pull-right">
@@ -47,6 +47,7 @@
                                 <div class="form-group">
                                     <label> Member photo </label>
                                     <div class="fallback">
+                                        <label>Image should be 128 in height and 128 in width </label>
                                         <input id="file" name="file" (change)="handleFileInput($event.target.files,i)" type="file" accept="image/*" />
                                     </div>
                                 </div>
@@ -76,6 +77,6 @@
         </div>
     </div>
     <ngx-spinner></ngx-spinner>
-    <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)" ></swal>
+    <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)"></swal>
 
 </body>

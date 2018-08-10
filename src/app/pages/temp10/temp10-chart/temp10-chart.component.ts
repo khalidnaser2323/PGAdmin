@@ -20,7 +20,7 @@ export class Temp10ChartComponent implements OnInit {
   ngOnInit() {
     console.log("Passed stage from parent ");
     console.log(this.stage);
-    
+
     this.ctx = this.canvasRef.nativeElement.getContext('2d');
     this.chart = new Chart(this.ctx, {
       type: 'doughnut',

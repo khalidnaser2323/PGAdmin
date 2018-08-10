@@ -32,7 +32,8 @@
             (success)="onUploadSuccess($event)"></div> -->
           <form class="form-group">
             <div class="fallback">
-              <input id="file" name="file" (change)="handleFileInput($event.target.files)" type="file" accept="image/*"  />
+              <label>Image should be 142 in height and 220 in width </label>
+              <input id="file" name="file" (change)="handleFileInput($event.target.files)" type="file" accept="image/*" />
             </div>
           </form>
         </div>
