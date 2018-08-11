@@ -1,3 +1,63 @@
-<p>
-  temp7 works!
-</p>
+<body class="top-navigation">
+  <div id="wrapper">
+    <div id="page-wrapper" class="gray-bg">
+      <div class="row border-bottom white-bg">
+        <nav class="navbar navbar-static-top" role="navigation">
+          <div class="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed"
+              type="button">
+              <i class="fa fa-reorder"></i>
+            </button>
+            <a routerLink="/" class="navbar-brand">
+              <i>P&G</i>
+            </a>
+          </div>
+          <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-top-links navbar-right">
+              <li>
+                <a routerLink="/login">
+                  <i class="fa fa-sign-out"></i> Log out
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="row page-heading" style="margin-top: 10px">
+        <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
+
+      </div>
+      <div class="wrapper wrapper-content btn-white">
+        <div class="row form-group">
+
+          <div style="width: 100%;" id="mytable"></div>
+          <!-- <input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx"> -->
+          <!-- <button type="button" class="btn btn-info" (click)="Upload()">Upload</button> -->
+          <!-- <table class="sjs-table">
+            <tr *ngFor="let row of data">
+              <td *ngFor="let val of row">
+                {{val}}
+              </td>
+            </tr>
+          </table> -->
+          <input style="margin-top: 10px" type="file" (change)="onFileChange($event)" multiple="false" accept=".xlsx" />
+        </div>
+        <div class="row">
+          <div class="col-lg-2 col-md-2 form-group">
+            <button class="btn btn-primary btn-rounded full-width" type="button" (click)="save()"> Save </button>
+          </div>
+          <!-- <div class="col-lg-2 col-md-2 form-group">
+                      <button class="btn btn-danger btn-rounded full-width" type="button"> Cancel </button>
+                  </div> -->
+        </div>
+      </div>
+      <div class="footer">
+        <div>
+          <strong>P&G</strong> Copyright &copy; 2018
+        </div>
+      </div>
+    </div>
+  </div>
+  <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)"></swal>
+
+</body>

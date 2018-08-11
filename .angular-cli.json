@@ -26,7 +26,8 @@
         "../src/css/animate.css",
         "styles.css",
         "../src/css/Custome_style.css",
-        "../src/css/normalize.css"
+        "../src/css/normalize.css",
+        "../src/css/plugins/jxcel.css"
       ],
       "scripts": [
         "../src/js/jquery-3.1.1.min.js",
@@ -39,7 +40,8 @@
         "../src/js/plugins/flot/jquery.flot.tooltip.min.js",
         "../src/js/plugins/flot/jquery.flot.resize.js",
         "../src/js/plugins/peity/jquery.peity.min.js",
-        "../src/js/demo/peity-demo.js"
+        "../src/js/demo/peity-demo.js",
+        "../src/js/plugins/jxcel.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

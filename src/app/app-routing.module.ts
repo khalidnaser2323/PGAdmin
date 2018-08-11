@@ -15,6 +15,7 @@ import { Temp11Component } from './pages/temp11/temp11.component';
 import { Temp12Component } from './pages/temp12/temp12.component';
 import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.component';
 import { LoginActivateService } from './services/login-activate.service';
+import { Temp7Component } from './pages/temp7/temp7.component';
 
 
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'temp2', component: Temp2Component, canActivate: [LoginActivateService] },
   { path: 'temp3', component: Temp3Component, canActivate: [LoginActivateService] },
   { path: 'temp4', component: Temp4Component, canActivate: [LoginActivateService] },
+  { path: 'temp7', component: Temp7Component, canActivate: [LoginActivateService] },
   { path: 'temp5', component: Temp5Component, canActivate: [LoginActivateService] },
   { path: 'temp6', component: Temp6Component, canActivate: [LoginActivateService] },
   { path: 'temp9', component: Temp9Component, canActivate: [LoginActivateService] },
