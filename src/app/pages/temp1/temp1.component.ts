@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { Location } from '@angular/common';
+import { ColorPickerService } from 'ngx-color-picker';
 
 
 @Component({
@@ -19,13 +20,15 @@ export class Temp1Component implements OnInit {
   pillarId: string;
   cardId: string;
   templateId: string;
+  color: string = "red";
   payload: any;
+  toggle: boolean = false;
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private cardService: CardService,
-    private _location: Location
-
+    private _location: Location,
+    private cpService: ColorPickerService
   ) {
     this.stages = [];
     this.route.params.subscribe(params => {
@@ -59,7 +62,7 @@ export class Temp1Component implements OnInit {
       tempDescribtion: "",
       StagePrice: "",
       percentValue: 0,
-      color: "",
+      color: "red",
       stageNumber: ""
     });
   }
@@ -82,7 +85,7 @@ export class Temp1Component implements OnInit {
     console.log("Confirmed");
     this._location.back();
   }
-  onBackCliced(){
+  onBackCliced() {
     this._location.back();
   }
   openDialog(): void {
@@ -113,6 +116,12 @@ export class Temp1Component implements OnInit {
       window.alert("Error in loading data!");
     }
 
+  }
+  onColorChanged(color: string, index: number) {
+    console.log("Selected color");
+    console.log(color);
+    console.log("Stage index");
+    console.log(index);
   }
 
 }

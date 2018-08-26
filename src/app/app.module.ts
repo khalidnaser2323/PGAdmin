@@ -4,7 +4,9 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { ColorPickerModule } from 'ngx-color-picker';
 import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
@@ -123,7 +125,8 @@ import { LoginActivateService } from './services/login-activate.service';
     BrowserAnimationsModule,
     HttpClientModule,
     StorageServiceModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ColorPickerModule
   ],
   bootstrap: [AppComponent]
 })
