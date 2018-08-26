@@ -1,11 +1,11 @@
 <div class="col-md-3 col-sm-6 col-xs-12 text-center dashed-right-border">
     <p class="price"> {{stage.StagePrice}}EPG </p>
-    <div class="img-responsive inline" >
-     <canvas #canvas  width="400" height="460">{{chart}}</canvas>
+    <div class="img-responsive inline">
+        <canvas #canvas width="400" height="460">{{chart}}</canvas>
+        <img alt="image" class="img-circle m-t-xs img-responsive inline" src={{getImageUrl(stage)}} onError="this.src='img/logo.png';" >
     </div>
     <p class="font-size-18">
-            {{stage.tempDescribtion}}
+        {{stage.tempDescribtion}}
     </p>
     <div class="clearfix"></div>
 </div>
-

@@ -1,0 +1,11 @@
+.img-responsive img {
+    top:  36% !important;
+    left:  32% !important;
+    display: none;
+    position: absolute;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    display: none;
+    
+}

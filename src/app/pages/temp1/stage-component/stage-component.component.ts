@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
+import { Constants } from '../../../Constants';
 
 @Component({
   selector: 'app-stage-component',
@@ -11,6 +12,7 @@ export class StageComponentComponent implements OnInit {
   chart = [];
   // stage:Stage;
   @Input() stage: Stage;
+  imagePath: string = Constants.IMAGE_PATH;
 
   @ViewChild('canvas') canvasRef: ElementRef;
   constructor() { }
@@ -46,5 +48,16 @@ export class StageComponentComponent implements OnInit {
   }
   rest(x: number) {
     return 100 - x;
+  }
+  getImageUrl(stage: Stage): string {
+    if (stage.icon) {
+      if (stage.icon.startsWith("data:")) {
+        return stage.icon;
+      }
+      else {
+        return this.imagePath + stage.icon;
+      }
+
+    }
   }
 }

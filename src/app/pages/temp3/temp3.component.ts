@@ -53,7 +53,6 @@ export class Temp3Component implements OnInit {
     // this.payload.data = this.teamMembers;
     this.spinner.show();
     try {
-      debugger;
       for (let i in this.teamMembers) {
         if (this.teamMembers[i].TeamMemberImg.startsWith("data:")) {
           const memberImageId = await this.cardService.uploadImage(this.teamMembers[i].TeamMemberImg);
@@ -63,7 +62,6 @@ export class Temp3Component implements OnInit {
           continue;
         }
       }
-      debugger;
       this.payload.data = this.teamMembers;
       const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
       this.spinner.hide();

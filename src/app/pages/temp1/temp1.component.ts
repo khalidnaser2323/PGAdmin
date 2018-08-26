@@ -6,8 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { Location } from '@angular/common';
-import { ColorPickerService } from 'ngx-color-picker';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-temp1',
@@ -27,7 +26,7 @@ export class Temp1Component implements OnInit {
     private route: ActivatedRoute,
     private cardService: CardService,
     private _location: Location,
-    private cpService: ColorPickerService
+    public spinner: NgxSpinnerService,
   ) {
     this.stages = [];
     this.route.params.subscribe(params => {
@@ -62,21 +61,35 @@ export class Temp1Component implements OnInit {
       StagePrice: "",
       percentValue: 0,
       color: "red",
-      stageNumber: ""
+      stageNumber: "",
+      icon: "img/logo.png"
     });
   }
   async saveAll() {
     console.log("Save all");
     console.log(this.stages);
-    this.payload.data = this.stages;
+    this.spinner.show();
     try {
+      debugger;
+      for (let i in this.stages) {
+        if (this.stages[i].icon && this.stages[i].icon.startsWith("data:")) {
+          const iconId = await this.cardService.uploadImage(this.stages[i].icon);
+          this.stages[i].icon = iconId;
+        }
+        else {
+          continue;
+        }
+      }
+      this.payload.data = this.stages;
       const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
+      this.spinner.hide();
       if (done) {
         this.successDialog.show();
 
       }
     } catch (error) {
       console.log(error);
+      this.spinner.hide();
       window.alert("OOPs! something went wrong");
     }
   }
@@ -121,6 +134,25 @@ export class Temp1Component implements OnInit {
     console.log(color);
     console.log("Stage index");
     console.log(index);
+  }
+
+  handleFileInput(files: FileList, stageIndex: number) {
+    // this.fileToUpload = files.item(0);
+    console.log(files);
+    this.readThis(files, stageIndex);
+  }
+  readThis(inputValue: any, stageIndex: number): void {
+    var file: File = inputValue[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      // you can perform an action with readed data here
+      console.log(myReader.result);
+      this.stages[stageIndex].icon = myReader.result;
+    }
+
+    myReader.readAsDataURL(file);
+
   }
 
 }
