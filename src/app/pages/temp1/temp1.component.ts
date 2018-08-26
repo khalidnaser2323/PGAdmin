@@ -22,7 +22,6 @@ export class Temp1Component implements OnInit {
   templateId: string;
   color: string = "red";
   payload: any;
-  toggle: boolean = false;
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
