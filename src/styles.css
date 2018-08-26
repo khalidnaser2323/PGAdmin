@@ -40,7 +40,18 @@ h5 {
     margin-top: 5px;
     font-weight: 600;
 }
-
+p {
+    margin: 0 0 10px;
+    word-wrap:   break-word !important;
+}
+.form-group {
+    margin-bottom: 15px;
+    overflow-x:   auto !important;
+}
+b, strong {
+    font-weight: bolder;
+    display:  block;
+}
 .nav > li > a {
     color: #a7b1c2;
     font-weight: 600;
@@ -10611,6 +10622,7 @@ div.product-chooser{
         }
         .padding-none{
             padding:0px;
+            width:  245px;
         }
         .margin-h-10{
             margin-right:10px;
@@ -10666,5 +10678,29 @@ div.product-chooser{
         font-size: 10px !important;
             margin-left: 0px !important;
     }
+    
+}
+
+
+.card-box p {
+    
+    overflow-y:  scroll;
+    
+    max-height:  85px;
+    
+    min-height:  85px;
+    
+}
+
+.card-box strong {
+    
+    height:  60px;
+    
+    overflow-y:  hidden;
+    
+}
+.user-button .row  {
+    
+    height:  110px;
     
 }

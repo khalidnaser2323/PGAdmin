@@ -9,3 +9,17 @@ canvas {
     width: 533px;
     height: 266px;
 }
+
+.img-responsive div {
+    
+    top:  21% !important;
+    
+    left:  21% !important;
+    
+}
+
+.img-responsive div span{
+    top: 28%;
+    left: 35%;
+    position: absolute;
+}
