@@ -17,7 +17,7 @@ export class Temp9Component implements OnInit {
     percentageData: [],
     color: null,
     labels: [],
-    title: "Vision & CBN QEC"
+    title: ""
   };
   stages: Array<{ title: string, percentage: number }>
   pillarId: string;
@@ -119,7 +119,7 @@ export class Temp9Component implements OnInit {
   deformatTmp(tmp: Template9) {
     debugger;
     this.stages = [];
-    for (let i = 0 ; i < tmp.labels.length; i++) {
+    for (let i = 0; i < tmp.labels.length; i++) {
       this.stages.push({ title: tmp.labels[i], percentage: tmp.percentageData[i] })
     }
   }
@@ -127,7 +127,7 @@ export class Temp9Component implements OnInit {
     console.log("Confirmed");
     this._location.back();
   }
-  onBackCliced(){
+  onBackCliced() {
     this._location.back();
   }
 }

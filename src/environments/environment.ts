@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  IP: "http://178.128.248.25"
+  IP: "http://188.166.89.42"
 };

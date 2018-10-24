@@ -26,7 +26,8 @@
       <div class="wrapper wrapper-content">
         <div class="container">
           <div class="row">
-              <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
+            <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back
+              to Card </button>
 
           </div>
           <div class="row">
@@ -68,11 +69,18 @@
                 <div class="card-box padding-h-20">
                   <div class="form-group">
                     <label>First Variable name </label>
-                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="firstVar" [(ngModel)]="ChartValues.label1">
+                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="firstVar"
+                      [(ngModel)]="ChartValues.label1">
                   </div>
                   <div class="form-group">
                     <label>Secound Variable name </label>
-                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="SecoundVar" [(ngModel)]="ChartValues.label2">
+                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="SecoundVar"
+                      [(ngModel)]="ChartValues.label2">
+                  </div>
+                  <div class="form-group">
+                    <label>Third Variable name </label>
+                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="SecoundVar"
+                      [(ngModel)]="ChartValues.label3">
                   </div>
                   <!-- <div class="form-group">
                   <button type="button" class="btn btn-default btn-rounded" title="Add new variable">
@@ -80,23 +88,32 @@
                 </div> -->
                   <div class="form-group">
                     <label> X-axis values </label>
-                    <textarea rows="2" placeholder="2006,2007,2008,..." class="form-control textbox-rounded" name="xValues" [(ngModel)]="ChartValues.xaxisValues"></textarea>
+                    <textarea rows="2" placeholder="2006,2007,2008,..." class="form-control textbox-rounded" name="xValues"
+                      [(ngModel)]="ChartValues.xaxisValues"></textarea>
                   </div>
                   <div class="form-group">
                     <label> Variable 1 values </label>
-                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y1Values" [(ngModel)]="ChartValues.y1Values"></textarea>
+                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y1Values"
+                      [(ngModel)]="ChartValues.y1Values"></textarea>
                   </div>
                   <div class="form-group">
                     <label> Variable 2 values </label>
-                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y2Values" [(ngModel)]="ChartValues.y2Values"></textarea>
+                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y2Values"
+                      [(ngModel)]="ChartValues.y2Values"></textarea>
                   </div>
-
+                  <div class="form-group">
+                    <label> Variable 3 values </label>
+                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y2Values"
+                      [(ngModel)]="ChartValues.y3Values"></textarea>
+                  </div>
                   <div class="row">
                     <div class="col-lg-6 col-md-6 form-group">
-                      <button class="btn btn-default btn-rounded full-width" type="submit" (click)="openDialog()"> Draw </button>
+                      <button class="btn btn-default btn-rounded full-width" type="submit" (click)="openDialog()"> Draw
+                      </button>
                     </div>
                     <div class="col-lg-6 col-md-6 form-group">
-                      <button class="btn btn-success btn-rounded full-width" type="submit" (click)="onSaveChartData()"> Save all </button>
+                      <button class="btn btn-success btn-rounded full-width" type="submit" (click)="onSaveChartData()">
+                        Save all </button>
                     </div>
 
                   </div>

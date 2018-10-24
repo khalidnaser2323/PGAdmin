@@ -43,6 +43,7 @@ import { ConpopupComponent } from './pages/temp6/conpopup/conpopup.component';
 import { TablePopUpComponent } from './pages/temp2/table-pop-up/table-pop-up.component';
 import { TeamPopUpComponent } from './pages/temp3/team-pop-up/team-pop-up.component';
 import { ChartPopupComponent } from './pages/temp9/chart-popup/chart-popup.component';
+import { PieChartComponent } from './pages/temp13/chart-popup/chart-popup.component';
 import { Temp12connComponent } from './pages/temp12/temp12conn/temp12conn.component';
 import { Temp12popupComponent } from './pages/temp12/temp12popup/temp12popup.component';
 import { ServiceHandlerProvider } from './services/service-handler/service-handler';
@@ -51,6 +52,7 @@ import { AddButtonComponent } from './pages/child-card/add-button/add-button.com
 import { Temp10ChartComponent } from './pages/temp10/temp10-chart/temp10-chart.component';
 import { Temp10PopUpComponent } from './pages/temp10/temp10-pop-up/temp10-pop-up.component';
 import { LoginActivateService } from './services/login-activate.service';
+import { Temp13Component } from './pages/temp13/temp13.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { LoginActivateService } from './services/login-activate.service';
     KeysPipe,
     AddButtonComponent,
     Temp10ChartComponent,
-    Temp10PopUpComponent
+    Temp10PopUpComponent,
+    Temp13Component,
+    PieChartComponent
   ],
   entryComponents: [
     Temp6popupComponent,
@@ -102,7 +106,8 @@ import { LoginActivateService } from './services/login-activate.service';
     AddButtonComponent,
     TemplateDataComponent,
     Temp10ChartComponent,
-    Temp10PopUpComponent
+    Temp10PopUpComponent,
+    PieChartComponent
   ],
 
 

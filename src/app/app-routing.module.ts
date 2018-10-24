@@ -13,9 +13,9 @@ import { Temp9Component } from './pages/temp9/temp9.component';
 import { Temp10Component } from './pages/temp10/temp10.component';
 import { Temp11Component } from './pages/temp11/temp11.component';
 import { Temp12Component } from './pages/temp12/temp12.component';
-import { StagesPopUpComponent } from './pages/temp1/stages-pop-up/stages-pop-up.component';
 import { LoginActivateService } from './services/login-activate.service';
 import { Temp7Component } from './pages/temp7/temp7.component';
+import { Temp13Component } from './pages/temp13/temp13.component';
 
 
 
@@ -34,7 +34,8 @@ const routes: Routes = [
   { path: 'temp9', component: Temp9Component, canActivate: [LoginActivateService] },
   { path: 'temp10', component: Temp10Component, canActivate: [LoginActivateService] },
   { path: 'temp11', component: Temp11Component, canActivate: [LoginActivateService] },
-  { path: 'temp12', component: Temp12Component, canActivate: [LoginActivateService] }
+  { path: 'temp12', component: Temp12Component, canActivate: [LoginActivateService] },
+  { path: 'temp13', component: Temp13Component, canActivate: [LoginActivateService] }
 ]
 // { path: 'stagesChart', component: StagesPopUpComponent,data:{stages:} }
 

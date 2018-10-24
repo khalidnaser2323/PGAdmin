@@ -21,7 +21,9 @@ export class Temp5Component implements OnInit {
     label2: "",
     xaxisValues: "",
     y1Values: "",
-    y2Values: ""
+    y2Values: "",
+    label3: "",
+    y3Values: ""
   };
   pillarId: string;
   cardId: string;
@@ -94,7 +96,7 @@ export class Temp5Component implements OnInit {
     console.log("Confirmed");
     this._location.back();
   }
-  onBackCliced(){
+  onBackCliced() {
     this._location.back();
   }
 }

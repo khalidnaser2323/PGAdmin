@@ -144,7 +144,7 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
     myReader.onloadend = (e) => {
       // you can perform an action with readed data here
       console.log(myReader.result);
-      this.seletectedImageString = myReader.result;
+      this.seletectedImageString = myReader.result.toString();
     }
 
     myReader.readAsDataURL(file);

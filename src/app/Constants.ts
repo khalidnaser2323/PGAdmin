@@ -53,6 +53,11 @@ export class Constants {
             tempId: "12",
             imageURL: "img/temp12.png",
             path: "temp12"
+        },
+        {
+            tempId: "13",
+            imageURL: "img/temp9.png",
+            path: "temp13"
         }
     ];
     public static guidGenerator(): string {

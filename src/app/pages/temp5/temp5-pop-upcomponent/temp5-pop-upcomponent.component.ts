@@ -30,6 +30,10 @@ export class Temp5PopUpcomponentComponent implements OnInit {
     const xaxisValues = this.ChartValues.xaxisValues.split(",");
     const y1 = this.ChartValues.y1Values.split(",");
     const y2 = this.ChartValues.y2Values.split(",");
+    let y3;
+    if (this.ChartValues.y3Values) {
+      y3 = this.ChartValues.y3Values.split(",");
+    }
     this.length = this.ChartValues.y1Values.length;
     this.ctx = this.canvasRef.nativeElement.getContext('2d');
     this.chart = new Chart(this.ctx, {
@@ -50,6 +54,13 @@ export class Temp5PopUpcomponentComponent implements OnInit {
 
           borderWidth: 1,
           data: y2
+        },
+        {
+          label: this.ChartValues.label3,
+          backgroundColor: this.colorloop('rgb(255, 153, 255,0.2)'),
+          borderColor: this.colorloop('rgb(255, 51, 153)'),
+          borderWidth: 1,
+          data: y3
         }
         ]
       },
