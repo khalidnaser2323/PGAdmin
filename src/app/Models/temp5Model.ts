@@ -8,5 +8,6 @@ interface template5 {
   y1Values: string,
   y2Values: string,
   y3Values?: string
-
+  linearVariableLabel?: string,
+  linearVariableData?: string
 }

@@ -4,8 +4,8 @@
             <div class="row border-bottom white-bg">
                 <nav class="navbar navbar-static-top" role="navigation">
                     <div class="navbar-header">
-                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed"
-                            type="button">
+                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse"
+                            class="navbar-toggle collapsed" type="button">
                             <i class="fa fa-reorder"></i>
                         </button>
                         <a routerLink="/" class="navbar-brand">
@@ -27,13 +27,17 @@
                 <div class="">
                     <div class="row ">
                         <div class="col-sm-3">
-                            <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
+                            <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()">
+                                Back to Card </button>
                         </div>
                         <div class="col-sm-offset-5 col-sm-4">
                             <div class="pull-right">
-                                <button class="btn btn-default btn-rounded margin-15-bottom" type="button" (click)="addMember()"> Add member</button>
-                                <button class="btn btn-default btn-rounded margin-15-bottom margin-h-10" type="button" (click)="openDialog()"> Show in client</button>
-                                <button class="btn btn-success btn-rounded margin-15-bottom margin-h-10" type="button" (click)="saveAll()"> Save all </button>
+                                <button class="btn btn-default btn-rounded margin-15-bottom" type="button" (click)="addMember()">
+                                    Add member</button>
+                                <button class="btn btn-default btn-rounded margin-15-bottom margin-h-10" type="button"
+                                    (click)="openDialog()"> Show in client</button>
+                                <button class="btn btn-success btn-rounded margin-15-bottom margin-h-10" type="button"
+                                    (click)="saveAll()"> Save all </button>
                             </div>
                         </div>
                     </div>
@@ -48,19 +52,25 @@
                                     <label> Member photo </label>
                                     <div class="fallback">
                                         <label>Image should be 128 in height and 128 in width </label>
-                                        <input id="file" name="file" (change)="handleFileInput($event.target.files,i)" type="file" accept="image/*" />
+                                        <input id="file" name="file" (change)="handleFileInput($event.target.files,i)"
+                                            type="file" accept="image/*" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label> Job </label>
+                                    <label> Title </label>
                                     <input type="text" placeholder="Job" [(ngModel)]="member.JobDiscribtion" class="form-control textbox-rounded" />
+                                </div>
+                                <div class="form-group">
+                                    <label> Role </label>
+                                    <input type="text" placeholder="Job" [(ngModel)]="member.memberRole" class="form-control textbox-rounded" />
                                 </div>
                                 <div class="row">
                                     <!-- <div class="col-lg-6 col-md-6 form-group">
                                         <button class="btn btn-primary btn-rounded full-width" type="button" (click)="saveMember(member)"> Save member </button>
                                     </div> -->
                                     <div class="col-lg-6 col-md-6 form-group">
-                                        <button class="btn btn-danger btn-rounded full-width" type="button" (click)="deleteMember(i)"> Delete member </button>
+                                        <button class="btn btn-danger btn-rounded full-width" type="button" (click)="deleteMember(i)">
+                                            Delete member </button>
                                     </div>
                                 </div>
 

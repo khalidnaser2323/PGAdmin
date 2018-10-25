@@ -53,6 +53,8 @@ import { Temp10ChartComponent } from './pages/temp10/temp10-chart/temp10-chart.c
 import { Temp10PopUpComponent } from './pages/temp10/temp10-pop-up/temp10-pop-up.component';
 import { LoginActivateService } from './services/login-activate.service';
 import { Temp13Component } from './pages/temp13/temp13.component';
+import { PhotoTmpComponent } from './pages/photo-tmp/photo-tmp.component';
+import { PopupComponent } from './pages/photo-tmp/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +93,9 @@ import { Temp13Component } from './pages/temp13/temp13.component';
     Temp10ChartComponent,
     Temp10PopUpComponent,
     Temp13Component,
-    PieChartComponent
+    PieChartComponent,
+    PhotoTmpComponent,
+    PopupComponent
   ],
   entryComponents: [
     Temp6popupComponent,
@@ -107,7 +111,8 @@ import { Temp13Component } from './pages/temp13/temp13.component';
     TemplateDataComponent,
     Temp10ChartComponent,
     Temp10PopUpComponent,
-    PieChartComponent
+    PieChartComponent,
+    PopupComponent
   ],
 
 

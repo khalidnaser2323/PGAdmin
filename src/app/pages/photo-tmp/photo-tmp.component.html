@@ -1,0 +1,67 @@
+<body class="top-navigation">
+  <div id="wrapper">
+    <div id="page-wrapper" class="gray-bg">
+      <div class="row border-bottom white-bg">
+        <nav class="navbar navbar-static-top" role="navigation">
+          <div class="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed"
+              type="button">
+              <i class="fa fa-reorder"></i>
+            </button>
+            <a routerLink="/" class="navbar-brand">
+              <i>P&G</i>
+            </a>
+          </div>
+          <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-top-links navbar-right">
+              <li>
+                <a routerLink="/login">
+                  <i class="fa fa-sign-out"></i> Log out
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="wrapper wrapper-content">
+        <div class="">
+          <div class="row ">
+            <div class="col-sm-3">
+              <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()">
+                Back to Card </button>
+            </div>
+            <div class="col-sm-offset-5 col-sm-4">
+              <div class="pull-right">
+                <button class="btn btn-default btn-rounded margin-15-bottom margin-h-10" type="button" (click)="openDialog()">
+                  Show in client</button>
+                <button class="btn btn-success btn-rounded margin-15-bottom margin-h-10" type="button" (click)="saveAll()">
+                  Save </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <div class="card-box padding-h-20">
+
+                <div class="form-group">
+                  <label>Select photo</label>
+                  <div class="fallback">
+                    <input id="file" name="file" (change)="handleFileInput($event.target.files,i)" type="file" accept="image/*" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div>
+          <strong>P&G</strong> Copyright &copy; 2018
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-spinner></ngx-spinner>
+  <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)"></swal>
+
+</body>

@@ -1,44 +1,32 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Popup5Component } from './popup5/popup5.component'
+import { Constants } from '../../Constants';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { Location } from '@angular/common';
+import { PopupComponent } from '../photo-tmp/popup/popup.component';
 
 @Component({
-  selector: 'app-temp5',
-  templateUrl: './temp5.component.html',
-  styleUrls: ['./temp5.component.css'],
-  providers: []
+  selector: 'app-photo-tmp',
+  templateUrl: './photo-tmp.component.html',
+  styleUrls: ['./photo-tmp.component.css']
 })
-export class Temp5Component implements OnInit {
+export class PhotoTmpComponent implements OnInit {
   @ViewChild('successDialog') private successDialog: SwalComponent;
-  ChartValues: template5 = {
-    tempName: "",
-    tempDescribtion: "",
-    label1: "",
-    label2: "",
-    xaxisValues: "",
-    y1Values: "",
-    y2Values: "",
-    label3: "",
-    y3Values: "",
-    linearVariableData: "",
-    linearVariableLabel: ""
-  };
   pillarId: string;
   cardId: string;
   templateId: string;
   payload: any;
-
+  imageString: string;
 
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private cardService: CardService,
+    public spinner: NgxSpinnerService,
     private _location: Location
-
   ) {
     this.route.params.subscribe(params => {
       console.log(params);
@@ -48,32 +36,68 @@ export class Temp5Component implements OnInit {
       this.getCardDetails(this.pillarId, this.cardId);
     });
   }
+
   ngOnInit() {
-    console.log('oninit');
-    console.log(this.ChartValues);
-    //this.chartV.emit(this.ChartValues);
   }
-  async onSaveChartData() {
-    console.log("chartData");
-    console.log(this.ChartValues);
-    this.payload.data = this.ChartValues;
+
+  async saveAll() {
+    console.log("Image");
+    console.log(this.imageString);
+    this.spinner.show();
     try {
+      let imageUrl = "";
+      if (this.imageString.startsWith("data:")) {
+        imageUrl = await this.cardService.uploadImage(this.imageString);
+      }
+      else {
+        imageUrl = this.imageString;
+      }
+      this.payload.data = imageUrl;
       const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
+      this.spinner.hide();
       if (done) {
         this.successDialog.show();
       }
     } catch (error) {
+      this.spinner.hide();
       console.log(error);
       window.alert("OOPs! something went wrong");
     }
   }
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(Popup5Component, {
-      height: '400px',
-      width: '600px',
-      data: { ChartValues: this.ChartValues }
+
+    let dialogRef = this.dialog.open(PopupComponent, {
+      width: "99%",
+      height: "99%",
+      maxHeight: "100%",
+      maxWidth: "100%",
+      data: { imageString: this.imageString }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog is closed');
+    });
+  }
+
+
+  handleFileInput(files: FileList, memberIndex: number) {
+    // this.fileToUpload = files.item(0);
+    console.log(files);
+    this.readThis(files, memberIndex);
+  }
+  readThis(inputValue: any, memberIndex: number): void {
+    var file: File = inputValue[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      // you can perform an action with readed data here
+      console.log(myReader.result);
+      this.imageString = myReader.result.toString();
+    }
+
+    myReader.readAsDataURL(file);
+
   }
   async getCardDetails(pillarId: string, cardId: string) {
     try {
@@ -83,7 +107,7 @@ export class Temp5Component implements OnInit {
         console.log(cardDetails.templates[this.templateId].payload);
         this.payload = cardDetails.templates[this.templateId].payload;
         if (this.payload.data) {
-          this.ChartValues = this.payload.data;
+          this.imageString = this.payload.data;
         }
       }
       else {
@@ -101,4 +125,5 @@ export class Temp5Component implements OnInit {
   onBackCliced() {
     this._location.back();
   }
+
 }

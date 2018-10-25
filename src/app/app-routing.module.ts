@@ -16,6 +16,8 @@ import { Temp12Component } from './pages/temp12/temp12.component';
 import { LoginActivateService } from './services/login-activate.service';
 import { Temp7Component } from './pages/temp7/temp7.component';
 import { Temp13Component } from './pages/temp13/temp13.component';
+import { PhotoTmpComponent } from './pages/photo-tmp/photo-tmp.component';
+
 
 
 
@@ -35,7 +37,9 @@ const routes: Routes = [
   { path: 'temp10', component: Temp10Component, canActivate: [LoginActivateService] },
   { path: 'temp11', component: Temp11Component, canActivate: [LoginActivateService] },
   { path: 'temp12', component: Temp12Component, canActivate: [LoginActivateService] },
-  { path: 'temp13', component: Temp13Component, canActivate: [LoginActivateService] }
+  { path: 'temp13', component: Temp13Component, canActivate: [LoginActivateService] },
+  { path: 'photoTmp', component: PhotoTmpComponent, canActivate: [LoginActivateService] }
+
 ]
 // { path: 'stagesChart', component: StagesPopUpComponent,data:{stages:} }
 

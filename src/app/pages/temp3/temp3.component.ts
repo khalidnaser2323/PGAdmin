@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Constants } from '../../Constants';
+import { MatDialog } from '@angular/material';
 import { TeamPopUpComponent } from './team-pop-up/team-pop-up.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
@@ -44,7 +43,8 @@ export class Temp3Component implements OnInit {
     this.teamMembers.push({
       Name: "",
       TeamMemberImg: "img/a1.jfif",
-      JobDiscribtion: ""
+      JobDiscribtion: "",
+      memberRole: ""
     });
   }
   async saveAll() {
@@ -105,7 +105,7 @@ export class Temp3Component implements OnInit {
     myReader.onloadend = (e) => {
       // you can perform an action with readed data here
       console.log(myReader.result);
-      this.teamMembers[memberIndex].TeamMemberImg = myReader.result;
+      this.teamMembers[memberIndex].TeamMemberImg = myReader.result.toString();
     }
 
     myReader.readAsDataURL(file);
@@ -134,7 +134,7 @@ export class Temp3Component implements OnInit {
     console.log("Confirmed");
     this._location.back();
   }
-  onBackCliced(){
+  onBackCliced() {
     this._location.back();
   }
 }

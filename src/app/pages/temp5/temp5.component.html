@@ -68,28 +68,14 @@
                 </div>
                 <div class="card-box padding-h-20">
                   <div class="form-group">
-                    <label>First Variable name </label>
-                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="firstVar"
-                      [(ngModel)]="ChartValues.label1">
-                  </div>
-                  <div class="form-group">
-                    <label>Secound Variable name </label>
-                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="SecoundVar"
-                      [(ngModel)]="ChartValues.label2">
-                  </div>
-                  <div class="form-group">
-                    <label>Third Variable name </label>
-                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="SecoundVar"
-                      [(ngModel)]="ChartValues.label3">
-                  </div>
-                  <!-- <div class="form-group">
-                  <button type="button" class="btn btn-default btn-rounded" title="Add new variable">
-                    <i class="fa fa-plus"></i> &nbsp;&nbsp; Add new variable </button>
-                </div> -->
-                  <div class="form-group">
                     <label> X-axis values </label>
                     <textarea rows="2" placeholder="2006,2007,2008,..." class="form-control textbox-rounded" name="xValues"
                       [(ngModel)]="ChartValues.xaxisValues"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>First Variable name </label>
+                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="firstVar"
+                      [(ngModel)]="ChartValues.label1">
                   </div>
                   <div class="form-group">
                     <label> Variable 1 values </label>
@@ -97,14 +83,35 @@
                       [(ngModel)]="ChartValues.y1Values"></textarea>
                   </div>
                   <div class="form-group">
+                    <label>Secound Variable name </label>
+                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="SecoundVar"
+                      [(ngModel)]="ChartValues.label2">
+                  </div>
+                  <div class="form-group">
                     <label> Variable 2 values </label>
                     <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y2Values"
                       [(ngModel)]="ChartValues.y2Values"></textarea>
                   </div>
                   <div class="form-group">
+                    <label>Third Variable name </label>
+                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="thirdVar"
+                      [(ngModel)]="ChartValues.label3">
+                  </div>
+                  <div class="form-group">
                     <label> Variable 3 values </label>
-                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y2Values"
+                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y3Values"
                       [(ngModel)]="ChartValues.y3Values"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Line variable name </label>
+                    <input type="text" placeholder="variable name" class="form-control textbox-rounded" name="fourthVar"
+                      [(ngModel)]="ChartValues.linearVariableLabel">
+                  </div>
+                  <div class="form-group">
+                    <label> Line variable values </label>
+                    <textarea rows="2" placeholder="30,20,25,..." class="form-control textbox-rounded" name="y4Values"
+                      [(ngModel)]="ChartValues.linearVariableData"></textarea>
                   </div>
                   <div class="row">
                     <div class="col-lg-6 col-md-6 form-group">

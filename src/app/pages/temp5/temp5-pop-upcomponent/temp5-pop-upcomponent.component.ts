@@ -30,41 +30,54 @@ export class Temp5PopUpcomponentComponent implements OnInit {
     const xaxisValues = this.ChartValues.xaxisValues.split(",");
     const y1 = this.ChartValues.y1Values.split(",");
     const y2 = this.ChartValues.y2Values.split(",");
-    let y3;
-    if (this.ChartValues.y3Values) {
-      y3 = this.ChartValues.y3Values.split(",");
-    }
+    const y3 = this.ChartValues.y3Values.split(",");
+
     this.length = this.ChartValues.y1Values.length;
     this.ctx = this.canvasRef.nativeElement.getContext('2d');
+    let datasetsForChart = [];
+    if (this.ChartValues.label1 != "" && this.ChartValues.y1Values != "") {
+      datasetsForChart.push({
+        label: this.ChartValues.label1,
+        backgroundColor: this.colorloop('rgb(0, 230, 184,0.2)'),
+        borderColor: this.colorloop('rgb(0, 102, 102)'),
+        borderWidth: 1,
+        data: y1,
+      });
+
+    }
+    if (this.ChartValues.label2 != "" && this.ChartValues.y2Values != "") {
+      datasetsForChart.push({
+        label: this.ChartValues.label2,
+        backgroundColor: this.colorloop('rgb(255, 153, 255,0.2)'),
+        borderColor: this.colorloop('rgb(255, 51, 153)'),
+
+        borderWidth: 1,
+        data: y2
+      });
+    }
+    if (this.ChartValues.label3 != "" && this.ChartValues.y3Values != "") {
+      datasetsForChart.push({
+        label: this.ChartValues.label3,
+        backgroundColor: this.colorloop('rgb(255, 153, 255,0.2)'),
+        borderColor: this.colorloop('rgb(255, 51, 153)'),
+        borderWidth: 1,
+        data: y3
+      });
+    }
+    if (this.ChartValues.linearVariableLabel != "" && this.ChartValues.linearVariableData != null) {
+      const y4 = this.ChartValues.linearVariableData.split(",");
+      datasetsForChart.push({
+        label: this.ChartValues.linearVariableLabel,
+        data: y4,
+        type: 'line'
+      });
+    }
     this.chart = new Chart(this.ctx, {
       type: 'bar',
       data: {
         labels: xaxisValues,
-        datasets: [{
-          label: this.ChartValues.label1,
-          backgroundColor: this.colorloop('rgb(0, 230, 184,0.2)'),
-          borderColor: this.colorloop('rgb(0, 102, 102)'),
-          borderWidth: 1,
-          data: y1,
-        },
-        {
-          label: this.ChartValues.label2,
-          backgroundColor: this.colorloop('rgb(255, 153, 255,0.2)'),
-          borderColor: this.colorloop('rgb(255, 51, 153)'),
-
-          borderWidth: 1,
-          data: y2
-        },
-        {
-          label: this.ChartValues.label3,
-          backgroundColor: this.colorloop('rgb(255, 153, 255,0.2)'),
-          borderColor: this.colorloop('rgb(255, 51, 153)'),
-          borderWidth: 1,
-          data: y3
-        }
-        ]
+        datasets: datasetsForChart
       },
-
       options: {
         scales: {
           yAxes: [{
