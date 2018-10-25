@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Constants } from '../../Constants';
+import { MatDialog } from '@angular/material';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../../services/card.service';
@@ -40,31 +39,6 @@ export class PhotoTmpComponent implements OnInit {
   ngOnInit() {
   }
 
-  async saveAll() {
-    console.log("Image");
-    console.log(this.imageString);
-    this.spinner.show();
-    try {
-      let imageUrl = "";
-      if (this.imageString.startsWith("data:")) {
-        imageUrl = await this.cardService.uploadImage(this.imageString);
-      }
-      else {
-        imageUrl = this.imageString;
-      }
-      this.payload.data = imageUrl;
-      const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
-      this.spinner.hide();
-      if (done) {
-        this.successDialog.show();
-      }
-    } catch (error) {
-      this.spinner.hide();
-      console.log(error);
-      window.alert("OOPs! something went wrong");
-    }
-  }
-
   openDialog(): void {
 
     let dialogRef = this.dialog.open(PopupComponent, {
@@ -79,14 +53,31 @@ export class PhotoTmpComponent implements OnInit {
       console.log('The dialog is closed');
     });
   }
+  async saveAll() {
+    console.log("Image");
+    console.log(this.imageString);
+    this.spinner.show();
+    try {
+      const imagePath = this.imageString.startsWith("data:") ? await this.cardService.uploadImage(this.imageString) : this.imageString;
+      this.payload.data = imagePath;
+      const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
+      this.spinner.hide();
+      if (done) {
+        this.successDialog.show();
+      }
+    } catch (error) {
+      this.spinner.hide();
+      console.log(error);
+      window.alert("OOPs! something went wrong");
+    }
+  }
 
-
-  handleFileInput(files: FileList, memberIndex: number) {
+  handleFileInput(files: FileList) {
     // this.fileToUpload = files.item(0);
     console.log(files);
-    this.readThis(files, memberIndex);
+    this.readThis(files);
   }
-  readThis(inputValue: any, memberIndex: number): void {
+  readThis(inputValue: any): void {
     var file: File = inputValue[0];
     var myReader: FileReader = new FileReader();
 
