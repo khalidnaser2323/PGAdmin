@@ -26,8 +26,8 @@
             <div class="user-button">
                 <div class="row">
                     <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="margin-top: 5px" > -->
-                    <button type="button" class=" btn-primary btn-sm  btn-rounded child_button" style="float:left;" *ngFor="let button of card.buttons | keys"
-                        (click)="onButtonClicked(button)">{{button.value}}</button>
+                    <button type="button" class=" btn-primary btn-sm  btn-rounded child_button" style="float:left;"
+                        *ngFor="let button of card.buttons | keys" (click)="onButtonClicked(button)">{{button.value.title}}</button>
                     <!-- </div> -->
 
                 </div>
@@ -43,9 +43,10 @@
 </div>
 <swal #promptSwal (confirm)="fillData($event)" (cancel)="deleteButton($event)">
     <div *swalPartial style="text-align: center;align-items: center">
-        <input type="text" placeholder="Button title" required class="form-control textbox-rounded" name="title" [(ngModel)]="buttonTitle"
-            #title="ngModel">
-        <button (click)="editButtonTitle()" type="button" class="swal2-confirm swal2-styled" aria-label="" style="margin-top: 5px;border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">Edit name</button>
+        <input type="text" placeholder="Button title" required class="form-control textbox-rounded" name="title"
+            [(ngModel)]="buttonTitle" #title="ngModel">
+        <button (click)="editButtonTitle()" type="button" class="swal2-confirm swal2-styled" aria-label="" style="margin-top: 5px;border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">Edit
+            name</button>
     </div>
 </swal>
 

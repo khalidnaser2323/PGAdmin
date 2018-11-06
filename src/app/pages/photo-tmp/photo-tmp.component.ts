@@ -42,8 +42,8 @@ export class PhotoTmpComponent implements OnInit {
   openDialog(): void {
 
     let dialogRef = this.dialog.open(PopupComponent, {
-      width: "99%",
-      height: "99%",
+      width: "95%",
+      height: "95%",
       maxHeight: "100%",
       maxWidth: "100%",
       data: { imageString: this.imageString }
@@ -60,6 +60,7 @@ export class PhotoTmpComponent implements OnInit {
     try {
       const imagePath = this.imageString.startsWith("data:") ? await this.cardService.uploadImage(this.imageString) : this.imageString;
       this.payload.data = imagePath;
+      this.payload.tmpImage = imagePath;
       const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
       this.spinner.hide();
       if (done) {

@@ -13,12 +13,12 @@
       <form #cardForm="ngForm" (ngSubmit)="save(cardForm)">
         <div class="modal-body">
           <div class="form-group">
-            <label>Pillar Name </label>
+            <label>Name </label>
             <input type="text" required name="title" placeholder="Pillar name" class="form-control textbox-rounded"
               [(ngModel)]="formPillar.title" #title="ngModel">
           </div>
           <div class="form-group">
-            <label>Pillar type </label>
+            <label>Type </label>
             <select class="select" #type="ngModel" required [(ngModel)]="formPillar.type" name="type">
               <option value="" disabled>Select type</option>
               <option value="pillar">Pillar</option>

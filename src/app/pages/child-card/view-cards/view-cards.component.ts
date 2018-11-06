@@ -45,9 +45,9 @@ export class ViewCardsComponent implements OnInit {
     console.log("Clicked button");
     console.log(button);
     this.clickedButtonId = button.key;
-    this.buttonTitle = button.value;
+    this.buttonTitle = button.value.title;
     this.promptPoPUpOptions = {
-      title: button.value,
+      title: button.value.title,
       text: "Choose action required",
       type: "question",
       showCancelButton: true,
@@ -65,22 +65,22 @@ export class ViewCardsComponent implements OnInit {
   }
   addNewButton() {
     // if (Object.keys(this.card.buttons).length < 3) {
-      let dialogRef = this.dialog.open(AddButtonComponent, {
-        width: "90%",
-        data: {
-          pillarId: this.pillarId,
-          cardId: this.card._id,
-          buttonId: Constants.guidGenerator()
-        }
-      });
+    let dialogRef = this.dialog.open(AddButtonComponent, {
+      width: "90%",
+      data: {
+        pillarId: this.pillarId,
+        cardId: this.card._id,
+        buttonId: Constants.guidGenerator()
+      }
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog is closed');
-        console.log(result);
-        if (result) {
-          this.onCardEdited.emit(true);
-        }
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog is closed');
+      console.log(result);
+      if (result) {
+        this.onCardEdited.emit(true);
+      }
+    });
     // }
   }
   async  editButtonTitle() {
@@ -92,7 +92,7 @@ export class ViewCardsComponent implements OnInit {
         // window.alert("Button title updated successfully!");
         this.onCardEdited.emit(true);
       }
-      else{
+      else {
         window.alert("Something went wrong!");
       }
     } catch (error) {
