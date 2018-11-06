@@ -53,6 +53,9 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
         /*K.A:Angular passed object by reference. so, making any edit of it will edit the original object in parent component.
          using Object.assign will copy the value of selected pillar. */
         this.formPillar = Object.assign({}, changes.selectedPillar.currentValue);
+        if (this.formPillar.type == undefined || this.formPillar.type == null || this.formPillar.type == "undefined") {
+          this.formPillar.type = "pillar";
+        }
         console.log("Edit pillar clicked");
         console.log(this.formPillar);
       }
@@ -74,7 +77,8 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
         method: this.selectedPillar ? "PUT" : "POST",
         requestBody: {
           "title": form.value.title,
-          "subtitle": form.value.subtitle
+          "subtitle": form.value.subtitle,
+          "type": form.value.type
         }
       }
       this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token, reqeustOptions.requestBody).subscribe(response => {
@@ -128,7 +132,8 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
       title: "",
       subtitle: "",
       imageID: "img/img-default.jpg",
-      public: false
+      public: false,
+      type: "pillar"
     };
     this.seletectedImageString = undefined;
   }

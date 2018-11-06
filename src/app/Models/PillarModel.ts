@@ -3,5 +3,6 @@ interface Pillar {
     imageID: string,
     title: string,
     subtitle: String,
-    public: boolean
+    public: boolean,
+    type?: string
 }

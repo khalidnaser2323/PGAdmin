@@ -28,8 +28,9 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="pull-right margin-20-bottom">
-                <button class="btn btn-success btn-rounded" type="button" data-toggle="modal" data-target="#edit" (click)="setSelectedPillar(null)">
-                  Add new pillar </button>
+                <button class="btn btn-success btn-rounded" type="button" data-toggle="modal" data-target="#edit"
+                  (click)="setSelectedPillar(null)">
+                  Add new pillar/department </button>
               </div>
             </div>
           </div>
@@ -39,7 +40,8 @@
                 <div class="ibox-tools">
                   <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal" (click)="setSelectedPillar(pillar)"
                     data-target="#edit"> Edit</button>
-                  <button class="btn btn-success btn-rounded padding-35-h" style="margin-left: 5px" type="button" (click)="publishPillar(pillar)">
+                  <button class="btn btn-success btn-rounded padding-35-h" style="margin-left: 5px" type="button"
+                    (click)="publishPillar(pillar)">
                     {{pillar.public ? 'Set private' : 'Set public'}} </button>
                   <a class="close-link alert">
                     <i class="fa fa-times-circle fa-3x danger-color" (click)="onDelete(pillar)"></i>
@@ -54,12 +56,12 @@
                 <a>
                   <div class="col-sm-5">
                     <div class="text-center">
-                      <img alt="image" class="home-card img-responsive" src="{{imagePath}}{{pillar.imageID}}" onError="this.src='img/logo.png';" >
+                      <img alt="image" class="home-card img-responsive" src="{{imagePath}}{{pillar.imageID}}" onError="this.src='img/logo.png';">
                     </div>
                   </div>
                   <div class="col-sm-7">
                     <h3>
-                      <strong> {{pillar.title}} </strong>
+                      <strong> {{pillar.title}} </strong> Type: {{pillar.type ? pillar.type : "pillar"}}
                     </h3>
                     <p>
                       {{pillar.subtitle}}
