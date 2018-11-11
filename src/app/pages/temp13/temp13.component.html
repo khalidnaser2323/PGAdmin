@@ -47,7 +47,43 @@
             </div>
           </div>
           <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="ibox-title">
+                <div class="ibox-tools">
+                  <h3 class="text-center"> Overview </h3>
+                </div>
+              </div>
+              <div class="card-box padding-h-20">
+                <div class="form-group">
+                  <label> Title </label>
+                  <input type="text" placeholder=" title" class="form-control textbox-rounded" [(ngModel)]="tempName">
+                </div>
+                <div class="form-group">
+                  <label> Details / Description </label>
+                  <textarea rows="2" placeholder="Details" class="form-control textbox-rounded" [(ngModel)]="tempDescribtion"></textarea>
+                </div>
+
+                <!-- <div class="row">
+                    <div class="col-lg-6 col-md-6 form-group">
+                      <button class="btn btn-primary btn-rounded full-width" (click)="onsaveTitle()" type="button"> Save </button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 form-group">
+                      <button class="btn btn-danger btn-rounded full-width" type="button"> Cancel </button>
+                    </div>
+                  </div> -->
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <h2>First pie data</h2>
+            <div class="form-group">
+              <div class="col-lg-3 col-md-6">
+
+                <label> First pie title </label>
+                <input type="text" [(ngModel)]="tmp1.title" placeholder="Pie Title" class="form-control textbox-rounded">
+              </div>
+            </div>
             <div class="col-lg-3 col-md-6" *ngFor="let stage of firstTempStages; index as i">
               <div class="card-box padding-h-20">
                 <div class="form-group">
@@ -61,6 +97,11 @@
                 <div class="form-group">
                   <label> Percentage </label>
                   <input type="number" placeholder="20" [(ngModel)]="stage.percentage" class="form-control textbox-rounded">
+                </div>
+                <div class="form-group">
+                  <label> Color </label>
+                  <input [(colorPicker)]="stage.color" [style.background]="stage.color" (colorPickerChange)="onColorChanged($event,i)"
+                    [cpOKButton]="true" />
                 </div>
                 <div class="row">
                   <!-- <div class="col-lg-6 col-md-6 form-group">
@@ -77,6 +118,12 @@
           </div>
           <div class="row">
             <h2>Second pie data</h2>
+            <div class="form-group">
+              <div class="col-lg-3 col-md-6">
+                <label> Second pie title </label>
+                <input type="text" [(ngModel)]="tmp2.title" placeholder="Pie Title" class="form-control textbox-rounded">
+              </div>
+            </div>
             <div class="col-lg-3 col-md-6" *ngFor="let stage of secondTempStages; index as i">
               <div class="card-box padding-h-20">
                 <div class="form-group">
@@ -90,6 +137,11 @@
                 <div class="form-group">
                   <label> Percentage </label>
                   <input type="number" placeholder="20" [(ngModel)]="stage.percentage" class="form-control textbox-rounded">
+                </div>
+                <div class="form-group">
+                  <label> Color </label>
+                  <input [(colorPicker)]="stage.color" [style.background]="stage.color" (colorPickerChange)="onColorChanged($event,i)"
+                    [cpOKButton]="true" />
                 </div>
                 <div class="row">
                   <!-- <div class="col-lg-6 col-md-6 form-group">
@@ -106,6 +158,12 @@
           </div>
           <div class="row">
             <h2>Third pie data</h2>
+            <div class="form-group">
+              <div class="col-lg-3 col-md-6">
+                <label> Third pie title </label>
+                <input type="text" [(ngModel)]="tmp3.title" placeholder="Pie Title" class="form-control textbox-rounded">
+              </div>
+            </div>
             <div class="col-lg-3 col-md-6" *ngFor="let stage of thirdTempStages; index as i">
               <div class="card-box padding-h-20">
                 <div class="form-group">
@@ -119,6 +177,11 @@
                 <div class="form-group">
                   <label> Percentage </label>
                   <input type="number" placeholder="20" [(ngModel)]="stage.percentage" class="form-control textbox-rounded">
+                </div>
+                <div class="form-group">
+                  <label> Color </label>
+                  <input [(colorPicker)]="stage.color" [style.background]="stage.color" (colorPickerChange)="onColorChanged($event,i)"
+                    [cpOKButton]="true" />
                 </div>
                 <div class="row">
                   <!-- <div class="col-lg-6 col-md-6 form-group">

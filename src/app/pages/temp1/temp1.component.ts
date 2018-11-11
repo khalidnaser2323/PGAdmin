@@ -148,7 +148,7 @@ export class Temp1Component implements OnInit {
     myReader.onloadend = (e) => {
       // you can perform an action with readed data here
       console.log(myReader.result);
-      this.stages[stageIndex].icon = myReader.result;
+      this.stages[stageIndex].icon = myReader.result.toString();
     }
 
     myReader.readAsDataURL(file);

@@ -21,6 +21,8 @@ export class HomePageComponent implements OnInit {
   selectedPillar: Pillar = null;
   myData: LoginResponse;
   imagePath: string = Constants.IMAGE_PATH;
+  departments: Array<Pillar>;
+
   constructor(
     public serviceHandler: ServiceHandlerProvider,
     @Inject(SESSION_STORAGE) private storage: StorageService,
@@ -69,7 +71,9 @@ export class HomePageComponent implements OnInit {
     this.serviceHandler.runService(Constants.BASE_URL + "section/list", "GET", this.myData.token).subscribe((res) => {
       console.log("Get pillars response");
       console.log(res);
-      this.pillars = res;
+      this.pillars = res.filter(section => { return section.type == undefined || section.type == null || section.type == "undefined" || section.type == "pillar" });
+      this.departments = res.filter(section => { return (section.type && section.type == "department") });
+
     }, err => {
       console.log("Get pillars error");
       console.error(err);

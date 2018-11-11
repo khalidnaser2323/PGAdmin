@@ -32,13 +32,15 @@ export class Temp13Component implements OnInit {
     title: ""
   }
   tmp: Array<Template9>;
-  firstTempStages: Array<{ title: string, percentage: number }>
-  secondTempStages: Array<{ title: string, percentage: number }>
-  thirdTempStages: Array<{ title: string, percentage: number }>
+  firstTempStages: Array<{ title: string, percentage: number, color: string }>
+  secondTempStages: Array<{ title: string, percentage: number, color: string }>
+  thirdTempStages: Array<{ title: string, percentage: number, color: string }>
   pillarId: string;
   cardId: string;
   templateId: string;
   payload: any;
+  tempName: string;
+  tempDescribtion: string;
 
   constructor(
     public dialog: MatDialog,
@@ -77,7 +79,7 @@ export class Temp13Component implements OnInit {
       this.formatTmp();
       console.log("Temp value");
       console.log(this.tmp);
-      this.payload.data = this.tmp;
+      this.payload.data = { tempName: this.tempName, tempDescribtion: this.tempDescribtion, tempData: this.tmp };
       try {
         const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
         if (done) {
@@ -94,31 +96,37 @@ export class Temp13Component implements OnInit {
 
   }
   formatTmp() {
-    let labels1 = [], percentageData1 = [];
+    let labels1 = [], percentageData1 = [], colors1 = [];
     for (let stage of this.firstTempStages) {
       labels1.push(stage.title);
       percentageData1.push(stage.percentage);
+      colors1.push(stage.color);
+
     }
     this.tmp1.percentageData = percentageData1;
     this.tmp1.labels = labels1;
+    this.tmp1.color = colors1;
 
 
-    let labels2 = [], percentageData2 = [];
+    let labels2 = [], percentageData2 = [], colors2 = [];
     for (let stage of this.secondTempStages) {
       labels2.push(stage.title);
       percentageData2.push(stage.percentage);
+      colors2.push(stage.color);
     }
     this.tmp2.percentageData = percentageData2;
     this.tmp2.labels = labels2;
+    this.tmp2.color = colors2;
 
-
-    let labels3 = [], percentageData3 = [];
+    let labels3 = [], percentageData3 = [], colors3 = [];
     for (let stage of this.thirdTempStages) {
       labels3.push(stage.title);
       percentageData3.push(stage.percentage);
+      colors3.push(stage.color);
     }
     this.tmp3.percentageData = percentageData3;
     this.tmp3.labels = labels3;
+    this.tmp3.color = colors3;
 
     this.tmp = [
       this.tmp1, this.tmp2, this.tmp3
@@ -142,19 +150,22 @@ export class Temp13Component implements OnInit {
       case 1:
         this.firstTempStages.push({
           title: "",
-          percentage: 0
+          percentage: 0,
+          color: "red"
         });
         break;
       case 2:
         this.secondTempStages.push({
           title: "",
-          percentage: 0
+          percentage: 0,
+          color: "red"
         });
         break;
       case 3:
         this.thirdTempStages.push({
           title: "",
-          percentage: 0
+          percentage: 0,
+          color: "red"
         });
         break;
       default:
@@ -182,12 +193,15 @@ export class Temp13Component implements OnInit {
   async getCardDetails(pillarId: string, cardId: string) {
     try {
       const cardDetails = await this.cardService.getCardDetails(pillarId, cardId);
+      console.log(cardDetails);
       if (cardDetails && cardDetails.templates && cardDetails.templates[this.templateId] && cardDetails.templates[this.templateId].payload) {
         console.log("Template saved payload");
         console.log(cardDetails.templates[this.templateId].payload);
         this.payload = cardDetails.templates[this.templateId].payload;
-        if (this.payload.data) {
-          this.deformatTmp(this.payload.data);
+        if (this.payload.data && this.payload.data.tempData) {
+          this.tempName = this.payload.data.tempName ? this.payload.data.tempName : "";
+          this.tempDescribtion = this.payload.data.tempDescribtion ? this.payload.data.tempDescribtion : "";
+          this.deformatTmp(this.payload.data.tempData);
         }
       }
       else {
@@ -195,22 +209,27 @@ export class Temp13Component implements OnInit {
       }
     } catch (error) {
       window.alert("Error in loading data!");
+      console.log(error);
     }
 
   }
   deformatTmp(tmp: Array<Template9>) {
     this.firstTempStages = [];
     for (let i = 0; i < tmp[0].labels.length; i++) {
-      this.firstTempStages.push({ title: tmp[0].labels[i], percentage: tmp[0].percentageData[i] });
+      this.firstTempStages.push({ title: tmp[0].labels[i], percentage: tmp[0].percentageData[i], color: tmp[0].color ? tmp[0].color[i] : "red" });
     }
+    this.tmp1.title = tmp[0].title;
+
     this.secondTempStages = [];
     for (let i = 0; i < tmp[1].labels.length; i++) {
-      this.secondTempStages.push({ title: tmp[1].labels[i], percentage: tmp[1].percentageData[i] });
+      this.secondTempStages.push({ title: tmp[1].labels[i], percentage: tmp[1].percentageData[i], color: tmp[1].color ? tmp[1].color[i] : "red" });
     }
+    this.tmp2.title = tmp[1].title;
     this.thirdTempStages = [];
     for (let i = 0; i < tmp[2].labels.length; i++) {
-      this.thirdTempStages.push({ title: tmp[2].labels[i], percentage: tmp[2].percentageData[i] });
+      this.thirdTempStages.push({ title: tmp[2].labels[i], percentage: tmp[2].percentageData[i], color: tmp[2].color ? tmp[2].color[i] : "red" });
     }
+    this.tmp3.title = tmp[2].title;
   }
   onConfirm(event: any) {
     console.log("Confirmed");
@@ -219,5 +238,10 @@ export class Temp13Component implements OnInit {
   onBackCliced() {
     this._location.back();
   }
-
+  onColorChanged(color: string, index: number) {
+    console.log("Selected color");
+    console.log(color);
+    console.log("Stage index");
+    console.log(index);
+  }
 }

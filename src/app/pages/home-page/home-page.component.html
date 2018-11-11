@@ -34,44 +34,105 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-4" *ngFor="let pillar of pillars">
-              <div class="ibox-title">
-                <div class="ibox-tools">
-                  <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal" (click)="setSelectedPillar(pillar)"
-                    data-target="#edit"> Edit</button>
-                  <button class="btn btn-success btn-rounded padding-35-h" style="margin-left: 5px" type="button"
-                    (click)="publishPillar(pillar)">
-                    {{pillar.public ? 'Set private' : 'Set public'}} </button>
-                  <a class="close-link alert">
-                    <i class="fa fa-times-circle fa-3x danger-color" (click)="onDelete(pillar)"></i>
-                  </a>
+          <main>
 
-                  <!-- <a class="close-link alert" (click)="deletePillar(pillar.id)">
-                    <i class="fa fa-times-circle fa-3x danger-color"></i>
-                  </a> -->
-                </div>
-              </div>
-              <div class="card-box" (click)="navigateToPillarDetails(pillar)">
-                <a>
-                  <div class="col-sm-5">
-                    <div class="text-center">
-                      <img alt="image" class="home-card img-responsive" src="{{imagePath}}{{pillar.imageID}}" onError="this.src='img/logo.png';">
+            <input id="tab1" type="radio" name="tabs" checked>
+            <label for="tab1">Pillar</label>
+
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2">Department</label>
+
+
+            <section id="content1">
+              <div class="row">
+                <div class="col-lg-4" *ngFor="let pillar of pillars">
+                  <div class="ibox-title">
+                    <div class="ibox-tools">
+                      <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal"
+                        (click)="setSelectedPillar(pillar)" data-target="#edit"> Edit</button>
+                      <button class="btn btn-success btn-rounded padding-35-h" style="margin-left: 5px" type="button"
+                        (click)="publishPillar(pillar)">
+                        {{pillar.public ? 'Set private' : 'Set public'}} </button>
+                      <a class="close-link alert">
+                        <i class="fa fa-times-circle fa-3x danger-color" (click)="onDelete(pillar)"></i>
+                      </a>
+
+                      <!-- <a class="close-link alert" (click)="deletePillar(pillar.id)">
+                              <i class="fa fa-times-circle fa-3x danger-color"></i>
+                            </a> -->
                     </div>
                   </div>
-                  <div class="col-sm-7">
-                    <h3>
-                      <strong> {{pillar.title}} </strong> Type: {{pillar.type ? pillar.type : "pillar"}}
-                    </h3>
-                    <p>
-                      {{pillar.subtitle}}
-                    </p>
+                  <div class="card-box" (click)="navigateToPillarDetails(pillar)">
+                    <a>
+                      <div class="col-sm-5">
+                        <div class="text-center">
+                          <img alt="image" class="home-card img-responsive" src="{{imagePath}}{{pillar.imageID}}"
+                            onError="this.src='img/logo.png';">
+                        </div>
+                      </div>
+                      <div class="col-sm-7">
+                        <h3>
+                          <strong> {{pillar.title}} </strong> Type: {{pillar.type ? pillar.type : "pillar"}}
+                        </h3>
+                        <p>
+                          {{pillar.subtitle}}
+                        </p>
+                      </div>
+                      <div class="clearfix"></div>
+                    </a>
                   </div>
-                  <div class="clearfix"></div>
-                </a>
+                </div>
               </div>
-            </div>
-          </div>
+
+            </section>
+
+            <section id="content2">
+              <div class="row">
+                <div class="col-lg-4" *ngFor="let pillar of departments">
+                  <div class="ibox-title">
+                    <div class="ibox-tools">
+                      <button class="btn btn-default btn-rounded padding-35-h" type="button" data-toggle="modal"
+                        (click)="setSelectedPillar(pillar)" data-target="#edit"> Edit</button>
+                      <button class="btn btn-success btn-rounded padding-35-h" style="margin-left: 5px" type="button"
+                        (click)="publishPillar(pillar)">
+                        {{pillar.public ? 'Set private' : 'Set public'}} </button>
+                      <a class="close-link alert">
+                        <i class="fa fa-times-circle fa-3x danger-color" (click)="onDelete(pillar)"></i>
+                      </a>
+
+                      <!-- <a class="close-link alert" (click)="deletePillar(pillar.id)">
+                              <i class="fa fa-times-circle fa-3x danger-color"></i>
+                            </a> -->
+                    </div>
+                  </div>
+                  <div class="card-box" (click)="navigateToPillarDetails(pillar)">
+                    <a>
+                      <div class="col-sm-5">
+                        <div class="text-center">
+                          <img alt="image" class="home-card img-responsive" src="{{imagePath}}{{pillar.imageID}}"
+                            onError="this.src='img/logo.png';">
+                        </div>
+                      </div>
+                      <div class="col-sm-7">
+                        <h3>
+                          <strong> {{pillar.title}} </strong> Type: {{pillar.type ? pillar.type : "pillar"}}
+                        </h3>
+                        <p>
+                          {{pillar.subtitle}}
+                        </p>
+                      </div>
+                      <div class="clearfix"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+
+
+          </main>
+
         </div>
       </div>
       <div class="footer">
