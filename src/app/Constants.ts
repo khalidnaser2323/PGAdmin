@@ -61,7 +61,7 @@ export class Constants {
         },
         {
             tempId: "14",
-            imageURL: "img/temp10.png",
+            imageURL: "img/Image-placeholder.png",
             path: "photoTmp"
         }
     ];

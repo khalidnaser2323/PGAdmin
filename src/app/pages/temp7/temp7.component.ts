@@ -20,6 +20,7 @@ export class Temp7Component implements OnInit {
   templateId: string;
   payload: any;
   data: any;
+  link: string;
   constructor(
     private route: ActivatedRoute,
     private cardService: CardService,
@@ -46,8 +47,8 @@ export class Temp7Component implements OnInit {
   }
   async save() {
     console.log("Saved table data");
-    console.log(this.data);
-    this.payload.data = this.data;
+    console.log(this.link);
+    this.payload.data = this.link;
     try {
       const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
       if (done) {
@@ -66,8 +67,9 @@ export class Temp7Component implements OnInit {
         console.log(cardDetails.templates[this.templateId].payload);
         this.payload = cardDetails.templates[this.templateId].payload;
         if (this.payload.data) {
-          this.data = this.payload.data;
-          $('#mytable').jexcel({ data: this.data, defaultColWidth: "300" });
+          // this.data = this.payload.data;
+          // $('#mytable').jexcel({ data: this.data, defaultColWidth: "300" });
+          this.link = this.payload.data;
 
         }
       }

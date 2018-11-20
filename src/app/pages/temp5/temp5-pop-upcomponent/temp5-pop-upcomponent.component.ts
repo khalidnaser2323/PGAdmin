@@ -38,8 +38,8 @@ export class Temp5PopUpcomponentComponent implements OnInit {
     if (this.ChartValues.label1 != "" && this.ChartValues.y1Values != "") {
       datasetsForChart.push({
         label: this.ChartValues.label1,
-        backgroundColor: this.colorloop('rgb(0, 230, 184,0.2)'),
-        borderColor: this.colorloop('rgb(0, 102, 102)'),
+        backgroundColor: this.ChartValues.color1,
+        borderColor: this.ChartValues.color1,
         borderWidth: 1,
         data: y1,
       });
@@ -48,8 +48,8 @@ export class Temp5PopUpcomponentComponent implements OnInit {
     if (this.ChartValues.label2 != "" && this.ChartValues.y2Values != "") {
       datasetsForChart.push({
         label: this.ChartValues.label2,
-        backgroundColor: this.colorloop('rgb(255, 153, 255,0.2)'),
-        borderColor: this.colorloop('rgb(255, 51, 153)'),
+        backgroundColor: this.ChartValues.color2,
+        borderColor: this.ChartValues.color2,
 
         borderWidth: 1,
         data: y2
@@ -58,8 +58,8 @@ export class Temp5PopUpcomponentComponent implements OnInit {
     if (this.ChartValues.label3 != "" && this.ChartValues.y3Values != "") {
       datasetsForChart.push({
         label: this.ChartValues.label3,
-        backgroundColor: this.colorloop('rgb(255, 153, 255,0.2)'),
-        borderColor: this.colorloop('rgb(255, 51, 153)'),
+        backgroundColor: this.ChartValues.color3,
+        borderColor: this.ChartValues.color3,
         borderWidth: 1,
         data: y3
       });
@@ -68,6 +68,9 @@ export class Temp5PopUpcomponentComponent implements OnInit {
       const y4 = this.ChartValues.linearVariableData.split(",");
       datasetsForChart.push({
         label: this.ChartValues.linearVariableLabel,
+        borderColor: this.ChartValues.linearColor,
+        backgroundColor: this.ChartValues.linearColor,
+        fill: false,
         data: y4,
         type: 'line'
       });

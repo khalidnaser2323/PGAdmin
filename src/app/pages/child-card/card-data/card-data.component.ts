@@ -15,6 +15,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class CardDataComponent implements OnInit, OnChanges {
   @Input('selectedCard') selectedCard: CardModel;
   @Input('pillarId') pillarId: string;
+  @Input('newCardTitle') newCardTitle: string;
+  @Input('cardsCount') cardsCount: number;
   @Output() onSavedSuccessfully: EventEmitter<string> = new EventEmitter;
   cardObject: any;
   selectedButtonIndex: number;
@@ -29,12 +31,20 @@ export class CardDataComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     console.log("Edit component: On change called");
     console.log(changes);
+    debugger;
     if (changes.selectedCard) {
       if (changes.selectedCard.currentValue) {
         this.cardObject = Object.assign({}, changes.selectedCard.currentValue);
+        this.newCardTitle = this.cardObject.title;
       }
       else {
         this.cardObject = {};
+        this.updateNewCardTitle();
+      }
+    }
+    if (changes.newCardTitle) {
+      if (changes.newCardTitle.currentValue) {
+        this.newCardTitle = changes.newCardTitle.currentValue;
       }
     }
   }
@@ -43,6 +53,7 @@ export class CardDataComponent implements OnInit, OnChanges {
       this.spinner.show();
       console.log("Saved card details");
       console.log(this.cardObject);
+      this.cardObject.title = this.newCardTitle;
       try {
         const done = await this.CardServices.addCard(this.cardObject, this.seletectedImageString, this.pillarId);
         this.spinner.hide();
@@ -100,10 +111,27 @@ export class CardDataComponent implements OnInit, OnChanges {
     myReader.onloadend = (e) => {
       // you can perform an action with readed data here
       console.log(myReader.result);
-      this.seletectedImageString = myReader.result;
+      this.seletectedImageString = myReader.result.toString();
     }
 
     myReader.readAsDataURL(file);
 
+  }
+  updateNewCardTitle() {
+
+    switch (this.cardsCount) {
+      case 0:
+        this.newCardTitle = "Plan"
+        break;
+      case 1:
+        this.newCardTitle = "Do";
+        break;
+      case 2:
+        this.newCardTitle = "Check";
+        break;
+      case 3:
+        this.newCardTitle = "Act";
+        break;
+    }
   }
 }

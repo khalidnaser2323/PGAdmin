@@ -20,6 +20,7 @@ export class ChildCardComponent implements OnInit {
   selectedPillar: any = {};
   myData: LoginResponse;
   pillarId: string;
+  newCardTitle: string;
 
   constructor(
     public serviceHandler: ServiceHandlerProvider,
@@ -27,7 +28,7 @@ export class ChildCardComponent implements OnInit {
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private CardsService: CardService
   ) {
- 
+
     this.cards = [];
     this.myData = this.storage.get(Constants.USER_DATA);
     this.route.params.subscribe(params => {
@@ -50,9 +51,10 @@ export class ChildCardComponent implements OnInit {
     console.log("Selected card to edit");
     console.log(selectedCard);
     this.selectedCard = selectedCard;
+    this.updateNewCardTitle();
     $('#edit').modal('show');
   }
- async onDeleteCard(selectedCard: CardModel) {
+  async onDeleteCard(selectedCard: CardModel) {
     console.log("Selected card to delete");
     console.log(selectedCard);
     try {
@@ -67,6 +69,7 @@ export class ChildCardComponent implements OnInit {
     }
   }
   createNewCard() {
+    this.updateNewCardTitle();
     this.selectedCard = null;
     $('#edit').modal('show');
   }
@@ -78,6 +81,19 @@ export class ChildCardComponent implements OnInit {
       this.selectedPillar = res;
       if (this.selectedPillar.cards) {
         this.cards = this.selectedPillar.cards;
+        if (this.cards[0]) {
+          this.cards[0].title = "Plan";
+        }
+        if (this.cards[1]) {
+          this.cards[1].title = "Do";
+        }
+        if (this.cards[2]) {
+          this.cards[2].title = "Check";
+        }
+        if (this.cards[3]) {
+          this.cards[3].title = "Act";
+        }
+        this.updateNewCardTitle();
       }
     }, err => {
       console.log("Get pillar details error");
@@ -92,6 +108,24 @@ export class ChildCardComponent implements OnInit {
   onCardEdited(done: boolean) {
     if (done) {
       this.getCards(this.selectedPillar._id);
+    }
+  }
+  updateNewCardTitle() {
+    debugger;
+
+    switch (this.cards.length) {
+      case 0:
+        this.newCardTitle = "Plan"
+        break;
+      case 1:
+        this.newCardTitle = "Do";
+        break;
+      case 2:
+        this.newCardTitle = "Check";
+        break;
+      case 3:
+        this.newCardTitle = "Act";
+        break;
     }
   }
 }

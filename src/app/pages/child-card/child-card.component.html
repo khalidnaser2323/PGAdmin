@@ -4,8 +4,8 @@
             <div class="row border-bottom white-bg">
                 <nav class="navbar navbar-static-top" role="navigation">
                     <div class="navbar-header">
-                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed"
-                            type="button">
+                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse"
+                            class="navbar-toggle collapsed" type="button">
                             <i class="fa fa-reorder"></i>
                         </button>
                         <a routerLink="/" class="navbar-brand">
@@ -30,9 +30,10 @@
                     </a>
                 </div>
 
-                <div class="col-sm-offset-5 col-sm-3">
+                <div class="col-sm-offset-5 col-sm-3" *ngIf="cards.length < 4">
                     <div class="pull-right">
-                        <button class="btn btn-success btn-rounded margin-15-top" type="button" (click)="createNewCard()"> Add new card </button>
+                        <button class="btn btn-success btn-rounded margin-15-top" type="button" (click)="createNewCard()">
+                            Add new card </button>
                     </div>
                 </div>
             </div>
@@ -53,8 +54,8 @@
                 </div>
                 <div class="row">
                     <!-- new cards -->
-                    <app-view-cards *ngFor="let card of cards" [pillarId]="pillarId" [card]="card" (onEditCardClicked)="onEditCard($event)" (onCardEdited)="onCardEdited($event)"
-                        (onDeleteCardClicked)="onDeleteCard($event)"></app-view-cards>
+                    <app-view-cards *ngFor="let card of cards" [pillarId]="pillarId" [card]="card" (onEditCardClicked)="onEditCard($event)"
+                        (onCardEdited)="onCardEdited($event)" (onDeleteCardClicked)="onDeleteCard($event)"></app-view-cards>
                 </div>
             </div>
             <div class="footer">
@@ -66,6 +67,7 @@
     </div>
 
     <!-- Add and Edit modal -->
-    <app-card-data [selectedCard]="selectedCard" [pillarId]="pillarId" (onSavedSuccessfully)="onSavedSuccessfully($event)"></app-card-data>
+    <app-card-data [selectedCard]="selectedCard" [pillarId]="pillarId" [newCardTitle]="newCardTitle" [cardsCount]="cards.length"
+        (onSavedSuccessfully)="onSavedSuccessfully($event)"></app-card-data>
 
 </body>

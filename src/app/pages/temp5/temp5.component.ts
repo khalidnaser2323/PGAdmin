@@ -25,7 +25,11 @@ export class Temp5Component implements OnInit {
     label3: "",
     y3Values: "",
     linearVariableData: "",
-    linearVariableLabel: ""
+    linearVariableLabel: "",
+    color1: "red",
+    color2: "red",
+    color3: "red",
+    linearColor: "red"
   };
   pillarId: string;
   cardId: string;

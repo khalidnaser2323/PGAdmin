@@ -9,5 +9,9 @@ interface template5 {
   y2Values: string,
   y3Values?: string
   linearVariableLabel?: string,
-  linearVariableData?: string
+  linearVariableData?: string,
+  color1?: string,
+  color2?: string,
+  color3?: string,
+  linearColor?: string
 }
