@@ -49,25 +49,26 @@ export class CardDataComponent implements OnInit, OnChanges {
     }
   }
   async AddCard(form: NgForm) {
-    if (form.valid) {
-      this.spinner.show();
-      console.log("Saved card details");
-      console.log(this.cardObject);
-      this.cardObject.title = this.newCardTitle;
-      try {
-        const done = await this.CardServices.addCard(this.cardObject, this.seletectedImageString, this.pillarId);
-        this.spinner.hide();
-        if (done) {
-          this.onSavedSuccessfully.emit("done");
-          this.closeModal();
-        }
+    // if (form.valid) {
+    this.spinner.show();
+    console.log("Saved card details");
+    console.log(this.cardObject);
+    this.cardObject.title = this.newCardTitle;
+    this.cardObject.subtitle = "Default";
+    try {
+      const done = await this.CardServices.addCard(this.cardObject, this.seletectedImageString, this.pillarId);
+      this.spinner.hide();
+      if (done) {
+        this.onSavedSuccessfully.emit("done");
+        this.closeModal();
       }
-      catch (err) {
-        this.spinner.hide();
-        window.alert("Failed to save card");
-      }
-
     }
+    catch (err) {
+      this.spinner.hide();
+      window.alert("Failed to save card");
+    }
+
+    // }
   }
   // addNewButton() {
   //   console.log("Add button clicked");
