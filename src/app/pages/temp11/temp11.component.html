@@ -29,30 +29,49 @@
       <div class="wrapper wrapper-content btn-white">
         <div class="row ">
           <div class="col-sm-3">
-              <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back to Card </button>
+            <button class="btn btn-success btn-rounded margin-15-bottom" type="button" (click)="onBackCliced()"> Back
+              to Card </button>
 
           </div>
           <div class="col-sm-offset-5 col-sm-4">
             <div class="pull-right">
-              <button class="btn btn-success btn-rounded margin-15-bottom margin-h-10" type="button" (click)="saveAll()"> Save all</button>
+              <button class="btn btn-success btn-rounded margin-15-bottom margin-h-10" type="button" (click)="saveAll()">
+                Save all</button>
+            </div>
+            <div class="pull-right">
+              <button class="btn btn-rounded margin-15-bottom margin-h-10" type="button" (click)="addColum()"> Add
+                column</button>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-9">
-            <div id="num01" *ngIf="activePanel =='1'">
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="panel panel-primary temp11">
-                  <div class="panel-heading panel-temp text-center">
-                    <input type="text" class="form-control" [(ngModel)]="tempModel.colOneHeader" placeholder="Column 1 header" />
-                  </div>
-                  <div class="clearfix"></div>
-                  <div class="panel-body temp11">
-                    <textarea class="form-control" [(ngModel)]="tempModel.colOneText" placeholder="Column 1 text" rows="10"></textarea>
-                  </div>
-                </div>
+          <!-- <div class="col-md-9"> -->
+          <!-- <div id="num01" *ngIf="activePanel =='1'"> -->
+          <div class="col-md-4 col-sm-4 col-xs-12" *ngFor="let slide of slides; let x = index; trackBy: trackByFn">
+            <div class="panel panel-primary temp11">
+              <div class="panel-heading panel-temp text-center">
+                <input type="text" class="form-control" [(ngModel)]="slide.colHeader" placeholder="Column 1 header" />
               </div>
-              <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="clearfix"></div>
+              <div class="panel-body temp11">
+                <div *ngFor="let cell of slide.colCells; let i = index; trackBy: trackByFn">
+                  <textarea class="form-control" style="margin-top:10px;" [(ngModel)]="slide.colCells[i]" placeholder="Column 1 text"
+                    rows="3"></textarea>
+                  <button class="btn btn-rounded margin-15-bottom margin-h-10" style="margin-top:3px" type="button"
+                    (click)="deleteCell(x,i)">
+                    Delete cell</button>
+                </div>
+                <div class="pull-right">
+                  <button class="btn btn-rounded margin-15-bottom margin-h-10" style="margin-top:10px;" type="button"
+                    (click)="addCell(x)"> Add
+                    cell</button>
+                </div>
+                <button class="btn btn-danger btn-rounded full-width" (click)="deleteColumn(x)" type="button"> Delete
+                  column </button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="panel panel-primary temp11">
                   <div class="panel-heading panel-temp text-center">
                     <input type="text" class="form-control" [(ngModel)]="tempModel.colTwoHeader" placeholder="Column 2 header" />
@@ -149,23 +168,23 @@
                     <textarea class="form-control" rows="10" [(ngModel)]="tempModel.colTwelveText" placeholder="Column 12 text"></textarea>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div> -->
+          <!-- </div> -->
 
 
-            <div class="row padding-v-20">
+          <!-- <div class="row padding-v-20">
               <div style="text-align:center">
                 <a (click)="showPanel('1')" [ngClass]="{'active' : activePanel=='1'}" class="btn btn-circle btn-default">1</a>
                 <a (click)="showPanel('2')" [ngClass]="{'active' : activePanel=='2'}" class="btn btn-circle btn-default">2</a>
                 <a (click)="showPanel('3')" [ngClass]="{'active' : activePanel=='3'}" class="btn btn-circle btn-default">3</a>
                 <a (click)="showPanel('4')" [ngClass]="{'active' : activePanel=='4'}" class="btn btn-circle btn-default">4</a>
               </div>
-            </div>
-          </div>
+            </div> -->
+        </div>
 
 
 
-          <!-- <div class="col-md-3 col-sm-3 col-xs-12">
+        <!-- <div class="col-md-3 col-sm-3 col-xs-12">
             <div class="form-group">
               <label> Image </label>
               <form action="#" class="dropzone" id="dropzoneForm">
@@ -181,16 +200,15 @@
             </div>
           </div> -->
 
-        </div>
-
       </div>
-      <div class="footer">
-        <div>
-          <strong>P&G</strong> Copyright &copy; 2018
-        </div>
+
+    </div>
+    <div class="footer">
+      <div>
+        <strong>P&G</strong> Copyright &copy; 2018
       </div>
     </div>
   </div>
-  <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)"  ></swal>
+  <swal #successDialog title="Saved!" text="Saved data successfully" type="success" (confirm)="onConfirm($event)"></swal>
 
 </body>

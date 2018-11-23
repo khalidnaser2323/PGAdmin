@@ -11,35 +11,27 @@ import { Location } from '@angular/common';
 })
 export class Temp11Component implements OnInit {
   @ViewChild('successDialog') private successDialog: SwalComponent;
-  activePanel: string = "1";
-  tempModel: Temp11;
   pillarId: string;
   cardId: string;
   templateId: string;
   payload: any;
+  slides: Array<{ colHeader: string, colCells: Array<string> }> = [
+    {
+      colHeader: "Header 1",
+      colCells: [
+        "Cell1",
+        "Cell2",
+        "cell3"
+      ]
+    }
+  ];
   constructor(
     private route: ActivatedRoute,
     private cardService: CardService,
     private _location: Location
 
   ) {
-    this.tempModel = {
-      colOneHeader: "",
-      colOneText: "",
-      colTwoHeader: "",
-      colTwoText: "",
-      colThreeHeader: "",
-      colThreeText: "",
-      colFourText: "",
-      colFiveText: "",
-      colSixText: "",
-      colSevenText: "",
-      colEightText: "",
-      colNineText: "",
-      colTenText: "",
-      colElevenText: "",
-      colTwelveText: ""
-    };
+
     this.route.params.subscribe(params => {
       console.log(params);
       this.pillarId = params.pillar;
@@ -57,8 +49,8 @@ export class Temp11Component implements OnInit {
   }
   async saveAll() {
     console.log("Saved temp model");
-    console.log(this.tempModel);
-    this.payload.data = this.tempModel;
+    console.log(this.slides);
+    this.payload.data = this.slides;
     try {
       const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
       if (done) {
@@ -77,7 +69,7 @@ export class Temp11Component implements OnInit {
         console.log(cardDetails.templates[this.templateId].payload);
         this.payload = cardDetails.templates[this.templateId].payload;
         if (this.payload.data) {
-          this.tempModel = this.payload.data;
+          this.slides = this.payload.data;
         }
       }
       else {
@@ -92,8 +84,28 @@ export class Temp11Component implements OnInit {
     console.log("Confirmed");
     this._location.back();
   }
-  onBackCliced(){
+  onBackCliced() {
     this._location.back();
   }
-
+  trackByFn(index, item) {
+    return index; // or item.id
+  }
+  addColum() {
+    console.log("add column clicked");
+    this.slides.push({
+      colHeader: "Type col header",
+      colCells: [
+        "Type col cells"
+      ]
+    });
+  }
+  addCell(slideIndex: number) {
+    this.slides[slideIndex].colCells.push("Type new cell ");
+  }
+  deleteColumn(slideIndex: number) {
+    this.slides.splice(slideIndex, 1);
+  }
+  deleteCell(slideIndex: number, cellIndex: number) {
+    this.slides[slideIndex].colCells.splice(cellIndex, 1);
+  }
 }
