@@ -7,62 +7,32 @@ export class Constants {
 
     public static APP_TEMPLATES: Array<TemplateModel> = [
         {
-            tempId: "1",
-            imageURL: "img/temp1.png",
-            path: "temp1"
-        },
-        {
-            tempId: "2",
-            imageURL: "img/temp2.png",
-            path: "temp2"
-        }, {
             tempId: "3",
             imageURL: "img/temp3.png",
-            path: "temp3"
-        }, {
-            tempId: "4",
-            imageURL: "img/temp4.png",
-            path: "temp4"
+            path: "temp3",
+            templateName: "Team charter"
         }, {
             tempId: "5",
             imageURL: "img/temp5.png",
-            path: "temp5"
-        }, {
-            tempId: "6",
-            imageURL: "img/temp6.png",
-            path: "temp6"
+            path: "temp5",
+            templateName: "Bar - Mixed type chart"
         },
         {
             tempId: "7",
             imageURL: "img/temp7.png",
-            path: "temp7"
-        }, {
-            tempId: "9",
-            imageURL: "img/temp9.png",
-            path: "temp9"
-        },
-        {
-            tempId: "10",
-            imageURL: "img/temp10.png",
-            path: "temp10"
+            path: "temp7",
+            templateName: "Excel sheet"
         }, {
             tempId: "11",
             imageURL: "img/temp11.png",
-            path: "temp11"
-        }, {
-            tempId: "12",
-            imageURL: "img/temp12.png",
-            path: "temp12"
-        },
-        {
-            tempId: "13",
-            imageURL: "img/temp13.png",
-            path: "temp13"
+            path: "temp11",
+            templateName: "Zero loss journey"
         },
         {
             tempId: "14",
             imageURL: "img/Image-placeholder.png",
-            path: "photoTmp"
+            path: "photoTmp",
+            templateName: "Image"
         }
     ];
     public static guidGenerator(): string {
@@ -84,3 +54,67 @@ export class Constants {
 //     imageURL: "img/temp8.png",
 //     path: "temp8"
 // },
+
+
+// public static APP_TEMPLATES: Array<TemplateModel> = [
+//     {
+//         tempId: "1",
+//         imageURL: "img/temp1.png",
+//         path: "temp1",
+//         templateName:"Stages"
+//     },
+//     {
+//         tempId: "2",
+//         imageURL: "img/temp2.png",
+//         path: "temp2"
+//     }, {
+//         tempId: "3",
+//         imageURL: "img/temp3.png",
+//         path: "temp3",
+//         templateName:"Team charter"
+//     }, {
+//         tempId: "4",
+//         imageURL: "img/temp4.png",
+//         path: "temp4"
+//     }, {
+//         tempId: "5",
+//         imageURL: "img/temp5.png",
+//         path: "temp5"
+//     }, {
+//         tempId: "6",
+//         imageURL: "img/temp6.png",
+//         path: "temp6"
+//     },
+//     {
+//         tempId: "7",
+//         imageURL: "img/temp7.png",
+//         path: "temp7"
+//     }, {
+//         tempId: "9",
+//         imageURL: "img/temp9.png",
+//         path: "temp9"
+//     },
+//     {
+//         tempId: "10",
+//         imageURL: "img/temp10.png",
+//         path: "temp10"
+//     }, {
+//         tempId: "11",
+//         imageURL: "img/temp11.png",
+//         path: "temp11"
+//     }, {
+//         tempId: "12",
+//         imageURL: "img/temp12.png",
+//         path: "temp12"
+//     },
+//     {
+//         tempId: "13",
+//         imageURL: "img/temp13.png",
+//         path: "temp13"
+//     },
+//     {
+//         tempId: "14",
+//         imageURL: "img/Image-placeholder.png",
+//         path: "photoTmp"
+//     }
+// ];

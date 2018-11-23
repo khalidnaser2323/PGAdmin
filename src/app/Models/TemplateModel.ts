@@ -1,5 +1,6 @@
 interface TemplateModel {
     tempId: string,
     imageURL: string
-    path: string
+    path: string,
+    templateName?: string
 }

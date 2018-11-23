@@ -12,7 +12,9 @@
                 <div class="row form-group product-chooser">
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" *ngFor="let template of templates" (click)="onTemplateSelected(template.tempId)">
                         <div class="product-chooser-item" [ngClass]="{'selected': template.tempId == selectedTempId}">
-                            <img src="{{template.imageURL}}" class="img-responsive">
+                            <img src="{{template.imageURL}}" style="width:250px;height:160px" class="img-responsive">
+                            <p style="text-align:center;margin-top: 4px;font-size: 1.5rem"> {{template.templateName}}
+                            </p>
                         </div>
                     </div>
                 </div>

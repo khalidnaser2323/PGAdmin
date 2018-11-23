@@ -43,10 +43,6 @@ export class Temp11Component implements OnInit {
 
   ngOnInit() {
   }
-  showPanel(id: string) {
-    console.log("id to show:  " + id);
-    this.activePanel = id;
-  }
   async saveAll() {
     console.log("Saved temp model");
     console.log(this.slides);
