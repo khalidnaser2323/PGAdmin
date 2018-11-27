@@ -29,6 +29,12 @@ export class Constants {
             templateName: "Zero loss journey"
         },
         {
+            tempId: "13",
+            imageURL: "img/temp13.png",
+            path: "temp13",
+            templateName: "3 Pie chart"
+        },
+        {
             tempId: "14",
             imageURL: "img/Image-placeholder.png",
             path: "photoTmp",
