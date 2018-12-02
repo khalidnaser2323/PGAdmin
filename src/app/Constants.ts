@@ -7,6 +7,12 @@ export class Constants {
 
     public static APP_TEMPLATES: Array<TemplateModel> = [
         {
+            tempId: "1",
+            imageURL: "img/temp1.png",
+            path: "temp1",
+            templateName: "Stages"
+        },
+        {
             tempId: "3",
             imageURL: "img/temp3.png",
             path: "temp3",
@@ -22,6 +28,12 @@ export class Constants {
             imageURL: "img/temp7.png",
             path: "temp7",
             templateName: "Excel sheet"
+        },
+        {
+            tempId: "9",
+            imageURL: "img/temp9.png",
+            path: "temp9",
+            templateName: "Pie"
         }, {
             tempId: "11",
             imageURL: "img/temp11.png",

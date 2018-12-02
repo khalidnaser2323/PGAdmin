@@ -24,7 +24,7 @@ export class AddButtonComponent implements OnInit {
   ) {
     console.log(data);
     // this.buttonId = data;
-    this.getTempURL("3");
+    this.getTempURL("1");
   }
 
   ngOnInit() {
