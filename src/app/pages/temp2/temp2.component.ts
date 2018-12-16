@@ -43,6 +43,28 @@ export class Temp2Component implements OnInit {
 
   ngOnInit() {
     this.addRow();
+    window.onbeforeunload = (e) => {
+      e = e || window.event;
+
+      // For IE and Firefox prior to version 4
+      if (e) {
+        e.returnValue = 'Sure?';
+      }
+      this.freeTemplate();
+      // For Safari
+      return 'Sure?';
+    };
+  }
+  async freeTemplate() {
+    console.log("Do something");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
+  }
+  ngOnDestroy() {
+    console.log("Component is destroyed");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
+    window.onbeforeunload = (e) => {
+      //just un registering listener
+    };
   }
   saveRow(row: any) {
     console.log("Saved row");
@@ -110,7 +132,7 @@ export class Temp2Component implements OnInit {
     console.log("Confirmed");
     this._location.back();
   }
-  onBackCliced(){
+  onBackCliced() {
     this._location.back();
   }
 }

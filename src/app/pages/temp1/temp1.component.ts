@@ -41,6 +41,28 @@ export class Temp1Component implements OnInit {
 
   ngOnInit() {
     this.addNewStage();
+    window.onbeforeunload = (e) => {
+      e = e || window.event;
+
+      // For IE and Firefox prior to version 4
+      if (e) {
+        e.returnValue = 'Sure?';
+      }
+      this.freeTemplate();
+      // For Safari
+      return 'Sure?';
+    };
+  }
+  async freeTemplate() {
+    console.log("Do something");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
+  }
+  ngOnDestroy() {
+    console.log("Component is destroyed");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
+    window.onbeforeunload = (e) => {
+      //just un registering listener
+    };
   }
 
   saveStage(stage) {
@@ -70,7 +92,6 @@ export class Temp1Component implements OnInit {
     console.log(this.stages);
     this.spinner.show();
     try {
-      debugger;
       for (let i in this.stages) {
         if (this.stages[i].icon && this.stages[i].icon.startsWith("data:")) {
           const iconId = await this.cardService.uploadImage(this.stages[i].icon);

@@ -44,6 +44,28 @@ export class Temp9Component implements OnInit {
   }
 
   ngOnInit() {
+    window.onbeforeunload = (e) => {
+      e = e || window.event;
+
+      // For IE and Firefox prior to version 4
+      if (e) {
+        e.returnValue = 'Sure?';
+      }
+      this.freeTemplate();
+      // For Safari
+      return 'Sure?';
+    };
+  }
+  async freeTemplate() {
+    console.log("Do something");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
+  }
+  ngOnDestroy() {
+    console.log("Component is destroyed");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
+    window.onbeforeunload = (e) => {
+      //just un registering listener
+    };
   }
   saveSatge(stage: any) {
     console.log("Saved stage");
@@ -117,7 +139,6 @@ export class Temp9Component implements OnInit {
 
   }
   deformatTmp(tmp: Template9) {
-    debugger;
     this.stages = [];
     for (let i = 0; i < tmp.labels.length; i++) {
       this.stages.push({ title: tmp.labels[i], percentage: tmp.percentageData[i] })

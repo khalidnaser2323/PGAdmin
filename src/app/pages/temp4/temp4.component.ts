@@ -41,6 +41,28 @@ export class Temp4Component implements OnInit {
   }
 
   ngOnInit() {
+    window.onbeforeunload = (e) => {
+      e = e || window.event;
+
+      // For IE and Firefox prior to version 4
+      if (e) {
+        e.returnValue = 'Sure?';
+      }
+      this.freeTemplate();
+      // For Safari
+      return 'Sure?';
+    };
+  }
+  async freeTemplate() {
+    console.log("Do something");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
+  }
+  ngOnDestroy() {
+    console.log("Component is destroyed");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
+    window.onbeforeunload = (e) => {
+      //just un registering listener
+    };
   }
   async save() {
     console.log("Saved table data");

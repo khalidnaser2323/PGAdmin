@@ -103,13 +103,20 @@ export class ViewCardsComponent implements OnInit {
   async fillData(event: any) {
     console.log("Clicked fill data");
     console.log(event);
+    console.log(this.card.buttons[this.clickedButtonId].payload);
     // this.spinner.show();
     try {
       const cardDetails = await this.cardService.getCardDetails(this.pillarId, this.card._id);
       // this.spinner.hide();
       if (cardDetails && cardDetails.templates && cardDetails.templates[this.clickedButtonId] && cardDetails.templates[this.clickedButtonId].payload && cardDetails.templates[this.clickedButtonId].payload.templateType) {
-        const path = Constants.APP_TEMPLATES.find(tmp => { return tmp.tempId == cardDetails.templates[this.clickedButtonId].payload.templateType }).path;
-        this.router.navigate([path, { pillar: this.pillarId, card: this.card._id, tmp: this.clickedButtonId }]);
+        if (cardDetails.templates[this.clickedButtonId].payload.isBeingUsedNow) {
+          window.alert("This card is being editted now by another user!");
+        }
+        else {
+          await this.cardService.updateTemplatePayload(this.pillarId, this.card._id, this.clickedButtonId, cardDetails.templates[this.clickedButtonId].payload, true);
+          const path = Constants.APP_TEMPLATES.find(tmp => { return tmp.tempId == cardDetails.templates[this.clickedButtonId].payload.templateType }).path;
+          this.router.navigate([path, { pillar: this.pillarId, card: this.card._id, tmp: this.clickedButtonId }]);
+        }
       }
       else {
         window.alert("Something went wrong!");

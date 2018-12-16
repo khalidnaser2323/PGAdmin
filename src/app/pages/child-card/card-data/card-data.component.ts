@@ -31,7 +31,6 @@ export class CardDataComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     console.log("Edit component: On change called");
     console.log(changes);
-    debugger;
     if (changes.selectedCard) {
       if (changes.selectedCard.currentValue) {
         this.cardObject = Object.assign({}, changes.selectedCard.currentValue);

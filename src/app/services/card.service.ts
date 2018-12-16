@@ -181,8 +181,11 @@ export class CardService {
       });
     });
   }
-  updateTemplatePayload(pillarId: string, cardId: string, templateId: string, payload: any) {
+  updateTemplatePayload(pillarId: string, cardId: string, templateId: string, payload: any, isBeingUsedNow?: boolean) {
     return new Promise<boolean>((resolve, reject) => {
+      payload.isBeingUsedNow = isBeingUsedNow ? true : false;
+      console.log("Final template payload");
+      console.log(payload);
       const reqeustOptions: any = {
         url: Constants.BASE_URL + "section/" + pillarId + "/" + cardId + "/" + templateId,
         method: "PUT",

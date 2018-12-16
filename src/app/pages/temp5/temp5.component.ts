@@ -56,6 +56,21 @@ export class Temp5Component implements OnInit {
     console.log('oninit');
     console.log(this.ChartValues);
     //this.chartV.emit(this.ChartValues);
+    window.onbeforeunload = (e) => {
+      e = e || window.event;
+
+      // For IE and Firefox prior to version 4
+      if (e) {
+        e.returnValue = 'Sure?';
+      }
+      this.freeTemplate();
+      // For Safari
+      return 'Sure?';
+    };
+  }
+  async freeTemplate() {
+    console.log("Do something");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
   }
   async onSaveChartData() {
     console.log("chartData");
@@ -104,5 +119,12 @@ export class Temp5Component implements OnInit {
   }
   onBackCliced() {
     this._location.back();
+  }
+  ngOnDestroy() {
+    console.log("Component is destroyed");
+    this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload, false);
+    window.onbeforeunload = (e) => {
+      //just un registering listener
+    };
   }
 }

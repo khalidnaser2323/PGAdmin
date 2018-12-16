@@ -111,7 +111,6 @@ export class ChildCardComponent implements OnInit {
     }
   }
   updateNewCardTitle() {
-    debugger;
 
     switch (this.cards.length) {
       case 0:
