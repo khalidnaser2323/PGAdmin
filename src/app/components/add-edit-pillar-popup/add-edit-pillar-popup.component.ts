@@ -78,7 +78,8 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
         requestBody: {
           "title": form.value.title,
           "subtitle": form.value.subtitle,
-          "type": form.value.type
+          "type": form.value.type,
+          "email": form.value.email
         }
       }
       this.serviceHandler.runService(reqeustOptions.url, reqeustOptions.method, this.myData.token, reqeustOptions.requestBody).subscribe(response => {
@@ -133,7 +134,8 @@ export class AddEditPillarPopupComponent implements OnInit, OnChanges {
       subtitle: "",
       imageID: "img/img-default.jpg",
       public: false,
-      type: "pillar"
+      type: "pillar",
+      email: ""
     };
     this.seletectedImageString = undefined;
   }

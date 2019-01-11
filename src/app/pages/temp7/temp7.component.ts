@@ -4,6 +4,9 @@ import { CardService } from '../../services/card.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { Location } from '@angular/common';
 import * as XLSX from 'xlsx';
+import { MatDialog } from '@angular/material';
+import { PopupComponent } from '../photo-tmp/popup/popup.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var jquery: any;
 declare var $: any;
@@ -21,10 +24,14 @@ export class Temp7Component implements OnInit {
   payload: any;
   data: any;
   link: string;
+  imageString: string;
+
   constructor(
     private route: ActivatedRoute,
     private cardService: CardService,
-    private _location: Location
+    private _location: Location,
+    public dialog: MatDialog,
+    public spinner: NgxSpinnerService,
 
   ) {
     this.route.params.subscribe(params => {
@@ -61,17 +68,29 @@ export class Temp7Component implements OnInit {
     };
   }
   async save() {
-    console.log("Saved table data");
-    console.log(this.link);
-    this.payload.data = this.link;
-    try {
-      const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
-      if (done) {
-        this.successDialog.show();
+    if (this.link != null && this.imageString != null) {
+      console.log("Image");
+      console.log(this.imageString);
+      this.spinner.show();
+      console.log("Saved table data");
+      console.log(this.link);
+      this.payload.data = this.link;
+      try {
+        const imagePath = this.imageString.startsWith("data:") ? await this.cardService.uploadImage(this.imageString) : this.imageString;
+        this.payload.tmpImage = imagePath;
+        const done = await this.cardService.updateTemplatePayload(this.pillarId, this.cardId, this.templateId, this.payload);
+        this.spinner.hide();
+        if (done) {
+          this.successDialog.show();
+        }
+      } catch (error) {
+        this.spinner.hide();
+        console.log(error);
+        window.alert("OOPs! something went wrong");
       }
-    } catch (error) {
-      console.log(error);
-      window.alert("OOPs! something went wrong");
+    }
+    else {
+      window.alert("Please type link and select image for template");
     }
   }
   async getCardDetails(pillarId: string, cardId: string) {
@@ -86,6 +105,9 @@ export class Temp7Component implements OnInit {
           // $('#mytable').jexcel({ data: this.data, defaultColWidth: "300" });
           this.link = this.payload.data;
 
+        }
+        if (this.payload.tmpImage) {
+          this.imageString = this.payload.tmpImage;
         }
       }
       else {
@@ -123,5 +145,37 @@ export class Temp7Component implements OnInit {
       $('#mytable').jexcel({ data: this.data, defaultColWidth: "300" });
     };
     reader.readAsBinaryString(target.files[0]);
+  }
+  handleFileInput(files: FileList) {
+    // this.fileToUpload = files.item(0);
+    console.log(files);
+    this.readThis(files);
+  }
+  readThis(inputValue: any): void {
+    var file: File = inputValue[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      // you can perform an action with readed data here
+      console.log(myReader.result);
+      this.imageString = myReader.result.toString();
+    }
+
+    myReader.readAsDataURL(file);
+
+  }
+  openDialog(): void {
+
+    let dialogRef = this.dialog.open(PopupComponent, {
+      width: "95%",
+      height: "95%",
+      maxHeight: "100%",
+      maxWidth: "100%",
+      data: { imageString: this.imageString }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog is closed');
+    });
   }
 }

@@ -4,5 +4,6 @@ interface Pillar {
     title: string,
     subtitle: String,
     public: boolean,
-    type?: string
+    type?: string,
+    email: string
 }
